@@ -68,6 +68,28 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
             DispatchMessage(&msg);
         }
     }
+   
+    while (true) {
+        if (PeekMessage(&msg, nullptr, 0, 0,PM_REMOVE)) {
+            if (msg.message == WM_QUIT) {
+                //종료 메세지가 들어오는 경우 프로그램을 종료해준다.
+                break;
+            }
+            else {
+                //메세지에 따른 처리를 해준다. 
+                if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+                {
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                }
+            }
+        }
+        else {
+            //이 부분에 메세지 처리가 없을 때 발생하는 처리를 넣어준다. 
+
+        }
+    }
+
 
     return (int) msg.wParam;
 }
@@ -236,7 +258,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         //x ,y 좌표 
         g_ptLT.x = LOWORD(lParam);
         g_ptLT.y = HIWORD(lParam);
-
         break;
     }
     case WM_MOUSEMOVE:
