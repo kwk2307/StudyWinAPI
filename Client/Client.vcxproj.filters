@@ -17,6 +17,9 @@
     <Filter Include="Engine\02. Core">
       <UniqueIdentifier>{82c5877f-13d0-4e6b-9363-2c1143d42c85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Object">
+      <UniqueIdentifier>{eff0db24-0a5f-4627-b4d5-caa172fb2dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -38,6 +41,9 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CObject.h">
+      <Filter>Engine\03. Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -58,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Engine\03. Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

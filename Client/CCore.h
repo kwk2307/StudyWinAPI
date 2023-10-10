@@ -1,6 +1,5 @@
 #pragma once
 
-#include "pch.h"
 // 싱글톤 패턴
 // 해당 클래스로 만들어질 수 있는 객체의 개수를 한개로 제한
 // extern 키워드 -> 어디서든 접근할 수 있지만 생성을 제한할 수는 없다. 
@@ -53,11 +52,15 @@ class CCore
 private:
 	HWND m_hWnd;			//메인 윈도우 핸들
 	POINT m_ptResolution;	//메인 윈도우 해상도
+	HDC m_hDC;				//Device Context 핸들러
 
-public: 
+public:
 	int init(HWND _hWnd, POINT _ptResolution);
 
-	void progess();
+	void progress();
+private:
+	void update();
+	void render();
 
 private:
 	//생성자 호출을 숨기면 외부에서 클래스를 인스턴스화 할 수 없게 된다.
