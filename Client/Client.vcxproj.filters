@@ -37,6 +37,7 @@
     <ClInclude Include="define.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">

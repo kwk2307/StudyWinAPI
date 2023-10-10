@@ -1,6 +1,6 @@
 #pragma once
 
-#include "define.h"
+#include "pch.h"
 // 싱글톤 패턴
 // 해당 클래스로 만들어질 수 있는 객체의 개수를 한개로 제한
 // extern 키워드 -> 어디서든 접근할 수 있지만 생성을 제한할 수는 없다. 
@@ -42,13 +42,22 @@ class CCore
 // 객체 자체가 데이터 영역에 올라가는 경우
 // 주소 값을 통해 클래스 내부에 접근 가능 
 // 데이터 해제를 신경써줄 필요가 없음 프로그램이 종료될 때 같이 종료되기 때문
-public:
+//public:
 	//static const CCore* GetInstance() {
 	//	static CCore core;
 	//	return &core;
 	//}
 	//비슷하게 쓰이는 코드가 많으니까 매크로로 미리 선언해둔다.
 	SINGLE(CCore)
+
+private:
+	HWND m_hWnd;			//메인 윈도우 핸들
+	POINT m_ptResolution;	//메인 윈도우 해상도
+
+public: 
+	int init(HWND _hWnd, POINT _ptResolution);
+
+	void progess();
 
 private:
 	//생성자 호출을 숨기면 외부에서 클래스를 인스턴스화 할 수 없게 된다.
