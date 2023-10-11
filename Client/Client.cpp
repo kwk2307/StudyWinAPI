@@ -6,6 +6,7 @@
 #include "Client.h"
 #include "vector"
 #include "CCore.h"
+#include "CTimeMgr.h"
 
 #define MAX_LOADSTRING 100
 
@@ -55,6 +56,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 		MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
 		return FALSE;
 	}
+
+	// TimeMgr 초기화
+	CTimeMgr::GetInstance()->init();
+
+
 
 	// 단축키 테이블 정보 로딩 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));

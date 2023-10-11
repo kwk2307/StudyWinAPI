@@ -2,14 +2,22 @@
 
 class CObject
 {
-
-public:
+private:
 	// 위치 정보
 	// 크기 정보
-	POINT m_Position;
-	POINT m_Scale;
-	
+	Vec2 m_Position;
+	Vec2 m_Scale;
+
+public:
+	void SetPos(Vec2 _pos);
+	Vec2 GetPos();
+
+	void SetScale(Vec2 _scale);
+	Vec2 GetScale();
+
+public:
 	CObject();
 	~CObject();
+
 };
 

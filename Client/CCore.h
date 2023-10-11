@@ -47,6 +47,7 @@ class CCore
 	//	return &core;
 	//}
 	//비슷하게 쓰이는 코드가 많으니까 매크로로 미리 선언해둔다.
+
 	SINGLE(CCore)
 
 private:
@@ -61,9 +62,4 @@ public:
 private:
 	void update();
 	void render();
-
-private:
-	//생성자 호출을 숨기면 외부에서 클래스를 인스턴스화 할 수 없게 된다.
-	CCore();
-	~CCore();
 };
