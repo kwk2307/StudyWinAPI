@@ -103,7 +103,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 		else {
 			//이 부분에 메세지 처리가 없을 때 발생하는 처리를 넣어준다. 
 			CCore::GetInstance()->progress();
+			CTimeMgr::GetInstance()->update();
 		}
+
 	}
 	return (int)msg.wParam;
 }

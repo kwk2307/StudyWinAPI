@@ -4,3 +4,4 @@
 
 #include "define.h"
 #include "struct.h"
+#include "wchar.h"

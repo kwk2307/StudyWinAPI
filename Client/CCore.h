@@ -46,8 +46,9 @@ class CCore
 	//	static CCore core;
 	//	return &core;
 	//}
-	//비슷하게 쓰이는 코드가 많으니까 매크로로 미리 선언해둔다.
+	// 
 
+	//비슷하게 쓰이는 코드가 많으니까 매크로로 미리 선언해둔다.
 	SINGLE(CCore)
 
 private:
@@ -55,10 +56,14 @@ private:
 	POINT m_ptResolution;	//메인 윈도우 해상도
 	HDC m_hDC;				//Device Context 핸들러
 
+	HBITMAP m_bitmap;		//미리 그릴 비트맵
+	HDC m_memhDC;			//새 비트맵의 Device Context 
+
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
-
+	HWND getHWND();
 	void progress();
+
 private:
 	void update();
 	void render();
