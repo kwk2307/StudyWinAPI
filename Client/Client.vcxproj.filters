@@ -26,6 +26,9 @@
     <Filter Include="Engine\04. Manager\TimerMgr">
       <UniqueIdentifier>{0c071e69-63a5-4f7a-9e6b-ddaaea509480}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Manager\KeyMgr">
+      <UniqueIdentifier>{5865f1fb-4760-44e3-8a76-aef30a5129a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -56,6 +59,9 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Engine\04. Manager\TimerMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>Engine\04. Manager\KeyMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Engine\04. Manager\TimerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>Engine\04. Manager\KeyMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

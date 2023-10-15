@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CTimeMgr.h"
-#include "CCore.h"
 
 CTimeMgr::CTimeMgr()
 	:m_llCurCount{},
@@ -35,13 +34,13 @@ void CTimeMgr::update()
 	if (m_dAccDT>=1.) {
 		//윈도우 제목에 FPS 및 DeltaTime 표시
 
-		TCHAR szBuffer[1024];
-		swprintf_s(szBuffer, L"FPS : %d, DT: %f", m_iCallCnt, m_dDT);
+		//TCHAR szBuffer[1024];
+		//swprintf_s(szBuffer, L"FPS : %d, DT: %f", m_iCallCnt, m_dDT);
 
-		SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
+		//SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
 
-		m_dAccDT = 0.;
-		m_iCallCnt = 0;
+		//m_dAccDT = 0.;
+		//m_iCallCnt = 0;
 	}
 }
 
