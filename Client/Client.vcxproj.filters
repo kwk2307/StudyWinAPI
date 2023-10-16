@@ -20,14 +20,20 @@
     <Filter Include="Engine\03. Object">
       <UniqueIdentifier>{eff0db24-0a5f-4627-b4d5-caa172fb2dc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Manager">
+    <Filter Include="Engine\04. Scene">
+      <UniqueIdentifier>{f68e95d7-418f-44c9-8525-6b4fd628a797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Manager">
       <UniqueIdentifier>{0e17c489-45c8-4716-9e96-74962de6c61b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Manager\TimerMgr">
+    <Filter Include="Engine\05. Manager\TimerMgr">
       <UniqueIdentifier>{0c071e69-63a5-4f7a-9e6b-ddaaea509480}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Manager\KeyMgr">
+    <Filter Include="Engine\05. Manager\KeyMgr">
       <UniqueIdentifier>{5865f1fb-4760-44e3-8a76-aef30a5129a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Manager\SceneMgr">
+      <UniqueIdentifier>{0ce3aa26-b8bb-4e2c-9141-ed2caa7e33ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,10 +63,16 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
-      <Filter>Engine\04. Manager\TimerMgr</Filter>
+      <Filter>Engine\05. Manager\TimerMgr</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
-      <Filter>Engine\04. Manager\KeyMgr</Filter>
+      <Filter>Engine\05. Manager\KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\04. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>Engine\05. Manager\SceneMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -87,10 +99,16 @@
       <Filter>Engine\03. Object</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
-      <Filter>Engine\04. Manager\TimerMgr</Filter>
+      <Filter>Engine\05. Manager\TimerMgr</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>Engine\04. Manager\KeyMgr</Filter>
+      <Filter>Engine\05. Manager\KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\04. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>Engine\05. Manager\SceneMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

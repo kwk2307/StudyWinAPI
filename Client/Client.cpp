@@ -6,8 +6,9 @@
 #include "Client.h"
 #include "vector"
 #include "CCore.h"
-#include "CTimeMgr.h"
-#include "CKeyMgr.h"
+//#include "CTimeMgr.h"
+//#include "CKeyMgr.h"
+//#include "CSceneMgr.h"
 
 #define MAX_LOADSTRING 100
 
@@ -58,12 +59,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 		return FALSE;
 	}
 
-	// TimeMgr 초기화
-	CTimeMgr::GetInstance()->init();
-
-	// KEYMgr 초기화
-	CKeyMgr::GetInstance()->init();
-
 
 	// 단축키 테이블 정보 로딩 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
@@ -104,9 +99,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 			}
 		}
 		else {
-			CTimeMgr::GetInstance()->update();
-			CKeyMgr::GetInstance()->update();
-
 			//이 부분에 메세지 처리가 없을 때 발생하는 처리를 넣어준다. 
 			CCore::GetInstance()->progress();
 		}

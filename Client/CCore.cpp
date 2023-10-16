@@ -4,6 +4,7 @@
 #include "CObject.h"
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
+#include "CSceneMgr.h"
 
 //CCore* CCore::g_pCore = nullptr;
 
@@ -51,6 +52,13 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 	g_obj.SetPos(Vec2((float)m_ptResolution.x / 2, (float)m_ptResolution.y / 2));
 	g_obj.SetScale(Vec2(100.f, 100.f));
+
+	// TimeMgr 초기화
+	CTimeMgr::GetInstance()->init();
+	// KEYMgr 초기화
+	CKeyMgr::GetInstance()->init();
+	// SceneMgr 초기화
+	CSceneMgr::GetInstance()->init();
 
 	return S_OK;
 }
