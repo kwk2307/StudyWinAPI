@@ -15,6 +15,8 @@ public:
 	void SetScale(Vec2 _scale);
 	Vec2 GetScale();
 
+	void update();
+	void render();
 public:
 	CObject();
 	~CObject();

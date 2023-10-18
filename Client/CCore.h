@@ -64,7 +64,4 @@ public:
 	HWND getHWND();
 	void progress();
 
-private:
-	void update();
-	void render();
 };

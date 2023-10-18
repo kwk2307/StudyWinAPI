@@ -35,6 +35,9 @@
     <Filter Include="Engine\05. Manager\SceneMgr">
       <UniqueIdentifier>{0ce3aa26-b8bb-4e2c-9141-ed2caa7e33ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Scene\StartScene">
+      <UniqueIdentifier>{931c64c7-316f-4c4d-b055-a202aafd3beb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -74,6 +77,9 @@
     <ClInclude Include="CSceneMgr.h">
       <Filter>Engine\05. Manager\SceneMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CStartScene.h">
+      <Filter>Engine\04. Scene\StartScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -109,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
       <Filter>Engine\05. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartScene.cpp">
+      <Filter>Engine\04. Scene\StartScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

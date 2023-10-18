@@ -11,7 +11,6 @@ Vec2 CObject::GetPos()
 	return m_Position;
 }
 
-
 void CObject::SetScale(Vec2 _scale)
 {
 	m_Scale = _scale;
@@ -20,6 +19,15 @@ void CObject::SetScale(Vec2 _scale)
 Vec2 CObject::GetScale()
 {
 	return m_Scale;
+}
+
+void CObject::update()
+{
+
+}
+
+void CObject::render()
+{
 }
 
 CObject::CObject() :

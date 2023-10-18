@@ -70,37 +70,14 @@ HWND CCore::getHWND()
 
 void CCore::progress()
 {
-	update();
-	render();
-}
+	CTimeMgr::GetInstance()->update();
+	CKeyMgr::GetInstance()->update();
 
-void CCore::update()
-{
-	Vec2 vPos = g_obj.GetPos();
-	if (CKeyMgr::GetInstance()->GetKeyState(KEY::LEFT) == KEY_STATE::HOLD) {
-		vPos.x -= 100 * CTimeMgr::GetInstance()->getDT();
-	}
-
-	if (CKeyMgr::GetInstance()->GetKeyState(KEY::RIGHT) == KEY_STATE::HOLD) {
-		vPos.x += 100 * CTimeMgr::GetInstance()->getDT();
-	}
-	g_obj.SetPos(vPos);
-}
-
-void CCore::render()
-{
+	CSceneMgr::GetInstance()->update();
+	
 	Rectangle(m_memhDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
-
-	Vec2 vPos = g_obj.GetPos();
-	Vec2 vScale = g_obj.GetScale();
-
-	Rectangle(m_memhDC,
-		(int)(vPos.x - vScale.x / 2.f),
-		(int)(vPos.y - vScale.y / 2.f),
-		(int)(vPos.x + vScale.x / 2.f),
-		(int)(vPos.y + vScale.y / 2.f)
-		);
+	
+	CSceneMgr::GetInstance()->render(m_memhDC);
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
-
 }

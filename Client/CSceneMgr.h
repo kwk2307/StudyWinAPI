@@ -8,10 +8,13 @@ class CSceneMgr
 
 private:
 	CScene* m_ArrScenes[(UINT)SceneType::END];//¸ðµç ¾À ¸ñ·Ï
-	CScene* m_CurScene;
+	CScene* m_pCurScene;
 
 public:
 	void init();
+
+	void update();
+	void render(HDC _dc);
 	
 	CScene* GetCurrentScene();
 private:

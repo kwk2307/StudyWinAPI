@@ -1,2 +1,9 @@
-﻿  CKeyMgr.cpp
+﻿  CCore.cpp
+  CKeyMgr.cpp
+  Client.cpp
+  CObject.cpp
+  CStartScene.cpp
+  CTimeMgr.cpp
+  CScene.cpp
+  CSceneMgr.cpp
   Client.vcxproj -> C:\Git\StudyWinAPI\x64\Debug\Client.exe
