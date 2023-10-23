@@ -7,6 +7,7 @@
 #include "CSceneMgr.h"
 
 //CCore* CCore::g_pCore = nullptr;
+void TimerEvent(UINT _iCallCnt, double _dDT);
 
 //맴버 이니셜라이저
 CCore::CCore() :
@@ -25,9 +26,6 @@ CCore::~CCore()
 	DeleteDC(m_memhDC);
 	DeleteObject(m_bitmap);
 }
-
-// Object 하나 생성
-CObject g_obj;
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
 {
@@ -50,11 +48,10 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 	DeleteObject((HBITMAP)SelectObject(m_memhDC, m_bitmap));
 
-	g_obj.SetPos(Vec2((float)m_ptResolution.x / 2, (float)m_ptResolution.y / 2));
-	g_obj.SetScale(Vec2(100.f, 100.f));
-
 	// TimeMgr 초기화
 	CTimeMgr::GetInstance()->init();
+	CTimeMgr::GetInstance()->fcnPtr = TimerEvent;
+
 	// KEYMgr 초기화
 	CKeyMgr::GetInstance()->init();
 	// SceneMgr 초기화
@@ -71,8 +68,8 @@ HWND CCore::getHWND()
 void CCore::progress()
 {
 	CTimeMgr::GetInstance()->update();
+	(*CTimeMgr::GetInstance()->fcnPtr)(CTimeMgr::GetInstance()->GetCallCnt(), CTimeMgr::GetInstance()->GetDT());
 	CKeyMgr::GetInstance()->update();
-
 	CSceneMgr::GetInstance()->update();
 	
 	Rectangle(m_memhDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
@@ -80,4 +77,15 @@ void CCore::progress()
 	CSceneMgr::GetInstance()->render(m_memhDC);
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
+	
+}
+
+
+void TimerEvent(UINT _iCallCnt, double _dDT)
+{
+	TCHAR szBuffer[1024];
+	swprintf_s(szBuffer, L"FPS : %d, DT: %f", _iCallCnt, _dDT);
+
+	SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
+
 }

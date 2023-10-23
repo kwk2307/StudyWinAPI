@@ -6,9 +6,9 @@ class CScene
 {
 private:
 	vector<CObject*> m_VecObjects[(UINT)ObjectType::END];
-	wstring m_strName;		
-public:
+	wstring m_strName;
 
+public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
@@ -18,7 +18,10 @@ public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 
-	vector<CObject*> GetVecObject(ObjectType type) { return m_VecObjects[(UINT)type]; }
+protected:
+	void AddObject(CObject* _pObj, ObjectType _eType){
+		m_VecObjects[(UINT)_eType].push_back(_pObj);
+	}
 
 public:
 	CScene();

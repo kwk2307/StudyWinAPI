@@ -38,21 +38,13 @@ void CTimeMgr::update()
 		//swprintf_s(szBuffer, L"FPS : %d, DT: %f", m_iCallCnt, m_dDT);
 
 		//SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
+		fcnPtr(m_iCallCnt, m_dDT);
 
-		//m_dAccDT = 0.;
-		//m_iCallCnt = 0;
+		m_dAccDT = 0.;
+		m_iCallCnt = 0;
 	}
 }
 
-double CTimeMgr::getDT()
-{
-	return m_dDT;
-}
-
-float CTimeMgr::getfDT()
-{
-	return (float)m_dDT;
-}
 
 
  

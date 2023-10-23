@@ -2,7 +2,11 @@ C:\Git\StudyWinAPI\Client\CCore.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CCore.ob
 C:\Git\StudyWinAPI\Client\CKeyMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CKeyMgr.obj
 C:\Git\StudyWinAPI\Client\Client.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\Client.obj
 C:\Git\StudyWinAPI\Client\CObject.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CObject.obj
+C:\Git\StudyWinAPI\Client\CPlayer.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CPlayer.obj
+C:\Git\StudyWinAPI\Client\CRes.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CRes.obj
 C:\Git\StudyWinAPI\Client\CStartScene.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CStartScene.obj
+C:\Git\StudyWinAPI\Client\CTexture.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CTexture.obj
 C:\Git\StudyWinAPI\Client\CTimeMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CTimeMgr.obj
 C:\Git\StudyWinAPI\Client\CScene.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CScene.obj
 C:\Git\StudyWinAPI\Client\CSceneMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CSceneMgr.obj
+C:\Git\StudyWinAPI\Client\PathMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\PathMgr.obj

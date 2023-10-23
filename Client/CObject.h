@@ -9,14 +9,14 @@ private:
 	Vec2 m_Scale;
 
 public:
-	void SetPos(Vec2 _pos);
-	Vec2 GetPos();
+	void SetPos(Vec2 _pos) {m_Position = _pos;}
+	Vec2 GetPos() {return m_Position;}
 
-	void SetScale(Vec2 _scale);
-	Vec2 GetScale();
+	void SetScale(Vec2 _scale) {m_Scale = _scale;}
+	Vec2 GetScale() {return m_Scale;}
 
-	void update();
-	void render();
+	virtual void update() = 0;
+	virtual void render(HDC _hdc) = 0;
 public:
 	CObject();
 	~CObject();

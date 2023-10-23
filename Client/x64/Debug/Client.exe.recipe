@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Git\StudyWinAPI\x64\Debug\Client.exe</FullPath>
+      <FullPath>C:\Git\StudyWinAPI\Output\bin_debug\Client.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

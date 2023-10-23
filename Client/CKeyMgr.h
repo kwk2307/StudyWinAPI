@@ -21,6 +21,10 @@ enum class KEY {
 	W,
 	E,
 	R,
+	A,
+	S,
+	D,
+	F,
 	ALT,
 	CTRL,
 	SPACE,
@@ -28,8 +32,6 @@ enum class KEY {
 	ESC,
 	LAST,
 };
-
-
 
 struct tkeyinfo {
 

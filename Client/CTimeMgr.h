@@ -23,8 +23,12 @@ private:
 public:
 	void init();
 	void update();
+	
+	void (*fcnPtr)(UINT, double);
 
-	double getDT();
-	float getfDT();
+	double GetDT() { return m_dDT; }
+	float GetfDT() { return (float)m_dDT; }
+
+	UINT GetCallCnt() { return m_iCallCnt; }
 };
 

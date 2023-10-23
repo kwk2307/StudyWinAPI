@@ -2,6 +2,7 @@
 
 #include <windows.h>
 #include <iostream>
+#include <cassert>
 
 #include <vector>
 using std::vector;
