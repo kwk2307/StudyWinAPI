@@ -59,11 +59,13 @@ private:
 	HBITMAP m_bitmap;		//미리 그릴 비트맵
 	HDC m_memhDC;			//새 비트맵의 Device Context 
 
-
-
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
-	HWND getHWND();
+	HWND getHWND() { return m_hWnd; }
+	HDC getHDC() { return m_hDC; }
+
 	void progress();
+
+	static void TimerEvent(UINT _iCallCnt, double _dDT);
 
 };

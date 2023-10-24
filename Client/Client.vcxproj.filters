@@ -53,6 +53,9 @@
     <Filter Include="Engine\05. Manager\PathMgr">
       <UniqueIdentifier>{7f2ad7e5-82d6-4920-b9b2-1c51a6e3e645}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Manager\ResourceMgr">
+      <UniqueIdentifier>{b506d341-f2d7-489e-86dd-c345346e756d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -92,7 +95,7 @@
     <ClInclude Include="CSceneMgr.h">
       <Filter>Engine\05. Manager\SceneMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CStartScene.h">
+    <ClInclude Include="CScene_Start.h">
       <Filter>Engine\04. Scene\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
       <Filter>Engine\05. Manager\PathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourceMgr.h">
+      <Filter>Engine\05. Manager\ResourceMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +149,7 @@
     <ClCompile Include="CSceneMgr.cpp">
       <Filter>Engine\05. Manager\SceneMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CStartScene.cpp">
+    <ClCompile Include="CScene_Start.cpp">
       <Filter>Engine\04. Scene\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
@@ -157,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Engine\05. Manager\PathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourceMgr.cpp">
+      <Filter>Engine\05. Manager\ResourceMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

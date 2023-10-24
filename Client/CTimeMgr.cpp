@@ -31,14 +31,10 @@ void CTimeMgr::update()
 	m_iCallCnt++;
 	m_dAccDT += m_dDT;
 
-	if (m_dAccDT>=1.) {
+	if (m_dAccDT >= 1.) {
 		//윈도우 제목에 FPS 및 DeltaTime 표시
 
-		//TCHAR szBuffer[1024];
-		//swprintf_s(szBuffer, L"FPS : %d, DT: %f", m_iCallCnt, m_dDT);
-
-		//SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
-		fcnPtr(m_iCallCnt, m_dDT);
+		ptrTimerEvent(m_iCallCnt, m_dDT);
 
 		m_dAccDT = 0.;
 		m_iCallCnt = 0;

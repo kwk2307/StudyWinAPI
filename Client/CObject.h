@@ -16,7 +16,7 @@ public:
 	Vec2 GetScale() {return m_Scale;}
 
 	virtual void update() = 0;
-	virtual void render(HDC _hdc) = 0;
+	virtual void render(HDC _hdc);
 public:
 	CObject();
 	~CObject();

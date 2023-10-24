@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CSceneMgr.h"
 
-#include "CStartScene.h"
+#include "CScene_Start.h"
 
 CSceneMgr::CSceneMgr() :
 	m_ArrScenes{},
@@ -20,7 +20,7 @@ CSceneMgr::~CSceneMgr()
 
 void CSceneMgr::init()
 {
-	m_ArrScenes[(UINT)SceneType::STARTSCENE] = new CStartScene;
+	m_ArrScenes[(UINT)SceneType::STARTSCENE] = new CScene_Start;
 	m_ArrScenes[(UINT)SceneType::STARTSCENE]->SetName(L"StartScene");
 	
 	//m_ArrScenes[(UINT)SceneType::STAGE01] = new CSTAGE01;

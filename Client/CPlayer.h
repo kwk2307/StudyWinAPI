@@ -1,9 +1,20 @@
 #pragma once
 #include "CObject.h"
+
+class CTexture;
+
 class CPlayer :
     public CObject
 {
-    void update();
-    void render(HDC _hdc);
+
+private:
+    CTexture* m_pTex;
+public:
+    virtual void update();
+    virtual void render(HDC _hdc);
+
+public: 
+    CPlayer();
+    ~CPlayer();
 };
 

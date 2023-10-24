@@ -4,6 +4,21 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 
+#include "CTexture.h"
+#include "CResourceMgr.h"
+
+
+CPlayer::CPlayer()
+	:m_pTex(nullptr)
+{
+	m_pTex = CResourceMgr::GetInstance()->LoadTexture(L"PlayerTex", L"Texture\\player.bmp");
+}
+
+CPlayer::~CPlayer()
+{
+}
+
+
 void CPlayer::update()
 {
 	Vec2 vec = GetPos();
@@ -24,14 +39,19 @@ void CPlayer::update()
 	SetPos(vec);
 }
 
-void CPlayer::render(HDC _hdc)
+void CPlayer::render(HDC _dc)
 {
-	Rectangle(_hdc,
-		int(GetPos().x - GetScale().x / 2),
-		int(GetPos().y - GetScale().y / 2),
-		int(GetPos().x + GetScale().x / 2),
-		int(GetPos().y + GetScale().y / 2)
-	);
+	int iWidth = (int)m_pTex->GetWidth();
+	int iHeight = (int)m_pTex->GetHeight();
+	Vec2 vPos = GetPos();
 
+	BitBlt(_dc,
+		int(vPos.x - (float)(iWidth / 2)),
+		int(vPos.y - (float)(iHeight / 2)),
+		iHeight, iWidth,
+		m_pTex->GetDC(),
+		0, 0,
+		SRCCOPY);
 }
+
 

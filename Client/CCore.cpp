@@ -5,9 +5,9 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CPathMgr.h"
 
 //CCore* CCore::g_pCore = nullptr;
-void TimerEvent(UINT _iCallCnt, double _dDT);
 
 //맴버 이니셜라이저
 CCore::CCore() :
@@ -48,27 +48,26 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 	DeleteObject((HBITMAP)SelectObject(m_memhDC, m_bitmap));
 
+	// PathMgr 초기화
+	CPathMgr::GetInstance()->init();
+
 	// TimeMgr 초기화
 	CTimeMgr::GetInstance()->init();
-	CTimeMgr::GetInstance()->fcnPtr = TimerEvent;
+	CTimeMgr::GetInstance()->ptrTimerEvent = TimerEvent;
 
 	// KEYMgr 초기화
 	CKeyMgr::GetInstance()->init();
+
 	// SceneMgr 초기화
 	CSceneMgr::GetInstance()->init();
 
 	return S_OK;
 }
 
-HWND CCore::getHWND()
-{
-	return m_hWnd;
-}
 
 void CCore::progress()
 {
 	CTimeMgr::GetInstance()->update();
-	(*CTimeMgr::GetInstance()->fcnPtr)(CTimeMgr::GetInstance()->GetCallCnt(), CTimeMgr::GetInstance()->GetDT());
 	CKeyMgr::GetInstance()->update();
 	CSceneMgr::GetInstance()->update();
 	
@@ -77,11 +76,9 @@ void CCore::progress()
 	CSceneMgr::GetInstance()->render(m_memhDC);
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
-	
 }
 
-
-void TimerEvent(UINT _iCallCnt, double _dDT)
+void CCore::TimerEvent(UINT _iCallCnt, double _dDT)
 {
 	TCHAR szBuffer[1024];
 	swprintf_s(szBuffer, L"FPS : %d, DT: %f", _iCallCnt, _dDT);
