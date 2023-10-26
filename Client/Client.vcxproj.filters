@@ -17,32 +17,11 @@
     <Filter Include="Engine\02. Core">
       <UniqueIdentifier>{82c5877f-13d0-4e6b-9363-2c1143d42c85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\03. Object">
-      <UniqueIdentifier>{eff0db24-0a5f-4627-b4d5-caa172fb2dc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04. Scene">
       <UniqueIdentifier>{f68e95d7-418f-44c9-8525-6b4fd628a797}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Manager">
-      <UniqueIdentifier>{0e17c489-45c8-4716-9e96-74962de6c61b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\05. Manager\TimerMgr">
-      <UniqueIdentifier>{0c071e69-63a5-4f7a-9e6b-ddaaea509480}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\05. Manager\KeyMgr">
-      <UniqueIdentifier>{5865f1fb-4760-44e3-8a76-aef30a5129a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\05. Manager\SceneMgr">
-      <UniqueIdentifier>{0ce3aa26-b8bb-4e2c-9141-ed2caa7e33ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04. Scene\StartScene">
       <UniqueIdentifier>{931c64c7-316f-4c4d-b055-a202aafd3beb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\03. Object\Player">
-      <UniqueIdentifier>{ac5b99d6-d898-4d52-b335-24774209487c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\03. Object\Block">
-      <UniqueIdentifier>{1f60fe54-8f72-4676-ad86-4d8b13ab1487}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\06. Resource">
       <UniqueIdentifier>{eae6a94c-a638-4aa2-9b62-ac6a51c185a9}</UniqueIdentifier>
@@ -50,11 +29,38 @@
     <Filter Include="Engine\06. Resource\Textrue">
       <UniqueIdentifier>{a4574998-dc7a-4162-b941-c7b2423e328b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Manager\PathMgr">
+    <Filter Include="Engine\03. Manager">
+      <UniqueIdentifier>{0e17c489-45c8-4716-9e96-74962de6c61b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\TimerMgr">
+      <UniqueIdentifier>{0c071e69-63a5-4f7a-9e6b-ddaaea509480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\KeyMgr">
+      <UniqueIdentifier>{5865f1fb-4760-44e3-8a76-aef30a5129a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\SceneMgr">
+      <UniqueIdentifier>{0ce3aa26-b8bb-4e2c-9141-ed2caa7e33ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\PathMgr">
       <UniqueIdentifier>{7f2ad7e5-82d6-4920-b9b2-1c51a6e3e645}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Manager\ResourceMgr">
+    <Filter Include="Engine\03. Manager\ResourceMgr">
       <UniqueIdentifier>{b506d341-f2d7-489e-86dd-c345346e756d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Object">
+      <UniqueIdentifier>{eff0db24-0a5f-4627-b4d5-caa172fb2dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Object\Player">
+      <UniqueIdentifier>{ac5b99d6-d898-4d52-b335-24774209487c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Object\Block">
+      <UniqueIdentifier>{1f60fe54-8f72-4676-ad86-4d8b13ab1487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Component">
+      <UniqueIdentifier>{3f43f148-2386-45c3-8fb9-c8221460b52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08. Module">
+      <UniqueIdentifier>{9f747958-e2c7-4f91-80b1-1b9eb20c9a6e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,28 +84,28 @@
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="CObject.h">
-      <Filter>Engine\03. Object</Filter>
+      <Filter>Engine\05. Object</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
-      <Filter>Engine\05. Manager\TimerMgr</Filter>
+      <Filter>Engine\03. Manager\TimerMgr</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
-      <Filter>Engine\05. Manager\KeyMgr</Filter>
+      <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
       <Filter>Engine\04. Scene</Filter>
     </ClInclude>
     <ClInclude Include="CSceneMgr.h">
-      <Filter>Engine\05. Manager\SceneMgr</Filter>
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="CScene_Start.h">
       <Filter>Engine\04. Scene\StartScene</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>Engine\03. Object\Player</Filter>
+      <Filter>Engine\05. Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CRes.h">
       <Filter>Engine\06. Resource</Filter>
@@ -108,10 +114,16 @@
       <Filter>Engine\06. Resource\Textrue</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
-      <Filter>Engine\05. Manager\PathMgr</Filter>
+      <Filter>Engine\03. Manager\PathMgr</Filter>
     </ClInclude>
     <ClInclude Include="CResourceMgr.h">
-      <Filter>Engine\05. Manager\ResourceMgr</Filter>
+      <Filter>Engine\03. Manager\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\07. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CSetBrushPen.h">
+      <Filter>Engine\08. Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,25 +147,25 @@
       <Filter>Engine\02. Core</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
-      <Filter>Engine\03. Object</Filter>
+      <Filter>Engine\05. Object</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
-      <Filter>Engine\05. Manager\TimerMgr</Filter>
+      <Filter>Engine\03. Manager\TimerMgr</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>Engine\05. Manager\KeyMgr</Filter>
+      <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Engine\04. Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
-      <Filter>Engine\05. Manager\SceneMgr</Filter>
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="CScene_Start.cpp">
       <Filter>Engine\04. Scene\StartScene</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>Engine\03. Object\Player</Filter>
+      <Filter>Engine\05. Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CRes.cpp">
       <Filter>Engine\06. Resource</Filter>
@@ -162,10 +174,16 @@
       <Filter>Engine\06. Resource\Textrue</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
-      <Filter>Engine\05. Manager\PathMgr</Filter>
+      <Filter>Engine\03. Manager\PathMgr</Filter>
     </ClCompile>
     <ClCompile Include="CResourceMgr.cpp">
-      <Filter>Engine\05. Manager\ResourceMgr</Filter>
+      <Filter>Engine\03. Manager\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\07. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CSetBrushPen.cpp">
+      <Filter>Engine\08. Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

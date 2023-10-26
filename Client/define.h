@@ -33,3 +33,16 @@ enum class ObjectType {
 
 	END = 32,
 };
+
+enum class BrushType {
+	HOLLOW,
+	END,
+};
+
+enum class PenType {
+	RED,
+	GREEN,
+	BLUE,
+	END
+};
+

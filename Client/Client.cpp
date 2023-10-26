@@ -59,7 +59,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 		return FALSE;
 	}
 
-
 	// 단축키 테이블 정보 로딩 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
@@ -84,7 +83,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 	//}
 
 	while (true) {
-		if (!PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
 			if (msg.message == WM_QUIT) {
 				//종료 메세지가 들어오는 경우 프로그램을 종료해준다.
 				break;
@@ -98,11 +97,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 실행된 프로세스의 시
 				}
 			}
 		}
-		else {
-			//이 부분에 메세지 처리가 없을 때 발생하는 처리를 넣어준다. 
-			CCore::GetInstance()->progress();
-		}
-
+		//이 부분에 메세지 처리가 없을 때 발생하는 처리를 넣어준다. 
+		CCore::GetInstance()->progress();		
 	}
 	return (int)msg.wParam;
 }

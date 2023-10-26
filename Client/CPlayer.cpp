@@ -7,10 +7,14 @@
 #include "CTexture.h"
 #include "CResourceMgr.h"
 
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 	:m_pTex(nullptr)
 {
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(100.f, 100.f));
+
 	m_pTex = CResourceMgr::GetInstance()->LoadTexture(L"PlayerTex", L"Texture\\player.bmp");
 }
 
@@ -52,6 +56,8 @@ void CPlayer::render(HDC _dc)
 		m_pTex->GetDC(),
 		0, 0,
 		SRCCOPY);
+
+	component_render(_dc);
 }
 
 

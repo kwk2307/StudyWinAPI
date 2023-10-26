@@ -59,10 +59,18 @@ private:
 	HBITMAP m_bitmap;		//미리 그릴 비트맵
 	HDC m_memhDC;			//새 비트맵의 Device Context 
 
+	HBRUSH m_arrBrush[(UINT)BrushType::END];
+	HPEN m_arrPen[(UINT)PenType::END];
+
+private:
+	void CreateBrushPen();
+
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	HWND getHWND() { return m_hWnd; }
 	HDC getHDC() { return m_hDC; }
+	HBRUSH getBrush(BrushType _etype) { return m_arrBrush[(UINT)_etype]; }
+	HPEN getPen(PenType _etype) { return m_arrPen[(UINT)_etype]; }
 
 	void progress();
 
