@@ -7,6 +7,8 @@
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
 
+#include "CCollisionMgr.h"
+
 //CCore* CCore::g_pCore = nullptr;
 
 //맴버 이니셜라이저
@@ -77,6 +79,9 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 	// SceneMgr 초기화
 	CSceneMgr::GetInstance()->init();
+	
+	// CollisionMgr 초기화
+	CCollisionMgr::GetInstance()->init();
 
 	return S_OK;
 }
@@ -86,8 +91,11 @@ void CCore::progress()
 {
 	CTimeMgr::GetInstance()->update();
 	CKeyMgr::GetInstance()->update();
+	
 	CSceneMgr::GetInstance()->update();
 	
+	CCollisionMgr::GetInstance()->update();
+
 	Rectangle(m_memhDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 	
 	CSceneMgr::GetInstance()->render(m_memhDC);

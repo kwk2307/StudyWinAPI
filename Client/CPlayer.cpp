@@ -12,11 +12,14 @@
 CPlayer::CPlayer()
 	:m_pTex(nullptr)
 {
-	CreateCollider();
-	GetCollider()->SetScale(Vec2(100.f, 100.f));
 
 	m_pTex = CResourceMgr::GetInstance()->LoadTexture(L"PlayerTex", L"Texture\\player.bmp");
-}
+
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(100.f, 100.f));
+	GetCollider()->SetScale(Vec2(30.f, 30.f));
+
+	}
 
 CPlayer::~CPlayer()
 {

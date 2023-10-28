@@ -19,11 +19,13 @@ public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 
-protected:
-	void AddObject(CObject* _pObj, ObjectType _eType){
-		m_VecObjects[(UINT)_eType].push_back(_pObj);
+	const vector<CObject*>& GetGroupObject(ObjectType _eType) { 
+		return m_VecObjects[(UINT)_eType]; 
 	}
 
+protected:
+	void AddObject(CObject* _pObj, ObjectType _eType){m_VecObjects[(UINT)_eType].push_back(_pObj);}
+		
 public:
 	CScene();
 	// Manager에서 관리할 때 부모 클래스릍 통해 관리 되는데 

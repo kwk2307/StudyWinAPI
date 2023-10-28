@@ -1,4 +1,6 @@
-﻿  CCollider.cpp
-  CSetBrushPen.cpp
-  Client.cpp
-  Client.vcxproj -> C:\Git\StudyWinAPI\Output\bin_debug\Client.exe
+﻿  CCollisionMgr.cpp
+  CScene_Start.cpp
+CCollisionMgr.obj : error LNK2019: "public: void __cdecl CCollider::OnCollision(class CCollider *)" (?OnCollision@CCollider@@QEAAXPEAV1@@Z)"private: void __cdecl CCollisionMgr::CollisionEvent(enum ObjectType,enum ObjectType)" (?CollisionEvent@CCollisionMgr@@AEAAXW4ObjectType@@0@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
+CCollisionMgr.obj : error LNK2019: "public: void __cdecl CCollider::BeginCollision(class CCollider *)" (?BeginCollision@CCollider@@QEAAXPEAV1@@Z)"private: void __cdecl CCollisionMgr::CollisionEvent(enum ObjectType,enum ObjectType)" (?CollisionEvent@CCollisionMgr@@AEAAXW4ObjectType@@0@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
+CCollisionMgr.obj : error LNK2019: "public: void __cdecl CCollider::EndCollision(class CCollider *)" (?EndCollision@CCollider@@QEAAXPEAV1@@Z)"private: void __cdecl CCollisionMgr::CollisionEvent(enum ObjectType,enum ObjectType)" (?CollisionEvent@CCollisionMgr@@AEAAXW4ObjectType@@0@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Git\StudyWinAPI\Output\bin_debug\Client.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.

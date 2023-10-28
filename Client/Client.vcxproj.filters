@@ -62,6 +62,9 @@
     <Filter Include="Engine\08. Module">
       <UniqueIdentifier>{9f747958-e2c7-4f91-80b1-1b9eb20c9a6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\CollisionMgr">
+      <UniqueIdentifier>{c190335b-de8e-4621-aa45-5f8e59c9f86f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -125,6 +128,9 @@
     <ClInclude Include="CSetBrushPen.h">
       <Filter>Engine\08. Module</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -184,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="CSetBrushPen.cpp">
       <Filter>Engine\08. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
