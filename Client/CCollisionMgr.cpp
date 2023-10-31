@@ -40,8 +40,8 @@ bool CCollisionMgr::isCollision(CCollider* _ptLeftCol, CCollider* _ptRightCol)
 	Vec2 vRightSacle = _ptRightCol->GetScale();
 
 
-	if ((abs(vRightPos.x - vLeftPos.x) < (vRightSacle.x + vLeftSacle.x) / 2.f) &&
-		(abs(vRightPos.y - vLeftPos.y) < (vRightSacle.y + vLeftSacle.y) / 2.f)) {
+	if ((abs(vRightPos.x - vLeftPos.x) < (vRightSacle.x + vLeftSacle.x) / 2.f) 
+		&& (abs(vRightPos.y - vLeftPos.y) < (vRightSacle.y + vLeftSacle.y) / 2.f)) {
 		return true;
 	}
 

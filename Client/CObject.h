@@ -12,6 +12,7 @@ private:
 
 	CCollider* m_pCollider;
 
+	bool m_bDead;
 public:
 	void SetPos(Vec2 _pos) { m_vPos = _pos;}
 	Vec2 GetPos() {return m_vPos;}

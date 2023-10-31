@@ -23,7 +23,7 @@ public:
 		return m_VecObjects[(UINT)_eType]; 
 	}
 
-protected:
+public:
 	void AddObject(CObject* _pObj, ObjectType _eType){m_VecObjects[(UINT)_eType].push_back(_pObj);}
 		
 public:

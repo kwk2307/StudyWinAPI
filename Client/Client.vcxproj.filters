@@ -65,6 +65,9 @@
     <Filter Include="Engine\03. Manager\CollisionMgr">
       <UniqueIdentifier>{c190335b-de8e-4621-aa45-5f8e59c9f86f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\EventMgr">
+      <UniqueIdentifier>{c40c7959-1ea8-4710-b852-2efd85ff8b24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -131,6 +134,15 @@
     <ClInclude Include="CCollisionMgr.h">
       <Filter>Engine\03. Manager\CollisionMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CEventMgr.h">
+      <Filter>Engine\03. Manager\EventMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CBlock.h">
+      <Filter>Engine\05. Object\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -193,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
       <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventMgr.cpp">
+      <Filter>Engine\03. Manager\EventMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>Engine\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlock.cpp">
+      <Filter>Engine\05. Object\Block</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,15 +18,14 @@ void CScene_Start::Enter()
 
 	AddObject(obj, ObjectType::PLAYER);
 
-
-
 	// 충돌 지정
 	// 오브젝트 타입간 충돌 지정
 	CCollisionMgr::GetInstance()->CheckGroup(ObjectType::PLAYER, ObjectType::BLOCK);
-
 }
 
 void CScene_Start::Exit()
 {
 	CCollisionMgr::GetInstance()->Reset();
 }
+
+

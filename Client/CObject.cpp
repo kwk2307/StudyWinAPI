@@ -6,7 +6,8 @@
 CObject::CObject() :
 	m_vPos{ 0,0 },
 	m_vScale{ 0,0 },
-	m_pCollider(nullptr)
+	m_pCollider(nullptr),
+	m_bDead(false)
 {
 }
 
