@@ -20,10 +20,15 @@ public:
 	void SetScale(Vec2 _scale) { m_vPos = _scale;}
 	Vec2 GetScale() {return m_vScale;}
 
+public:
 	CCollider* GetCollider() { return m_pCollider; }
-
 	void CreateCollider();
 
+public:
+	void SetDead(bool _state) { m_bDead = _state; }
+	bool GetDead() { return m_bDead; }
+
+public:
 	virtual void update() = 0;
 	virtual void finalupdate() final;
 

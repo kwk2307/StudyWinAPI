@@ -44,26 +44,33 @@ void CPlayer::update()
 	
 	if (KEYCHKCK_TAP(KEY::SPACE)) {
 	//
+		CBlock* block = new CBlock();
+		CreateObject(block, ObjectType::BLOCK);
 	}
 
 	SetPos(vec);
 }
 
 void CPlayer::render(HDC _dc)
-{
-	int iWidth = (int)m_pTex->GetWidth();
-	int iHeight = (int)m_pTex->GetHeight();
-	Vec2 vPos = GetPos();
+{	
+	if (GetDead()) {
+		delete this;
+	}
+	else {
+		int iWidth = (int)m_pTex->GetWidth();
+		int iHeight = (int)m_pTex->GetHeight();
+		Vec2 vPos = GetPos();
 
-	BitBlt(_dc,
-		int(vPos.x - (float)(iWidth / 2)),
-		int(vPos.y - (float)(iHeight / 2)),
-		iHeight, iWidth,
-		m_pTex->GetDC(),
-		0, 0,
-		SRCCOPY);
+		BitBlt(_dc,
+			int(vPos.x - (float)(iWidth / 2)),
+			int(vPos.y - (float)(iHeight / 2)),
+			iHeight, iWidth,
+			m_pTex->GetDC(),
+			0, 0,
+			SRCCOPY);
 
-	component_render(_dc);
+		component_render(_dc);
+	}
 }
 
 

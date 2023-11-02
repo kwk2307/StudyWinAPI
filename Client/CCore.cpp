@@ -2,12 +2,13 @@
 
 #include "CCore.h"
 #include "CObject.h"
+
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
-
 #include "CCollisionMgr.h"
+#include "CEventMgr.h"
 
 //CCore* CCore::g_pCore = nullptr;
 
@@ -83,6 +84,8 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// CollisionMgr ÃÊ±âÈ­
 	CCollisionMgr::GetInstance()->init();
 
+	CEventMgr::GetInstance()->init();
+
 	return S_OK;
 }
 
@@ -101,6 +104,8 @@ void CCore::progress()
 	CSceneMgr::GetInstance()->render(m_memhDC);
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
+
+	CEventMgr::GetInstance()->update();
 }
 
 void CCore::TimerEvent(UINT _iCallCnt, double _dDT)

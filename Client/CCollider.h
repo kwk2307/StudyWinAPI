@@ -23,6 +23,7 @@ public:
 	Vec2 GetFinalPos() { return m_vFinalPos; }
 
 	UINT GetID() { return m_iID;}
+	CObject* GetOwner() { return m_pOwner; }
 
 public:
 	void finalupdate();
@@ -35,7 +36,6 @@ public:
 	void OnCollision(CCollider* _pOther);
 	void BeginCollision(CCollider* _pOther);
 	void EndCollision(CCollider* _pOther);
-
 
 public:
 	CCollider();

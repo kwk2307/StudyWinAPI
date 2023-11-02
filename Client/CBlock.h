@@ -3,5 +3,10 @@
 class CBlock :
     public CObject
 {
+public:
+    virtual void update();
+public:
+    CBlock();
+    ~CBlock();
 };
 

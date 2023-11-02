@@ -12,7 +12,9 @@ class CEventMgr
 private:
 	vector<Event> m_vEvent;
 public:
+	void init();
 	void AddEvent(Event _event) {m_vEvent.push_back(_event);}
 	void update();
+
 };
 
