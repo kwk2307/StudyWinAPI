@@ -24,7 +24,7 @@ public:
 		return m_VecObjects[(UINT)_eType]; 
 	}
 
-public:
+protected:
 	void AddObject(CObject* _pObj, ObjectType _eType){m_VecObjects[(UINT)_eType].push_back(_pObj);}
 		
 public:
@@ -34,6 +34,6 @@ public:
 	// virtual로 만들어 자식 클래스의 소멸자를 호출 시켜줘야함
 	virtual ~CScene();
 
-
+	friend class CEventMgr;
 };
 

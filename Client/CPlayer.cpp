@@ -10,7 +10,6 @@
 #include "CCollider.h"
 #include "CBlock.h"
 
-
 CPlayer::CPlayer()
 	:m_pTex(nullptr)
 {
@@ -45,6 +44,8 @@ void CPlayer::update()
 	if (KEYCHKCK_TAP(KEY::SPACE)) {
 	//
 		CBlock* block = new CBlock();
+		block->SetScale(Vec2(100.f, 100.f));
+		block->SetPos(Vec2(300.f, 300.f));
 		CreateObject(block, ObjectType::BLOCK);
 	}
 

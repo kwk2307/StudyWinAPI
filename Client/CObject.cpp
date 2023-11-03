@@ -3,6 +3,8 @@
 
 #include "CCollider.h"
 
+#include "CSetBrushPen.h"
+
 CObject::CObject() :
 	m_vPos{ 0,0 },
 	m_vScale{ 0,0 },
@@ -26,6 +28,18 @@ void CObject::CreateCollider()
 	}
 }
 
+void CObject::OnCollision(CCollider* _pOther)
+{
+}
+
+void CObject::BeginCollision(CCollider* _pOther)
+{
+}
+
+void CObject::EndCollision(CCollider* _pOther)
+{
+}
+
 void CObject::finalupdate()
 {
 	if (m_pCollider != nullptr) {
@@ -35,7 +49,6 @@ void CObject::finalupdate()
 
 void CObject::render(HDC _dc)
 {
-
 	Rectangle(_dc,
 		int(m_vPos.x - m_vScale.x / 2.f),
 		int(m_vPos.y - m_vScale.y / 2.f),

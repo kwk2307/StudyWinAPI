@@ -14,8 +14,8 @@ CEventMgr::~CEventMgr() {
 }
 
 
-void CEventMgr::init()
-{
+void CEventMgr::init() {
+
 }
 
 void CEventMgr::update()
@@ -28,8 +28,7 @@ void CEventMgr::update()
 			break;
 		case EventType::CREATEOBJECT:
 		{
-			CSceneMgr::GetInstance()->GetCurrentScene()
-				->AddObject((CObject*)m_vEvent[i].WParam, (ObjectType)m_vEvent[i].LParam);
+			CSceneMgr::GetInstance()->GetCurrentScene()->AddObject((CObject*)m_vEvent[i].WParam, (ObjectType)m_vEvent[i].LParam);
 			break;
 		}
 		case EventType::DELETEOBJECT:
@@ -38,7 +37,6 @@ void CEventMgr::update()
 			ptObj->SetDead(true);
 			break;
 		}
-			break;
 		case EventType::END:
 			break;
 		default:

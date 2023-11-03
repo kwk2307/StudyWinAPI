@@ -5,6 +5,11 @@ class CBlock :
 {
 public:
     virtual void update();
+
+public:
+    virtual void OnCollision(CCollider* _pOther);
+
+
 public:
     CBlock();
     ~CBlock();

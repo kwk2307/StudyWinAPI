@@ -59,17 +59,16 @@ void CCollisionMgr::CollisionEvent(ObjectType _eLeft, ObjectType _eRight)
 	for (size_t i = 0; i < vecLeft.size(); ++i) {
 		if (vecLeft[i]->GetCollider() == nullptr)
 			continue;
-		for (size_t j = 0; i < vecRight.size(); ++j) {
-			if (vecRight[j]->GetCollider() == nullptr
-				|| vecLeft[i] == vecRight[j])
+		for (size_t j = 0; j < vecRight.size(); ++j) {
+			if (vecRight[j]->GetCollider() == nullptr || vecLeft[i] == vecRight[j])
 				continue;
 			//두 충돌체 모두 Collider가 존재하고 자신이 자신에게 겹친것이 아니다. 
 
 			CCollider* ptLeftCol = vecLeft[i]->GetCollider();
 			CCollider* ptRightCol = vecRight[j]->GetCollider();
 
-			bool bLeftDead = !ptLeftCol->GetOwner()->GetDead();
-			bool bRightDead = !ptRightCol->GetOwner()->GetDead();
+			bool bLeftDead = ptLeftCol->GetOwner()->GetDead();
+			bool bRightDead = ptRightCol->GetOwner()->GetDead();
 
 			// 맵에서 검사 해줌
 			COLLIDER_ID tid;

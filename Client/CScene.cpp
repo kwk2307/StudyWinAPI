@@ -25,6 +25,7 @@ void CScene::render(HDC _dc)
 {
 	for (int i = 0; i < (INT)ObjectType::END; ++i) {
 		iter = m_VecObjects[i].begin();
+
 		for (; iter !=  m_VecObjects[i].end();) {
 			if ((*iter)->GetDead()) {
 				// 동적 할당된 메모리를 해제 해줌
@@ -36,6 +37,7 @@ void CScene::render(HDC _dc)
 				(*iter)->render(_dc);
 				iter++;
 			}
+
 		}
 	}
 }

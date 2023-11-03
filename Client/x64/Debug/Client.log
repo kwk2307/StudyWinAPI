@@ -1,2 +1,6 @@
-﻿  CEventMgr.cpp
+﻿  CCollisionMgr.cpp
+  CEventMgr.cpp
+  CScene.cpp
+  CSceneMgr.cpp
+  CScene_Start.cpp
   Client.vcxproj -> C:\Git\StudyWinAPI\Output\bin_debug\Client.exe
