@@ -68,6 +68,9 @@
     <Filter Include="Engine\03. Manager\EventMgr">
       <UniqueIdentifier>{c40c7959-1ea8-4710-b852-2efd85ff8b24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Scene\Stage01">
+      <UniqueIdentifier>{f1e1ba22-8114-4c3e-a0db-4eacf2b37de0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -143,6 +146,9 @@
     <ClInclude Include="CBlock.h">
       <Filter>Engine\05. Object\Block</Filter>
     </ClInclude>
+    <ClInclude Include="CStage01.h">
+      <Filter>Engine\04. Scene\Stage01</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -214,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="CBlock.cpp">
       <Filter>Engine\05. Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage01.cpp">
+      <Filter>Engine\04. Scene\Stage01</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

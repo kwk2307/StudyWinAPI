@@ -2,6 +2,7 @@
 #include "CSceneMgr.h"
 
 #include "CScene_Start.h"
+#include "CStage01.h"
 
 CSceneMgr::CSceneMgr() :
 	m_ArrScenes{},
@@ -23,7 +24,7 @@ void CSceneMgr::init()
 	m_ArrScenes[(UINT)SceneType::STARTSCENE] = new CScene_Start;
 	m_ArrScenes[(UINT)SceneType::STARTSCENE]->SetName(L"StartScene");
 	
-	//m_ArrScenes[(UINT)SceneType::STAGE01] = new CSTAGE01;
+	m_ArrScenes[(UINT)SceneType::STAGE01] = new CStage01;
 	//m_ArrScenes[(UINT)SceneType::STAGE02] = new CSTAGE02;
 
 	m_pCurScene = m_ArrScenes[(UINT)SceneType::STARTSCENE];
@@ -36,7 +37,6 @@ void CSceneMgr::update()
 	m_pCurScene->finalupdate();
 }
 
-
 void CSceneMgr::render(HDC _dc)
 {
 	m_pCurScene->render(_dc);
@@ -46,3 +46,13 @@ CScene* CSceneMgr::GetCurrentScene()
 {
 	return m_pCurScene;
 }
+
+void CSceneMgr::ChangeScene(SceneType _eType)
+{
+	m_pCurScene->Exit();
+
+	m_pCurScene = m_ArrScenes[(UINT)_eType];
+
+	m_pCurScene->Enter();
+}
+

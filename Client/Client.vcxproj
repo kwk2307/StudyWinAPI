@@ -148,6 +148,7 @@
     <ClInclude Include="CResourceMgr.h" />
     <ClInclude Include="CScene_Start.h" />
     <ClInclude Include="CSetBrushPen.h" />
+    <ClInclude Include="CStage01.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="framework.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="CResourceMgr.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="CSetBrushPen.cpp" />
+    <ClCompile Include="CStage01.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CScene.cpp" />

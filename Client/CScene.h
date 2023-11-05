@@ -13,20 +13,25 @@ public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
-	void update();
-	void finalupdate();
-	void render(HDC _dc);
+	virtual void update();
+	virtual void finalupdate();
+	virtual void render(HDC _dc);
 
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 
+public:
 	const vector<CObject*>& GetGroupObject(ObjectType _eType) { 
 		return m_VecObjects[(UINT)_eType]; 
 	}
 
+
 protected:
 	void AddObject(CObject* _pObj, ObjectType _eType){m_VecObjects[(UINT)_eType].push_back(_pObj);}
-		
+	
+	void DeleteType(ObjectType _eType);
+	void DeleteAll();
+
 public:
 	CScene();
 	// Manager에서 관리할 때 부모 클래스릍 통해 관리 되는데 

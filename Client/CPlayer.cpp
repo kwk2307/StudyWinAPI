@@ -49,6 +49,10 @@ void CPlayer::update()
 		CreateObject(block, ObjectType::BLOCK);
 	}
 
+	if (KEYCHKCK_TAP(KEY::ENTER)) {
+		ChangeScene(SceneType::STAGE01);
+	}
+
 	SetPos(vec);
 }
 

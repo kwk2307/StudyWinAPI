@@ -18,6 +18,8 @@ public:
 	
 	CScene* GetCurrentScene();
 private:
+	void ChangeScene(SceneType _eType);
 
+	friend class CEventMgr;
 };
 

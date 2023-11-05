@@ -47,7 +47,7 @@ enum class PenType {
 };
 
 enum class EventType {
-	SCENECHANGE,
+	CHANGESCENE,
 	CREATEOBJECT,
 	DELETEOBJECT,
 	END,

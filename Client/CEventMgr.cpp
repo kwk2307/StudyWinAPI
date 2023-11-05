@@ -24,13 +24,12 @@ void CEventMgr::update()
 		
 		switch (m_vEvent[i].eType)
 		{
-		case EventType::SCENECHANGE:
+		case EventType::CHANGESCENE:
+			CSceneMgr::GetInstance()->ChangeScene((SceneType)m_vEvent[i].WParam);
 			break;
 		case EventType::CREATEOBJECT:
-		{
 			CSceneMgr::GetInstance()->GetCurrentScene()->AddObject((CObject*)m_vEvent[i].WParam, (ObjectType)m_vEvent[i].LParam);
 			break;
-		}
 		case EventType::DELETEOBJECT:
 		{
 			CObject* ptObj = (CObject*)m_vEvent[i].WParam;

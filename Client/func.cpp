@@ -12,3 +12,8 @@ void DeleteObject(CObject* _ptObj)
 {
 	CEventMgr::GetInstance()->AddEvent(Event{ EventType::DELETEOBJECT, (DWORD_PTR)_ptObj});
 }
+
+void ChangeScene(SceneType _eType)
+{
+	CEventMgr::GetInstance()->AddEvent(Event{ EventType::CHANGESCENE, (DWORD_PTR)_eType});
+}

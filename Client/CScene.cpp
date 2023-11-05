@@ -2,6 +2,15 @@
 #include "CScene.h"
 #include "CObject.h"
 
+CScene::CScene() :
+	m_VecObjects{}
+{
+}
+
+CScene::~CScene()
+{
+}
+
 void CScene::update()
 {
 	for (int i = 0; i < (INT)ObjectType::END;  ++i) {
@@ -42,11 +51,15 @@ void CScene::render(HDC _dc)
 	}
 }
 
-CScene::CScene() :
-	m_VecObjects{}
+void CScene::DeleteType(ObjectType _eType)
 {
+	Safe_Erase_Vecter(m_VecObjects[(UINT)_eType]);
 }
 
-CScene::~CScene()
+void CScene::DeleteAll()
 {
+	for (UINT i = 0; i < (UINT)ObjectType::END; ++i) {
+		DeleteType((ObjectType)i);
+	}
 }
+
