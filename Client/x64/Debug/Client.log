@@ -1,3 +1,4 @@
-﻿  CSceneMgr.cpp
-  CStage01.cpp
+﻿  CAnimation.cpp
+  CAnimator.cpp
+  CScene_Start.cpp
   Client.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Output\bin_debug\Client.exe

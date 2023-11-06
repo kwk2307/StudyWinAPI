@@ -41,8 +41,10 @@ public:
 	void component_render(HDC _dc);
 
 public:
-	CObject();
+	 CObject();
 	~CObject();
+
+	CObject(const CObject& origin);
 
 };
 

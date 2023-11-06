@@ -18,6 +18,11 @@ void CScene_Start::Enter()
 
 	AddObject(obj, ObjectType::PLAYER);
 
+	CObject* obj2 = new CPlayer(*(CPlayer*)obj);
+	obj2->SetPos(Vec2(600.f, 500.f));
+
+	AddObject(obj2, ObjectType::PLAYER);
+
 	// 충돌 지정
 	// 오브젝트 타입간 충돌 지정
 	CCollisionMgr::GetInstance()->CheckGroup(ObjectType::PLAYER, ObjectType::BLOCK);

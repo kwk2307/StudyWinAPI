@@ -20,6 +20,18 @@ CObject::~CObject()
 	}
 }
 
+CObject::CObject(const CObject& origin) :
+	m_vPos(origin.m_vPos),
+	m_vScale(origin.m_vScale),
+	m_pCollider(nullptr),
+	m_bDead(false)
+{
+	if (origin.m_pCollider != nullptr) {
+		m_pCollider = new CCollider(*origin.m_pCollider);
+		m_pCollider->m_pOwner = this;
+	}
+}
+
 void CObject::CreateCollider()
 {
 	if (m_pCollider == nullptr) {

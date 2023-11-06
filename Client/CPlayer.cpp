@@ -23,7 +23,6 @@ CPlayer::~CPlayer()
 {
 }
 
-
 void CPlayer::update()
 {
 	Vec2 vec = GetPos();

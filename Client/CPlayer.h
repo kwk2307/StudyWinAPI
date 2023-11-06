@@ -16,5 +16,6 @@ public:
 public: 
     CPlayer();
     ~CPlayer();
+
 };
 
