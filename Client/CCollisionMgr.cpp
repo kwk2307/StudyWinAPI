@@ -9,10 +9,10 @@
 CCollisionMgr::CCollisionMgr() :
 	m_arrCheck{}
 {
-
 }
-CCollisionMgr::~CCollisionMgr() {
 
+CCollisionMgr::~CCollisionMgr() 
+{
 }
 
 void CCollisionMgr::init()

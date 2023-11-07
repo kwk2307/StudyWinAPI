@@ -5,17 +5,14 @@
 #include "CScene.h"
 
 #include "CObject.h"
-CEventMgr::CEventMgr() {
 
+CEventMgr::CEventMgr() {
 }
 
 CEventMgr::~CEventMgr() {
-
 }
 
-
 void CEventMgr::init() {
-
 }
 
 void CEventMgr::update()

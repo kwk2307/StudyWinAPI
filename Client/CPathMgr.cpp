@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CPathMgr.h"
 
-
 CPathMgr::CPathMgr()
 	:m_szContentPath{}
 {}

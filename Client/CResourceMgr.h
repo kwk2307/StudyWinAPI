@@ -2,12 +2,13 @@
 	
 
 class CTexture;
+class CRes;
 
 class CResourceMgr
 {
 	SINGLE(CResourceMgr)
 private:
-	map<wstring, CTexture*> m_mapTex;
+	map<wstring, CRes*> m_mRes;
 
 public:
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);

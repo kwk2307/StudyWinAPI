@@ -2,10 +2,12 @@
 #include "CObject.h"
 
 #include "CCollider.h"
+#include "CAnimator.h"
 
 #include "CSetBrushPen.h"
 
 CObject::CObject() :
+	m_pAnimator(nullptr),
 	m_vPos{ 0,0 },
 	m_vScale{ 0,0 },
 	m_pCollider(nullptr),
@@ -18,9 +20,13 @@ CObject::~CObject()
 	if (m_pCollider != nullptr) {
 		delete m_pCollider;
 	}
+	if (m_pAnimator != nullptr) {
+		delete m_pAnimator;
+	}
 }
 
 CObject::CObject(const CObject& origin) :
+	m_pAnimator(nullptr),
 	m_vPos(origin.m_vPos),
 	m_vScale(origin.m_vScale),
 	m_pCollider(nullptr),
@@ -30,6 +36,11 @@ CObject::CObject(const CObject& origin) :
 		m_pCollider = new CCollider(*origin.m_pCollider);
 		m_pCollider->m_pOwner = this;
 	}
+
+	if (origin.m_pAnimator != nullptr) {
+		m_pAnimator = new CAnimator(*origin.m_pAnimator);
+		m_pAnimator->m_pOwner = this;
+	}
 }
 
 void CObject::CreateCollider()
@@ -37,6 +48,14 @@ void CObject::CreateCollider()
 	if (m_pCollider == nullptr) {
 		m_pCollider = new CCollider;
 		m_pCollider->m_pOwner = this;
+	}
+}
+
+void CObject::CreateAnimator()
+{
+	if (m_pAnimator == nullptr) {
+		m_pAnimator = new CAnimator;
+		m_pAnimator->m_pOwner = this;
 	}
 }
 

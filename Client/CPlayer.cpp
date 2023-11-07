@@ -3,20 +3,25 @@
 
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
-
-#include "CTexture.h"
 #include "CResourceMgr.h"
 
+#include "CTexture.h"
+
 #include "CCollider.h"
+#include "CAnimator.h"
+
 #include "CBlock.h"
 
 CPlayer::CPlayer()
-	:m_pTex(nullptr)
 {
-	m_pTex = CResourceMgr::GetInstance()->LoadTexture(L"PlayerTex", L"Texture\\player.bmp");
+	CTexture* pTex = CResourceMgr::GetInstance()->LoadTexture(L"PlayerTex", L"Texture\\player.bmp");
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(30.f, 30.f));
+
+	CreateAnimator();
+	GetAnimator()->CreateAnim(L"Anim_Run", pTex, Vec2(0.f, 128.f), Vec2(64.f, 64.f), 5);
+	GetAnimator()->SetCurAnim(L"Anim_Run");
 }
 
 CPlayer::~CPlayer()
@@ -53,6 +58,10 @@ void CPlayer::update()
 	}
 
 	SetPos(vec);
+
+	if (GetAnimator() != nullptr) {
+		GetAnimator()->update();
+	}
 }
 
 void CPlayer::render(HDC _dc)
@@ -61,18 +70,10 @@ void CPlayer::render(HDC _dc)
 		delete this;
 	}
 	else {
-		int iWidth = (int)m_pTex->GetWidth();
-		int iHeight = (int)m_pTex->GetHeight();
-		Vec2 vPos = GetPos();
 
-		BitBlt(_dc,
-			int(vPos.x - (float)(iWidth / 2)),
-			int(vPos.y - (float)(iHeight / 2)),
-			iHeight, iWidth,
-			m_pTex->GetDC(),
-			0, 0,
-			SRCCOPY);
-
+		if (GetAnimator() != nullptr) {
+			GetAnimator()->render(_dc);
+		}
 		component_render(_dc);
 	}
 }

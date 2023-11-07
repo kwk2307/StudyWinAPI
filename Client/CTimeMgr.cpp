@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "CTimeMgr.h"
 
-CTimeMgr::CTimeMgr()
-	:m_llCurCount{},
-	m_llFrequency{},
-	m_llPreCount{},
-	m_dDT(0.),
-	m_dAccDT(0.),
+CTimeMgr::CTimeMgr():
+	ptrTimerEvent(nullptr),
+	m_llCurCount{0,},
+	m_llFrequency{0,},
+	m_llPreCount{0,},
+	m_dDT(0),
+	m_dAccDT(0),
 	m_iCallCnt(0)
 {
 }
@@ -18,12 +19,16 @@ CTimeMgr::~CTimeMgr() {
 void CTimeMgr::init()
 {
 	QueryPerformanceCounter(&m_llCurCount);
+	//첫 프레임은 PreCountPart가 없다. 그렇기 때문에 초기화 시점에 같은걸로 넣어준다.
+	QueryPerformanceCounter(&m_llPreCount);
+
 	QueryPerformanceFrequency(&m_llFrequency);
 }
 
 void CTimeMgr::update()
 {
 	QueryPerformanceCounter(&m_llCurCount);
+
 	m_dDT = (double)(m_llCurCount.QuadPart - m_llPreCount.QuadPart) / (double)m_llFrequency.QuadPart;
 
 	m_llPreCount = m_llCurCount;

@@ -1,4 +1,23 @@
 ﻿  CAnimation.cpp
   CAnimator.cpp
+  CBlock.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CCore.cpp
+  CEventMgr.cpp
+  CKeyMgr.cpp
+  Client.cpp
+  CObject.cpp
+  CPlayer.cpp
+  CRes.cpp
+  CResourceMgr.cpp
   CScene_Start.cpp
+  CSetBrushPen.cpp
+  CStage01.cpp
+  CTexture.cpp
+  CTimeMgr.cpp
+  CScene.cpp
+  CSceneMgr.cpp
+  CPathMgr.cpp
+  func.cpp
   Client.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Output\bin_debug\Client.exe

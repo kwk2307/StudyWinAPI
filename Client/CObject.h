@@ -1,6 +1,7 @@
 #pragma once
 
 class CCollider;
+class CAnimator;
 
 class CObject
 {
@@ -11,8 +12,10 @@ private:
 	Vec2 m_vScale;
 
 	CCollider* m_pCollider;
+	CAnimator* m_pAnimator;
 
 	bool m_bDead;
+
 public:
 	void SetPos(Vec2 _pos) { m_vPos = _pos;}
 	Vec2 GetPos() {return m_vPos;}
@@ -23,6 +26,9 @@ public:
 public:
 	CCollider* GetCollider() { return m_pCollider; }
 	void CreateCollider();
+	
+	CAnimator* GetAnimator() { return m_pAnimator; }
+	void CreateAnimator();
 
 public:
 	virtual void OnCollision(CCollider* _pOther);

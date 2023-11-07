@@ -3,16 +3,24 @@
 
 #include "CAnimation.h"
 
-CAnimator::CAnimator()
+CAnimator::CAnimator():
+    m_mAni{},
+    m_pCurAnim(nullptr),
+    m_pOwner(nullptr)
 {
 }
 
 CAnimator::~CAnimator()
 {
+    Safe_Erase_Map(m_mAni);
 }
 
-CAnimator::CAnimator(const CAnimator& origin)
+CAnimator::CAnimator(const CAnimator& origin) :
+    m_mAni{},
+    m_pCurAnim(origin.m_pCurAnim),
+    m_pOwner(nullptr)
 {
+    m_mAni = origin.m_mAni;
 }
 
 CAnimation* CAnimator::FindAnim(const wstring& _str)
@@ -26,7 +34,7 @@ CAnimation* CAnimator::FindAnim(const wstring& _str)
     return nullptr;
 }
 
-CAnimation* CAnimator::CreateAnim(const wstring& _str, CRes* _pRes, Vec2 _vLT, Vec2 _vSize, UINT _cnt)
+CAnimation* CAnimator::CreateAnim(const wstring& _str, CTexture* _pTex, Vec2 _vLT, Vec2 _vSize, UINT _cnt)
 {
     CAnimation* pResultAnim = FindAnim(_str);
     if (pResultAnim != nullptr) {
@@ -34,7 +42,24 @@ CAnimation* CAnimator::CreateAnim(const wstring& _str, CRes* _pRes, Vec2 _vLT, V
     }
 
     CAnimation* pAnim = new CAnimation();
+    pAnim->Create(_str, _pTex, _vLT, _vSize, _cnt);
+    pAnim->SetAnimator(this);
 
-
+    m_mAni.insert(make_pair(_str, pAnim));
     return pResultAnim;
+}
+
+void CAnimator::SetCurAnim(const wstring& _str)
+{    
+    m_pCurAnim = FindAnim(_str);
+}
+
+void CAnimator::update()
+{
+    m_pCurAnim->update();
+}
+
+void CAnimator::render(HDC _dc)
+{
+    m_pCurAnim->render(_dc);
 }
