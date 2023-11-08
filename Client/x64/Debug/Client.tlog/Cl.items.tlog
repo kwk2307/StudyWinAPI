@@ -1,22 +1,22 @@
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CAnimation.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CAnimation.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CAnimator.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CAnimator.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CBlock.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CBlock.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CCollider.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CCollider.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CCollisionMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CCollisionMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CCore.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CCore.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CEventMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CEventMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CKeyMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CKeyMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\Client.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\Client.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CObject.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CObject.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CPlayer.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CPlayer.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CRes.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CRes.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CResourceMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CResourceMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CScene_Start.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CScene_Start.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CSetBrushPen.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CSetBrushPen.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CStage01.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CStage01.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CTexture.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CTexture.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CTimeMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CTimeMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CScene.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CScene.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CSceneMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CSceneMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\CPathMgr.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\CPathMgr.obj
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\func.cpp;C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Client\x64\Debug\func.obj
+C:\Git\StudyWinAPI\Client\CAnimation.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CAnimation.obj
+C:\Git\StudyWinAPI\Client\CAnimator.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CAnimator.obj
+C:\Git\StudyWinAPI\Client\CBlock.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CBlock.obj
+C:\Git\StudyWinAPI\Client\CCollider.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CCollider.obj
+C:\Git\StudyWinAPI\Client\CCollisionMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CCollisionMgr.obj
+C:\Git\StudyWinAPI\Client\CCore.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CCore.obj
+C:\Git\StudyWinAPI\Client\CEventMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CEventMgr.obj
+C:\Git\StudyWinAPI\Client\CKeyMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CKeyMgr.obj
+C:\Git\StudyWinAPI\Client\Client.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\Client.obj
+C:\Git\StudyWinAPI\Client\CObject.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CObject.obj
+C:\Git\StudyWinAPI\Client\CPlayer.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CPlayer.obj
+C:\Git\StudyWinAPI\Client\CRes.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CRes.obj
+C:\Git\StudyWinAPI\Client\CResourceMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CResourceMgr.obj
+C:\Git\StudyWinAPI\Client\CScene_Start.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CScene_Start.obj
+C:\Git\StudyWinAPI\Client\CSetBrushPen.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CSetBrushPen.obj
+C:\Git\StudyWinAPI\Client\CStage01.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CStage01.obj
+C:\Git\StudyWinAPI\Client\CTexture.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CTexture.obj
+C:\Git\StudyWinAPI\Client\CTimeMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CTimeMgr.obj
+C:\Git\StudyWinAPI\Client\CScene.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CScene.obj
+C:\Git\StudyWinAPI\Client\CSceneMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CSceneMgr.obj
+C:\Git\StudyWinAPI\Client\CPathMgr.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\CPathMgr.obj
+C:\Git\StudyWinAPI\Client\func.cpp;C:\Git\StudyWinAPI\Client\x64\Debug\func.obj
