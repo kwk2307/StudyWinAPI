@@ -68,6 +68,7 @@ private:
 public:
 	int init(HWND _hWnd, POINT _ptResolution);
 	HWND getHWND() { return m_hWnd; }
+	POINT getResolution() { return m_ptResolution; }
 	HDC getHDC() { return m_hDC; }
 	HBRUSH getBrush(BrushType _etype) { return m_arrBrush[(UINT)_etype]; }
 	HPEN getPen(PenType _etype) { return m_arrPen[(UINT)_etype]; }

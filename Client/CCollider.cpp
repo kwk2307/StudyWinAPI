@@ -3,6 +3,7 @@
 
 #include "CObject.h"
 #include "CCore.h"
+#include "CCamera.h"
 
 #include "CSetBrushPen.h"
 
@@ -37,13 +38,15 @@ void CCollider::finalupdate()
 
 void CCollider::render(HDC _dc)
 {
+	Vec2 vRenderPos = m_vFinalPos - CCamera::GetInstance()->GetCalcPos();
+
 	CSetBrushPen bp(_dc, BrushType::HOLLOW, PenType::RED);
 
 	Rectangle(_dc,
-		int(m_vFinalPos.x - m_vScale.x / 2.f),
-		int(m_vFinalPos.y - m_vScale.y / 2.f),
-		int(m_vFinalPos.x + m_vScale.x / 2.f),
-		int(m_vFinalPos.y + m_vScale.y / 2.f)
+		int(vRenderPos.x - m_vScale.x / 2.f),
+		int(vRenderPos.y - m_vScale.y / 2.f),
+		int(vRenderPos.x + m_vScale.x / 2.f),
+		int(vRenderPos.y + m_vScale.y / 2.f)
 	);
 }
 

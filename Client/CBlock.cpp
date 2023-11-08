@@ -7,7 +7,6 @@ CBlock::CBlock()
 {
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(30.f, 30.f));
-
 }
 CBlock::~CBlock() {
 

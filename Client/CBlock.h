@@ -9,7 +9,6 @@ public:
 public:
     virtual void OnCollision(CCollider* _pOther);
 
-
 public:
     CBlock();
     ~CBlock();

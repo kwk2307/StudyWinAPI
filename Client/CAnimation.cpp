@@ -4,6 +4,8 @@
 #include "CTexture.h"
 #include "CTimeMgr.h"
 #include "CAnimator.h"
+#include "CCamera.h"
+
 #include "CObject.h"
 
 CAnimation::CAnimation() :
@@ -48,10 +50,11 @@ void CAnimation::update()
 
 void CAnimation::render(HDC _dc)
 {
-	Vec2 vPos = m_pAnimator->GetOwner()->GetPos();
+	Vec2 vRenderPos = m_pAnimator->GetOwner()->GetPos() - CCamera::GetInstance()->GetCalcPos();
+
 	TransparentBlt(_dc,
-		(int)(vPos.x - (m_vecFrameInfo[m_iCnt].m_vSize.x / 2.f)),
-		(int)(vPos.y - (m_vecFrameInfo[m_iCnt].m_vSize.y / 2.f)),
+		(int)(vRenderPos.x - (m_vecFrameInfo[m_iCnt].m_vSize.x / 2.f)),
+		(int)(vRenderPos.y - (m_vecFrameInfo[m_iCnt].m_vSize.y / 2.f)),
 		(int)m_vecFrameInfo[m_iCnt].m_vSize.x,
 		(int)m_vecFrameInfo[m_iCnt].m_vSize.y,
 		m_pTex->GetDC(),

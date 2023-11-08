@@ -9,6 +9,7 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
+#include "CCamera.h"
 
 //CCore* CCore::g_pCore = nullptr;
 
@@ -84,7 +85,11 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	// CollisionMgr 초기화
 	CCollisionMgr::GetInstance()->init();
 
+	// EventMgr 초기화
 	CEventMgr::GetInstance()->init();
+
+	// Camera 초기화
+	CCamera::GetInstance()->init();
 
 	return S_OK;
 }
@@ -93,11 +98,14 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 void CCore::progress()
 {
 	CTimeMgr::GetInstance()->update();
+	
 	CKeyMgr::GetInstance()->update();
 	
 	CSceneMgr::GetInstance()->update();
 	
 	CCollisionMgr::GetInstance()->update();
+
+	CCamera::GetInstance()->update();
 
 	Rectangle(m_memhDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 	
