@@ -20,8 +20,12 @@ CPlayer::CPlayer()
 	GetCollider()->SetScale(Vec2(30.f, 30.f));
 
 	CreateAnimator();
-	GetAnimator()->CreateAnim(L"Anim_Run", pTex, Vec2(0.f, 128.f), Vec2(64.f, 64.f), 5);
-	GetAnimator()->SetCurAnim(L"Anim_Run");
+	GetAnimator()->CreateAnim(L"Anim_Up", pTex, Vec2(0.f, 128.f), Vec2(64.f, 64.f), 5);
+	GetAnimator()->CreateAnim(L"Anim_Down", pTex, Vec2(0.f, 192.f), Vec2(64.f, 64.f), 5);
+	GetAnimator()->CreateAnim(L"Anim_Left", pTex, Vec2(0.f, 0.f), Vec2(64.f, 64.f), 5);
+	GetAnimator()->CreateAnim(L"Anim_Right", pTex, Vec2(0.f, 64.f), Vec2(64.f, 64.f), 5);
+
+	GetAnimator()->SetCurAnim(L"Anim_Down");
 }
 
 CPlayer::~CPlayer()
@@ -34,15 +38,19 @@ void CPlayer::update()
 
 	if (KEYCHKCK_HOLD(KEY::A)) {
 		vec.x -= float(100 * CTimeMgr::GetInstance()->GetDT());
+		GetAnimator()->SetCurAnim(L"Anim_Left");
 	}
 	if (KEYCHKCK_HOLD(KEY::D)) {
 		vec.x += float(100 * CTimeMgr::GetInstance()->GetDT());
+		GetAnimator()->SetCurAnim(L"Anim_Right");
 	}
 	if (KEYCHKCK_HOLD(KEY::W)) {
 		vec.y -= float(100 * CTimeMgr::GetInstance()->GetDT());
+		GetAnimator()->SetCurAnim(L"Anim_Up");
 	}
 	if (KEYCHKCK_HOLD(KEY::S)) {
 		vec.y += float(100 * CTimeMgr::GetInstance()->GetDT());
+		GetAnimator()->SetCurAnim(L"Anim_Down");
 	}
 	
 	if (KEYCHKCK_TAP(KEY::SPACE)) {

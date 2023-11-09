@@ -30,7 +30,7 @@ enum class ObjectType {
 	PLAYER,
 	BLOCK,
 	MONSETER,
-
+	UI = 31, 
 	END = 32,
 };
 

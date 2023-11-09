@@ -28,7 +28,7 @@ void CAnimation::Create(const wstring& _str, CTexture* _pTex, Vec2 _vLT, Vec2 _v
 	m_pTex = _pTex;
 	
 	for (UINT i = 0; i < _cnt; ++i) {
-		m_vecFrameInfo.push_back({ 0.2f, {_vLT.x + (i * _vSize.x) ,_vLT.y},_vSize });
+		m_vecFrameInfo.push_back({ 0.1f, {_vLT.x + (i * _vSize.x) ,_vLT.y},_vSize });
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CCamera.h"
+#include "CUI.h"
 
 #include "CSetBrushPen.h"
 
@@ -76,6 +77,11 @@ void CObject::finalupdate()
 {
 	if (m_pCollider != nullptr) {
 		m_pCollider->finalupdate();
+	}
+	//this °¡ CUI¸é 
+	CUI* pUI = dynamic_cast<CUI*>(this);
+	if(pUI != nullptr){
+		pUI->finalEvnet();
 	}
 }
 

@@ -51,7 +51,10 @@ CAnimation* CAnimator::CreateAnim(const wstring& _str, CTexture* _pTex, Vec2 _vL
 
 void CAnimator::SetCurAnim(const wstring& _str)
 {    
-    m_pCurAnim = FindAnim(_str);
+    CAnimation* pResultAnim = FindAnim(_str);
+    if (pResultAnim != m_pCurAnim) {
+        m_pCurAnim = pResultAnim;
+    }
 }
 
 void CAnimator::update()

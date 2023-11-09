@@ -154,6 +154,7 @@
     <ClInclude Include="CStage01.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="CUI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="func.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CUI.cpp" />
     <ClCompile Include="func.cpp" />
   </ItemGroup>
   <ItemGroup>

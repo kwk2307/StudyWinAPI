@@ -80,6 +80,12 @@
     <Filter Include="Engine\07. Component\Animator\Animation">
       <UniqueIdentifier>{b9b85a61-e165-4bd5-8929-b5bfd162cf3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Object\UI">
+      <UniqueIdentifier>{e3feefa6-10c6-4f74-9623-92c58562750a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Camera">
+      <UniqueIdentifier>{a38cf1ea-ac78-41d0-888c-938c5704f133}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -164,6 +170,12 @@
     <ClInclude Include="CAnimation.h">
       <Filter>Engine\07. Component\Animator\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Engine\09. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Engine\05. Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -244,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Engine\07. Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Engine\09. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Engine\05. Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
