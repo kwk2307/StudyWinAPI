@@ -11,6 +11,12 @@ CUI::CUI():
 CUI::~CUI() {
 }
 
+void CUI::SetChild(CUI* _pUI)
+{
+	m_vecUI.push_back(_pUI);
+	_pUI->SetParent(this);
+}
+
 void CUI::finalEvnet()
 {
 	if (m_pParentUI != nullptr) {

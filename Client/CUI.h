@@ -10,7 +10,7 @@ private:
     Vec2 m_vOffset;
 
 public:
-    void SetChild(CUI* _pUI) { m_vecUI.push_back(_pUI); }
+    void SetChild(CUI* _pUI);
     void SetParent(CUI* _pUI) { m_pParentUI = _pUI;}
 
     Vec2 GetOffset() { return m_vOffset; }

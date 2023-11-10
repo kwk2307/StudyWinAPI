@@ -23,7 +23,6 @@ public:
 public:
 	void SetPos(Vec2 _vec) { m_vCameraPos = _vec; }
 	Vec2 GetCameraPos() { return m_vCameraPos; }
-
 	void SetObj(CObject* _obj) { m_pParentObj = _obj; }
 };
 
