@@ -26,6 +26,8 @@ int g_arrKeyMap[(int)KEY::LAST] =  {
 	VK_SPACE, //SPACE,
 	VK_RETURN, //ENTER,
 	VK_ESCAPE, //ESC,
+	VK_LBUTTON, 
+	VK_RBUTTON,
 	//LAST,
 };
 

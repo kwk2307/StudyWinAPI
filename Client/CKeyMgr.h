@@ -30,6 +30,8 @@ enum class KEY {
 	SPACE,
 	ENTER,
 	ESC,
+	LBUTTON,
+	RBUTTON,
 	LAST,
 };
 
