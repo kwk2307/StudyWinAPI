@@ -10,12 +10,16 @@
 						type();\
 						~type();
 
+
 #define KEYCHECK(key,state) CKeyMgr::GetInstance()->GetKeyState(key) == state
 
 #define KEYCHKCK_TAP(key) KEYCHECK(key,KEY_STATE::TAP)
 #define KEYCHKCK_HOLD(key) KEYCHECK(key,KEY_STATE::HOLD)
 #define KEYCHKCK_AWAY(key) KEYCHECK(key,KEY_STATE::AWAY)
 #define KEYCHKCK_NONE(key) KEYCHECK(key,KEY_STATE::NONE)
+
+#define MOUSEPOS CKeyMgr::GetInstance()->GetMousePos();
+
 
 enum class SceneType {
 	STARTSCENE,

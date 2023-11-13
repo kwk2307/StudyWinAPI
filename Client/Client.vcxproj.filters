@@ -86,6 +86,9 @@
     <Filter Include="Engine\09. Camera">
       <UniqueIdentifier>{a38cf1ea-ac78-41d0-888c-938c5704f133}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Object\UI\Button">
+      <UniqueIdentifier>{4ff4e891-dac0-4662-8bcf-7dccc4be522f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -176,6 +179,7 @@
     <ClInclude Include="CUI.h">
       <Filter>Engine\05. Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -263,6 +267,7 @@
     <ClCompile Include="CUI.cpp">
       <Filter>Engine\05. Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="CButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

@@ -13,8 +13,10 @@ CObject::CObject() :
 	m_vPos{ 0,0 },
 	m_vScale{ 0,0 },
 	m_pCollider(nullptr),
-	m_bDead(false)
+	m_bDead(false),
+	m_bClickable(false)
 {
+
 }
 
 CObject::~CObject()

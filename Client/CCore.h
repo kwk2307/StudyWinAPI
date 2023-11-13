@@ -72,9 +72,10 @@ public:
 	HDC getHDC() { return m_hDC; }
 	HBRUSH getBrush(BrushType _etype) { return m_arrBrush[(UINT)_etype]; }
 	HPEN getPen(PenType _etype) { return m_arrPen[(UINT)_etype]; }
-
+public:
 	void progress();
 
+public:
 	static void TimerEvent(UINT _iCallCnt, double _dDT);
 
 };

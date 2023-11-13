@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "CUI.h"
 
+#include "CKeyMgr.h"
+
+
 CUI::CUI():
 	m_pParentUI(nullptr),
 	m_vecUI{},
@@ -34,8 +37,6 @@ void CUI::finalEvnet()
 
 void CUI::update()
 {
-	// updaet하면서 할 처리
-
 	for (vector<CUI*>::iterator iter = m_vecUI.begin(); iter != m_vecUI.end(); ++iter) {
 		(*iter)->update();
 	}

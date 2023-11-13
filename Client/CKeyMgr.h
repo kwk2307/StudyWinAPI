@@ -47,11 +47,16 @@ class CKeyMgr
 
 private:
 	vector<tkeyinfo> m_Veckey;
+	Vec2 m_vMousePos;
+
+public:
+	Vec2 GetMousePos() { return m_vMousePos; }
+
+public:
+	KEY_STATE GetKeyState(KEY _key);
 
 public:
 	void init();
 	void update();
-
-	KEY_STATE GetKeyState(KEY _key);
 };
 

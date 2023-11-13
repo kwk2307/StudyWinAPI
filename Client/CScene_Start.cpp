@@ -3,6 +3,7 @@
 #include "CPlayer.h"
 #include "CCamera.h"
 #include "CUI.h"
+#include "CButton.h"
 
 #include "CCollisionMgr.h"
 
@@ -23,17 +24,22 @@ void CScene_Start::Enter()
 	
 	// 카메라 위치 지정
 	CCamera::GetInstance()->SetObj(obj);
-	
 
 	CUI* UI = new CUI();
 	UI->SetOffset(Vec2(700, 300));
 	UI->SetScale(Vec2(300, 300));
 
-	CUI* UI2 = new CUI();
+	/*CUI* UI2 = new CUI();
 	UI2->SetOffset(Vec2(-300, -100));
 	UI2->SetScale(Vec2(100, 30));
-	
-	UI->SetChild(UI2);
+
+	UI->SetChild(UI2);*/
+
+	CButton* Btn = new CButton();
+	Btn->SetOffset(Vec2(-100, -100));
+	Btn->SetScale(Vec2(100, 30));
+
+	UI->SetChild(Btn);
 
 	AddObject(UI, ObjectType::UI);
 

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CKeyMgr.h"
 
+#include "CCore.h"
+
 CKeyMgr::CKeyMgr() {
 
 };
@@ -64,6 +66,12 @@ void CKeyMgr::update()
 				m_Veckey[i].bPrev = false;
 			}
 		}
+
+		POINT p;
+		GetCursorPos(&p);
+		ScreenToClient(CCore::GetInstance()->getHWND(), &p);
+		m_vMousePos = Vec2(float(p.x), float(p.y));
+
 	}
 	else {
 		for (int i = 0; i < (int)KEY::LAST; ++i) {

@@ -15,13 +15,16 @@ private:
 	CAnimator* m_pAnimator;
 
 	bool m_bDead;
-
+	bool m_bClickable;
 public:
 	void SetPos(Vec2 _pos) { m_vPos = _pos;}
 	Vec2 GetPos() {return m_vPos;}
 
 	void SetScale(Vec2 _scale) { m_vScale = _scale;}
 	Vec2 GetScale() {return m_vScale;}
+
+	bool GetClickable() { return m_bClickable; }
+	void SetClickable(bool _enable) { m_bClickable = _enable; }
 
 public:
 	CCollider* GetCollider() { return m_pCollider; }

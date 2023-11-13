@@ -114,13 +114,15 @@ void CCore::progress()
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
 
 	CEventMgr::GetInstance()->update();
+
+
 }
 
 void CCore::TimerEvent(UINT _iCallCnt, double _dDT)
 {
 	TCHAR szBuffer[1024];
+	
 	swprintf_s(szBuffer, L"FPS : %d, DT: %f", _iCallCnt, _dDT);
 
 	SetWindowText(CCore::GetInstance()->getHWND(), szBuffer);
-
 }

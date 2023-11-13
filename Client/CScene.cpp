@@ -16,7 +16,6 @@ void CScene::update()
 	for (int i = 0; i < (INT)ObjectType::END;  ++i) {
 		for (int j = 0; j < m_VecObjects[i].size(); ++j) {
 			m_VecObjects[i][j]->update();
-
 		}
 	}
 }
