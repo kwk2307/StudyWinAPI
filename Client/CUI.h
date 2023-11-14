@@ -9,6 +9,7 @@ private:
 
     Vec2 m_vOffset;
     bool m_bClickable;
+    bool m_bOnMouse;
 
     UIState m_eState;
 
@@ -24,8 +25,12 @@ public:
     bool GetClickable() { return m_bClickable; }
     void SetClickable(bool _enable) { m_bClickable = _enable; }
 
+    bool GetOnMouse() { return m_bOnMouse; }
+    
     UIState GetState() { return m_eState; }
     void SetState(UIState _state) { m_eState = _state; }
+
+    
 
     const vector<CUI*>& GetChild() { return m_vecUI; }
 
