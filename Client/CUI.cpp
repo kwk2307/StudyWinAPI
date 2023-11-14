@@ -3,21 +3,19 @@
 
 #include "CKeyMgr.h"
 
+#include "CSetBrushPen.h"
+
 
 CUI::CUI():
 	m_pParentUI(nullptr),
 	m_vecUI{},
-	m_vOffset{}
+	m_vOffset{},
+	m_bClickable(false),
+	m_eState(UIState::None)
 {
 }
 
 CUI::~CUI() {
-}
-
-void CUI::SetChild(CUI* _pUI)
-{
-	m_vecUI.push_back(_pUI);
-	_pUI->SetParent(this);
 }
 
 void CUI::finalEvnet()
@@ -47,12 +45,45 @@ void CUI::render(HDC _dc)
 	Vec2 vRenderPos = GetPos();
 	Vec2 vRenderScale = GetScale();
 
-	Rectangle(_dc,
-		vRenderPos.x - vRenderScale.x / 2,
-		vRenderPos.y - vRenderScale.y / 2,
-		vRenderPos.x + vRenderScale.x / 2,
-		vRenderPos.y + vRenderScale.y / 2
-	);
+
+	
+	switch (m_eState)
+	{
+	case UIState::None:
+		Rectangle(_dc,
+			(int)(vRenderPos.x - vRenderScale.x / 2),
+			(int)(vRenderPos.y - vRenderScale.y / 2),
+			(int)(vRenderPos.x + vRenderScale.x / 2),
+			(int)(vRenderPos.y + vRenderScale.y / 2)
+		);
+		break;
+	case UIState::Hover:
+	{
+		CSetBrushPen bp(_dc, BrushType::HOLLOW, PenType::RED);
+		Rectangle(_dc,
+			(int)(vRenderPos.x - vRenderScale.x / 2),
+			(int)(vRenderPos.y - vRenderScale.y / 2),
+			(int)(vRenderPos.x + vRenderScale.x / 2),
+			(int)(vRenderPos.y + vRenderScale.y / 2)
+		);
+		break;
+	}
+	case UIState::Clicked:
+	{
+		CSetBrushPen bp(_dc, BrushType::HOLLOW, PenType::BLUE);
+		Rectangle(_dc,
+			(int)(vRenderPos.x - vRenderScale.x / 2),
+			(int)(vRenderPos.y - vRenderScale.y / 2),
+			(int)(vRenderPos.x + vRenderScale.x / 2),
+			(int)(vRenderPos.y + vRenderScale.y / 2)
+		);
+		break;
+	}
+	case UIState::Disable:
+		break;
+	default:
+		break;
+	}
 
 	for (vector<CUI*>::iterator iter = m_vecUI.begin(); iter != m_vecUI.end(); ++iter) {
 		(*iter)->render(_dc);

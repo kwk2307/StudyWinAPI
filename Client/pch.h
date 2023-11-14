@@ -8,6 +8,9 @@
 #include <vector>
 using std::vector;
 
+#include <queue>
+using std::queue;
+
 #include <string>
 using std::string;
 using std::wstring;

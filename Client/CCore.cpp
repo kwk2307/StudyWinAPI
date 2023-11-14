@@ -10,6 +10,7 @@
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
 #include "CCamera.h"
+#include "CUIMgr.h"
 
 //CCore* CCore::g_pCore = nullptr;
 
@@ -104,6 +105,8 @@ void CCore::progress()
 	CSceneMgr::GetInstance()->update();
 	
 	CCollisionMgr::GetInstance()->update();
+
+	CUIMgr::GetInstance()->update();
 
 	CCamera::GetInstance()->update();
 

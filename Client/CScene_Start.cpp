@@ -28,6 +28,7 @@ void CScene_Start::Enter()
 	CUI* UI = new CUI();
 	UI->SetOffset(Vec2(700, 300));
 	UI->SetScale(Vec2(300, 300));
+	UI->SetClickable(true);
 
 	/*CUI* UI2 = new CUI();
 	UI2->SetOffset(Vec2(-300, -100));
@@ -38,6 +39,7 @@ void CScene_Start::Enter()
 	CButton* Btn = new CButton();
 	Btn->SetOffset(Vec2(-100, -100));
 	Btn->SetScale(Vec2(100, 30));
+	Btn->SetClickable(true);
 
 	UI->SetChild(Btn);
 

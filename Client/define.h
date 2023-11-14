@@ -56,3 +56,11 @@ enum class EventType {
 	DELETEOBJECT,
 	END,
 };
+
+enum class UIState
+{
+	None,
+	Hover,
+	Clicked,
+	Disable
+};

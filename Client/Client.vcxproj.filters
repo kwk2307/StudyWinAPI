@@ -89,6 +89,9 @@
     <Filter Include="Engine\05. Object\UI\Button">
       <UniqueIdentifier>{4ff4e891-dac0-4662-8bcf-7dccc4be522f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\UIMgr">
+      <UniqueIdentifier>{474f41d2-9561-4fd6-961e-291c3a2c4584}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -179,7 +182,12 @@
     <ClInclude Include="CUI.h">
       <Filter>Engine\05. Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="CButton.h" />
+    <ClInclude Include="CButton.h">
+      <Filter>Engine\05. Object\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Engine\03. Manager\UIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -267,7 +275,12 @@
     <ClCompile Include="CUI.cpp">
       <Filter>Engine\05. Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="CButton.cpp" />
+    <ClCompile Include="CButton.cpp">
+      <Filter>Engine\05. Object\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Engine\03. Manager\UIMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

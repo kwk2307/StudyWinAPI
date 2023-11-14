@@ -156,6 +156,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="CUIMgr.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="func.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="CUIMgr.cpp" />
     <ClCompile Include="func.cpp" />
   </ItemGroup>
   <ItemGroup>

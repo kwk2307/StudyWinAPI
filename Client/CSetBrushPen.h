@@ -8,7 +8,7 @@ private:
 
 public:
 
-	CSetBrushPen(HDC _hDC,BrushType _eBrushType, PenType _ePenType);
+	CSetBrushPen(HDC _hDC, BrushType _eBrushType, PenType _ePenType);
 	~CSetBrushPen();
 };
 

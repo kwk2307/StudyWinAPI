@@ -18,6 +18,7 @@ CPlayer::CPlayer()
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(30.f, 30.f));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 10.f));
 
 	CreateAnimator();
 	GetAnimator()->CreateAnim(L"Anim_Up", pTex, Vec2(0.f, 128.f), Vec2(64.f, 64.f), 5);
