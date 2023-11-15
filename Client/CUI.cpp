@@ -100,7 +100,7 @@ void CUI::render(HDC _dc)
 		break;
 	case UIState::Hover:
 	{
-		CSetBrushPen bp(_dc, BrushType::HOLLOW, PenType::RED);
+		CSetBrushPen bp(_dc, BrushType::WHITE, PenType::RED);
 		Rectangle(_dc,
 			(int)(vRenderPos.x - vRenderScale.x / 2),
 			(int)(vRenderPos.y - vRenderScale.y / 2),
@@ -111,7 +111,7 @@ void CUI::render(HDC _dc)
 	}
 	case UIState::Clicked:
 	{
-		CSetBrushPen bp(_dc, BrushType::HOLLOW, PenType::BLUE);
+		CSetBrushPen bp(_dc, BrushType::WHITE, PenType::BLUE);
 		Rectangle(_dc,
 			(int)(vRenderPos.x - vRenderScale.x / 2),
 			(int)(vRenderPos.y - vRenderScale.y / 2),

@@ -39,6 +39,7 @@ CCore::~CCore()
 
 void CCore::CreateBrushPen()
 {
+	m_arrBrush[(UINT)BrushType::WHITE] = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	m_arrBrush[(UINT)BrushType::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
 
 	m_arrPen[(UINT)PenType::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));

@@ -8,7 +8,9 @@
 #include "CUI.h"
 
 
-CUIMgr::CUIMgr() {
+CUIMgr::CUIMgr():
+	m_pFocusedUI(nullptr)
+{
 
 }
 
@@ -18,27 +20,22 @@ CUIMgr::~CUIMgr() {
 
 void CUIMgr::update()
 {
-	CScene* pCurScene = CSceneMgr::GetInstance()->GetCurrentScene();
+	if (KEYCHKCK_TAP(KEY::LBUTTON)) {
+		m_pFocusedUI = FindFocusedUI();
+	}
 
-	const vector<CObject*>& vecUI = pCurScene->GetGroupObject(ObjectType::UI);
-
-	for (int i = 0; i < vecUI.size(); ++i) {
-		CUI* pParentUI = dynamic_cast<CUI*>(vecUI[i]);
-		assert(pParentUI);
-
-		CUI* pUI = GetTargetedUI(pParentUI);
-		ClickEvent(pUI);
+	if (m_pFocusedUI != nullptr) {
+		CUI* pTagertUI = GetTargetedUI(m_pFocusedUI);
+		ClickEvent(pTagertUI);
 	}
 }
 
-bool CUIMgr::ClickEvent(CUI* _pUI)
+void CUIMgr::ClickEvent(CUI* _pUI)
 {
-	bool bResult = false;
 	if (_pUI->GetOnMouse() && _pUI->GetClickable()) {
 		if (KEYCHKCK_TAP(KEY::LBUTTON)) {
 			_pUI->SetState(UIState::Clicked);
 			_pUI->OnMouseTap();
-			bResult = true;
 		}
 		else if (KEYCHKCK_HOLD(KEY::LBUTTON)) {
 			_pUI->SetState(UIState::Clicked);
@@ -49,12 +46,9 @@ bool CUIMgr::ClickEvent(CUI* _pUI)
 			_pUI->OnMouseAway();
 		}
 		else {
-			//호버 상태가 된다고 포커싱이 뺏기진 않는다
 			_pUI->SetState(UIState::Hover);
 		}
 	}
-
-	return bResult;
 }
 
 CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
@@ -83,4 +77,31 @@ CUI* CUIMgr::GetTargetedUI(CUI* _pParentUI)
 	}
 
 	return pTargetUI;
+}
+
+CUI* CUIMgr::FindFocusedUI()
+{
+	CUI* pFocusedUI = nullptr;
+
+	CScene* pCurScene = CSceneMgr::GetInstance()->GetCurrentScene();
+	vector<CObject*>& vecUI = pCurScene->GetUIGroup();
+
+	vector<CObject*>::iterator iter = vecUI.begin();
+	vector<CObject*>::iterator Targetiter = vecUI.end();
+
+	// 현재 마우스가 클릭 됐을 때 
+	for (; iter != vecUI.end(); ++iter) {
+		CUI* pUI = dynamic_cast<CUI*>(*iter);
+		if (pUI->GetOnMouse() && pUI->GetClickable()) {
+			Targetiter = iter;
+		}
+	}
+
+	if (Targetiter != vecUI.end()) {
+		pFocusedUI = dynamic_cast<CUI*>(*Targetiter);
+		vecUI.erase(Targetiter);
+		vecUI.push_back(pFocusedUI);
+	}
+
+	return pFocusedUI;
 }

@@ -39,6 +39,7 @@ enum class ObjectType {
 };
 
 enum class BrushType {
+	WHITE,
 	HOLLOW,
 	END,
 };

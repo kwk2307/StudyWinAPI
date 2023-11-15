@@ -25,6 +25,9 @@ public:
 		return m_VecObjects[(UINT)_eType]; 
 	}
 
+	vector<CObject*>& GetUIGroup() {
+		return m_VecObjects[(UINT)ObjectType::UI];
+	}
 
 protected:
 	void AddObject(CObject* _pObj, ObjectType _eType){m_VecObjects[(UINT)_eType].push_back(_pObj);}
