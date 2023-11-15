@@ -30,12 +30,13 @@ public:
     UIState GetState() { return m_eState; }
     void SetState(UIState _state) { m_eState = _state; }
 
-    
-
     const vector<CUI*>& GetChild() { return m_vecUI; }
 
 public:
     void finalEvnet();
+    virtual void OnMouseTap();
+    virtual void OnMouseAway();
+    virtual void OnMouseHold();
 
 public:
     virtual void update();
@@ -43,5 +44,7 @@ public:
 public:
     CUI();
     ~CUI();
+
+    CUI(const CUI& _orgin);
 };
 

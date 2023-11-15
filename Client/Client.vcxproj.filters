@@ -92,6 +92,9 @@
     <Filter Include="Engine\03. Manager\UIMgr">
       <UniqueIdentifier>{474f41d2-9561-4fd6-961e-291c3a2c4584}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Object\UI\Panel">
+      <UniqueIdentifier>{44e93e5b-dfeb-4615-94ad-a7c890bfb7d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -188,6 +191,9 @@
     <ClInclude Include="CUIMgr.h">
       <Filter>Engine\03. Manager\UIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CPanel.h">
+      <Filter>Engine\05. Object\UI\Panel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -280,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="CUIMgr.cpp">
       <Filter>Engine\03. Manager\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanel.cpp">
+      <Filter>Engine\05. Object\UI\Panel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

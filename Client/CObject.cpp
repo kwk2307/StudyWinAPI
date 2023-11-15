@@ -10,9 +10,9 @@
 
 CObject::CObject() :
 	m_pAnimator(nullptr),
+	m_pCollider(nullptr),
 	m_vPos{ 0,0 },
 	m_vScale{ 0,0 },
-	m_pCollider(nullptr),
 	m_bDead(false)
 {
 
@@ -30,9 +30,9 @@ CObject::~CObject()
 
 CObject::CObject(const CObject& origin) :
 	m_pAnimator(nullptr),
+	m_pCollider(nullptr),
 	m_vPos(origin.m_vPos),
 	m_vScale(origin.m_vScale),
-	m_pCollider(nullptr),
 	m_bDead(false)
 {
 	if (origin.m_pCollider != nullptr) {

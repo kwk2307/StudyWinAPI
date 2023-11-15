@@ -10,7 +10,7 @@ void ChangeScene(SceneType _eType);
 
 template<typename T>
 void Safe_Erase_Vecter(vector<T>& _vec) {
-	for (int i = 0; i < _vec.size(); ++i) {
+	for (size_t i = 0; i < _vec.size(); ++i) {
 		if (_vec[i] != nullptr) {
 			delete _vec[i];
 		}

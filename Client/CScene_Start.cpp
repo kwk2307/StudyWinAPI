@@ -4,6 +4,7 @@
 #include "CCamera.h"
 #include "CUI.h"
 #include "CButton.h"
+#include "CPanel.h"
 
 #include "CCollisionMgr.h"
 
@@ -25,25 +26,24 @@ void CScene_Start::Enter()
 	// 카메라 위치 지정
 	CCamera::GetInstance()->SetObj(obj);
 
-	CUI* UI = new CUI();
-	UI->SetOffset(Vec2(700, 300));
-	UI->SetScale(Vec2(300, 300));
-	UI->SetClickable(true);
-
-	/*CUI* UI2 = new CUI();
-	UI2->SetOffset(Vec2(-300, -100));
-	UI2->SetScale(Vec2(100, 30));
-
-	UI->SetChild(UI2);*/
+	CPanel* Panel = new CPanel();
+	Panel->SetOffset(Vec2(700, 300));
+	Panel->SetScale(Vec2(300, 300));
+	Panel->SetClickable(true);
 
 	CButton* Btn = new CButton();
 	Btn->SetOffset(Vec2(-100, -100));
 	Btn->SetScale(Vec2(100, 30));
 	Btn->SetClickable(true);
 
-	UI->SetChild(Btn);
+	Panel->SetChild(Btn);
 
-	AddObject(UI, ObjectType::UI);
+	AddObject(Panel, ObjectType::UI);
+	
+	CPanel* Panel2 = new CPanel(*Panel);
+	Panel2->SetOffset(Vec2(100, 300));
+
+	AddObject(Panel2, ObjectType::UI);
 
 	// 충돌 지정
 	// 오브젝트 타입간 충돌 지정

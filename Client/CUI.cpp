@@ -17,6 +17,22 @@ CUI::CUI():
 }
 
 CUI::~CUI() {
+	Safe_Erase_Vecter(m_vecUI);
+}
+
+CUI::CUI(const CUI& _origin) :
+	CObject(_origin),
+	m_pParentUI(_origin.m_pParentUI),
+	m_vecUI{},
+	m_vOffset(_origin.m_vOffset),
+	m_bClickable(_origin.m_bClickable),
+	m_bOnMouse(false),
+	m_eState(_origin.m_eState)
+{
+	for (size_t i = 0; i < _origin.m_vecUI.size(); ++i) {
+		CUI* pUI = new CUI(*_origin.m_vecUI[i]);
+		SetChild(pUI);
+	}
 }
 
 void CUI::finalEvnet()
@@ -43,6 +59,21 @@ void CUI::finalEvnet()
 	for (vector<CUI*>::iterator iter = m_vecUI.begin(); iter != m_vecUI.end(); ++iter) {
 		(*iter)->finalEvnet();
 	}
+}
+
+void CUI::OnMouseTap()
+{
+
+}
+
+void CUI::OnMouseAway()
+{
+
+}
+
+void CUI::OnMouseHold()
+{
+
 }
 
 void CUI::update()
