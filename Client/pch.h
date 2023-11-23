@@ -1,4 +1,3 @@
-
 #pragma once
 #pragma comment(lib, "msimg32.lib")
 
