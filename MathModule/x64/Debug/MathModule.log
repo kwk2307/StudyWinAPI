@@ -1,4 +1,4 @@
 ﻿  Precompiled.cpp
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\MathModule\Vector2.h(83,40): error C3615: constexpr 함수 'CK::Vector2::operator []'은(는) 상수 식을 생성할 수 없습니다.
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\MathModule\Vector2.h(86,25): message : 정의되지 않은 함수 또는 선언되지 않은 'constexpr'의 호출로 인해 실패했습니다.
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\MathModule\Vector2.h(86,25): message : 'std::array<float,2>::operator []' 사용량 참조
+  Vector2.cpp
+MSVCRTD.lib(exe_main.obj) : error LNK2019: main"int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\x64\Debug\MathModule.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

@@ -8,22 +8,21 @@
   CCore.cpp
   CEventMgr.cpp
   CKeyMgr.cpp
+  Client.cpp
   CObject.cpp
   CPanel.cpp
-  CPathMgr.cpp
   CPlayer.cpp
   CRes.cpp
   CResourceMgr.cpp
-  CScene.cpp
-  CSceneMgr.cpp
   CScene_Start.cpp
   CSetBrushPen.cpp
   CStage01.cpp
   CTexture.cpp
   CTimeMgr.cpp
+  CScene.cpp
+  CSceneMgr.cpp
+  CPathMgr.cpp
   CUI.cpp
   CUIMgr.cpp
-  Client.cpp
   func.cpp
-  LINK : C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Output\bin_debug\Client.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
   Client.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\Output\bin_debug\Client.exe
