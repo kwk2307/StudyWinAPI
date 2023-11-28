@@ -1,4 +1,2 @@
 ﻿  Precompiled.cpp
-  Vector2.cpp
-MSVCRTD.lib(exe_main.obj) : error LNK2019: main"int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\x64\Debug\MathModule.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
+  MathModule.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\x64\Debug\MathModule.lib

@@ -15,8 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RendererInterface.h">
+    <ClInclude Include="Precompiled.h" />
+    <ClInclude Include="RendererHeaders.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="WindowsGDI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Precomplied.cpp" />
+    <ClCompile Include="WindowsGDI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

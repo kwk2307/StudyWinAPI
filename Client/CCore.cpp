@@ -53,7 +53,6 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 
 	//해상도에 맞게 윈도우 크기 조정
-
 	RECT rt = { 0,0,m_ptResolution.x,m_ptResolution.y };
 
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
@@ -61,7 +60,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	//SetWindowPos로 설정된
 	SetWindowPos(m_hWnd, HWND_TOP, 0, 0, rt.right - rt.left, rt.bottom - rt.top, SWP_SHOWWINDOW);
 
-
+	//현재 Device Context 
 	m_hDC = GetDC(m_hWnd);
 
 	m_bitmap = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
@@ -118,8 +117,6 @@ void CCore::progress()
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memhDC, 0, 0, SRCCOPY);
 
 	CEventMgr::GetInstance()->update();
-
-
 }
 
 void CCore::TimerEvent(UINT _iCallCnt, double _dDT)
