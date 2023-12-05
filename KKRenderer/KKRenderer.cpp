@@ -3,6 +3,8 @@
 
 #include "framework.h"
 #include "KKRenderer.h"
+#include "Precomplied.h"
+#include "CRenderer.h"
 
 #define MAX_LOADSTRING 100
 
@@ -41,8 +43,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_KKRENDERER));
 
     MSG msg;
-
-    
 
     while (true) {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {

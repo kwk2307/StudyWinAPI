@@ -1,4 +1,6 @@
 #pragma once
 
 #include "WindowsGDI.h"
-#include "Precompiled.h"
+#include "Renderinterface.h"
+
+//#include "Precompiled.h"

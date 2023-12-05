@@ -65,4 +65,5 @@ void WindowsGDI::SwapBuffer()
 
 WindowsGDI::~WindowsGDI()
 {
+	Release();
 }

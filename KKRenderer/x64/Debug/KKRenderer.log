@@ -1,2 +1,3 @@
 ﻿  KKRenderer.cpp
-  KKRenderer.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\x64\Debug\KKRenderer.exe
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1134,5): error MSB6006: "link.exe"이(가) 종료되었습니다(코드: 1104).
+LINK : fatal error LNK1104: 'C:\Git\StudyWinAPI\x64\Debug\EngineModule.lib' 파일을 열 수 없습니다.

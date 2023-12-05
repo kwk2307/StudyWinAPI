@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)MathModule;$(SolutionDir)RenderModule;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,13 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CRenderer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="KKRenderer.h" />
+    <ClInclude Include="Precomplied.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include=".h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CRenderer.cpp" />
     <ClCompile Include="KKRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +145,17 @@
   <ItemGroup>
     <Image Include="KKRenderer.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EngineModule\EngineModule.vcxproj">
+      <Project>{bb21ef66-e45d-4722-a360-69ebd042dcb2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MathModule\MathModule.vcxproj">
+      <Project>{255e1c37-5612-49a8-9b2a-b7c5984ae0d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RenderModule\RenderModule.vcxproj">
+      <Project>{a4f6079b-8faf-492f-a3fd-532ea137e31b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
