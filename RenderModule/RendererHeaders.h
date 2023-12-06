@@ -1,4 +1,7 @@
 #pragma once
 
-#include "WindowsGDI.h"
-#include "Precompiled.h"
+
+#include "RendererInterface.h"
+
+#include <windows.h>
+#include "WindowsRSI.h"

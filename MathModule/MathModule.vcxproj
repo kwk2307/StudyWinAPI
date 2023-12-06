@@ -128,10 +128,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Color32.h" />
+    <ClInclude Include="LinearColor.h" />
     <ClInclude Include="MathUtil.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="MathHeaders.h" />
-    <ClInclude Include="Screen.h" />
+    <ClInclude Include="ScreenPoint.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>

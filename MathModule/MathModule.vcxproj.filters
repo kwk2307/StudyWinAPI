@@ -22,10 +22,16 @@
     <ClInclude Include="Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Screen.h">
+    <ClInclude Include="ScreenPoint.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MathUtil.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearColor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Color32.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

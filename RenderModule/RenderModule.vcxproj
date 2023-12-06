@@ -132,7 +132,8 @@
   <ItemGroup>
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="RendererHeaders.h" />
-    <ClInclude Include="WindowsGDI.h" />
+    <ClInclude Include="RendererInterface.h" />
+    <ClInclude Include="WindowsRSI.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MathModule\MathModule.vcxproj">
@@ -141,10 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precomplied.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precomplied.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="WindowsGDI.cpp" />
+    <ClCompile Include="WindowsRSI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

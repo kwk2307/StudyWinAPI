@@ -11,7 +11,9 @@
 
 #include "MathUtil.h"
 #include "Vector2.h"
-#include "Screen.h"
+#include "Color32.h"
+#include "LinearColor.h"
+#include "ScreenPoint.h"
 
 
 
