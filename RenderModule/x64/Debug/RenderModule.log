@@ -1,3 +1,7 @@
 ﻿  Precomplied.cpp
+<<<<<<< HEAD
   WindowsRSI.cpp
   RenderModule.vcxproj -> C:\Users\kangwon kim\Documents\GitHub\StudyWinAPI\x64\Debug\RendererModule.lib
+=======
+C:\Git\StudyWinAPI\RenderModule\Precomplied.cpp(2,1): fatal  error C1010: 미리 컴파일된 헤더를 찾는 동안 예기치 않은 파일의 끝이 나타났습니다. '#include "Precomplied.h"'을(를) 소스에 추가하시겠습니까?
+>>>>>>> 7a3fcd1b37ded316ba6d9a29fda73262b51695fe
