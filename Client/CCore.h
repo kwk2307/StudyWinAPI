@@ -54,7 +54,6 @@ class CCore
 private:
 	HWND m_hWnd;			//메인 윈도우 핸들
 	POINT m_ptResolution;	//메인 윈도우 해상도
-
 	HDC m_hDC;				//Device Context 핸들러
 
 	HBITMAP m_bitmap;		//미리 그릴 비트맵
