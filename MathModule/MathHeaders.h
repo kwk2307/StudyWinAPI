@@ -1,20 +1,18 @@
 #pragma once
 
 #include <cassert>
-#include <windows.h>
-#include <math.h>
 
-#include <array>
-#include <cstddef>
+#include <math.h>
 
 #include <intrin.h>
 
+#include <string>
+#include <vector>
+#include <array>
+#include <iterator>
+#include <algorithm>
+
 #include "MathUtil.h"
 #include "Vector2.h"
-#include "Color32.h"
-#include "LinearColor.h"
+
 #include "ScreenPoint.h"
-
-
-
-

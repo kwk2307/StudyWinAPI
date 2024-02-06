@@ -1,49 +1,26 @@
 #pragma once
 
-struct Vec2 {
-	static constexpr BYTE Dimension = 2;
+struct Vector2 {
+public:
+	constexpr Vector2() = default;
+	explicit constexpr Vector2(int InX, int InY) : X((float)InX), Y((float)InY) { };
+	explicit constexpr Vector2(float InX, float InY) : X(InX), Y(InY) { }
+
+	// Á¤Àû¸â¹öº¯¼ö 
+	static const Vector2 UnitX;
+	static const Vector2 UnitY;
+	static const Vector2 One;
+	static const Vector2 Zero;
+	static constexpr unsigned char Dimension = 2;
 
 	// ¸â¹öº¯¼ö
 	union
 	{
 		struct
 		{
-			float x, y;
+			float X, Y;
 		};
 
 		std::array<float, Dimension> Scalars = { 0.f, 0.f };
 	};
-public:
-	__forceinline constexpr Vec2 operator +(const Vec2& _vOther) const{
-		return Vec2(x + _vOther.x, y + _vOther.y);
-	}
-
-	__forceinline constexpr Vec2 operator -(const Vec2& _vOther) const {
-		return Vec2(x - _vOther.x, y - _vOther.y);
-	}
-
-	__forceinline constexpr  Vec2 operator *(const Vec2& _vOther) const {
-		return Vec2(x * _vOther.x, y * _vOther.y);
-	}
-
-	__forceinline constexpr Vec2 operator /(const Vec2& _vOther) const {
-		assert(!(_vOther.x == 0 || _vOther.y == 0));
-		return Vec2(x / _vOther.x, y / _vOther.y);
-	}
-
-public:
-	__forceinline explicit constexpr Vec2() :
-		x(0.f),
-		y(0.f)
-	{}
-
-	__forceinline explicit constexpr Vec2(float _x, float _y) :
-		x(_x),
-		y(_y)
-	{}
-
-	__forceinline explicit constexpr Vec2(int _x, int _y) :
-		x((float)_x),
-		y((float)_y)
-	{}
 };

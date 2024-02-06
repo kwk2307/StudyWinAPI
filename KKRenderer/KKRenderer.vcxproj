@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)MathModule;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MathModule;$(SolutionDir)RendererModule;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,12 +130,13 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="Precompiled.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Core.h" />
     <ClInclude Include="WindowsPlayer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="WindowsApp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,14 @@
   <ItemGroup>
     <Image Include="KKRenderer.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MathModule\MathModule.vcxproj">
+      <Project>{e3a8e33e-beba-4fc1-a422-ba05cfe67cb2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RendererModule\RendererModule.vcxproj">
+      <Project>{c79a16ae-d8ee-4fb2-bf1f-efa146c11e1e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,11 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Precompiled.h" />
     <ClInclude Include="MathHeaders.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ScreenPoint.h">
@@ -28,14 +24,8 @@
     <ClInclude Include="MathUtil.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="LinearColor.h">
+    <ClInclude Include="Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Color32.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Precompiled.cpp" />
   </ItemGroup>
 </Project>

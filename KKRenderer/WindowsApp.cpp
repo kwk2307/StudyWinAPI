@@ -1,7 +1,5 @@
-﻿
-
-#include "framework.h"
-#include "Precompiled.h"
+﻿#include "Precompiled.h"
+#include "Renderer.h"
 #include "WindowsPlayer.h"
 
 #define MAX_LOADSTRING 100
@@ -21,16 +19,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     WindowsPlayer::MyRegisterClass(hInstance);
 
+    Renderer Instance(new WindowsRenderer());
+    ScreenPoint defScreenSize(800, 600);
+
     // 애플리케이션 초기화를 수행합니다:
-    if (!WindowsPlayer::InitInstance (nCmdShow))
+    if (!WindowsPlayer::InitInstance (nCmdShow, defScreenSize))
     {
         return FALSE;
     }
 
-    // AccelTable 등록 
+    // AccelerTable 등록 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_KKRENDERER));
 
     while (WindowsPlayer::Tick()) {
+        // 
 
     }
 
