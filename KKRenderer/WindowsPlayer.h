@@ -158,4 +158,10 @@ namespace WindowsPlayer {
     {
         DestroyWindow(gHandle);
     }
+
+    void SetWindowsStatTitle(float frameFPS)
+    {
+        _stprintf_s(gPlayTitle, TEXT("%s  [%.2f fps]"), gTitle, frameFPS);
+        ::SetWindowText(gHandle, gPlayTitle);
+    }
 }

@@ -2,4 +2,5 @@
 
 bool WindowsRenderer::Init(const ScreenPoint& InSize) {
 
+	return false;
 }

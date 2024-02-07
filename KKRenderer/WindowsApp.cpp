@@ -1,5 +1,6 @@
 ﻿#include "Precompiled.h"
 #include "Renderer.h"
+#include "WindowsUtil.h"
 #include "WindowsPlayer.h"
 
 #define MAX_LOADSTRING 100
@@ -22,6 +23,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Renderer Instance(new WindowsRenderer());
     ScreenPoint defScreenSize(800, 600);
 
+    Instance._PerformanceInitFunc = WindowsUtil::GetCyclesPerMilliSeconds;
+    Instance._PerformanceMeasureFunc = WindowsUtil::GetCurrentTimeStamp;
+
+
     // 애플리케이션 초기화를 수행합니다:
     if (!WindowsPlayer::InitInstance (nCmdShow, defScreenSize))
     {
@@ -30,10 +35,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // AccelerTable 등록 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_KKRENDERER));
-
+    
+    static float previousTimer = 0.f;
+    static float updatePeriod = 500.f;
     while (WindowsPlayer::Tick()) {
         // 
+        Instance.Tick();
 
+        float currentTime = Instance.GetElapsedTime();
+        if (currentTime - previousTimer > updatePeriod)
+        {
+            float frameFPS = Instance.GetFrameFPS();
+            WindowsPlayer::SetWindowsStatTitle(frameFPS);
+            previousTimer = currentTime;
+        }
     }
 
     WindowsPlayer::Destroy();
