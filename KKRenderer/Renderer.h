@@ -8,11 +8,17 @@ public:
 
 	float GetFrameFPS() const { return _FrameFPS; }
 	float GetElapsedTime() const { return _ElapsedTime; }
+	float GetAverageFPS() const { return _AverageFPS; }
 
 	// 성능 측정
 	std::function<float()> _PerformanceInitFunc;
 	std::function<INT64()> _PerformanceMeasureFunc;
 	//std::function<void(InputManager&)> _InputBindingFunc;
+
+	void OnResize(const ScreenPoint& InScreeSize);
+private:
+	RendererInterface& GetRenderer() { return *_RIPtr.get(); }
+public:
 
 private:
 	// 초기화 점검 변수
@@ -33,5 +39,9 @@ private:
 	float _ElapsedTime = 0.f;
 	float _AverageFPS = 0.f;
 	float _FrameFPS = 0.f;
+
+	ScreenPoint _ScreenSize;
+
+	std::unique_ptr<RendererInterface> _RIPtr;
 };
 

@@ -1,7 +1,7 @@
 #include "Precompiled.h"
 #include "Renderer.h"
 
-Renderer::Renderer(RendererInterface* RI)
+Renderer::Renderer(RendererInterface* RI):_RIPtr(RI)
 {
 
 }
@@ -23,9 +23,36 @@ void Renderer::Tick()
 		}
 	}
 
-	PreUpdate();
+	// 스크린 크기 확인
+	if (_ScreenSize.HasZero())
+	{
+		return;
+	}
 
-	PostUpdate();
+	// 소프트 렌더러 초기화.
+	if (!_RendererInitialized)
+	{
+		_RendererInitialized = GetRenderer().Init(_ScreenSize);
+		if (!_RendererInitialized)
+		{
+			assert(false);
+			return;
+		}
+	}
+
+	assert(_RIPtr != nullptr && GetRenderer().IsInitialized() && !_ScreenSize.HasZero());
+
+	if (_PerformanceCheckInitialized && _RendererInitialized) {
+	
+		PreUpdate();
+
+		PostUpdate();
+	}
+}
+
+void Renderer::OnResize(const ScreenPoint& InScreeSize)
+{
+	_ScreenSize = InScreeSize;
 }
 
 void Renderer::PreUpdate()
@@ -37,10 +64,14 @@ void Renderer::PreUpdate()
 		_StartTimeStamp = _FrameTimeStamp;
 	}
 
+	// 배경 지우기.
+	GetRenderer().Clear(Color(123,123,123));
+
 }
 
 void Renderer::PostUpdate()
 {
+	GetRenderer().EndFrame();
 
 	// 성능 측정 마무리.
 	_FrameCount++;

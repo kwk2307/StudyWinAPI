@@ -3,9 +3,10 @@
 namespace WindowsPlayer {
 	static HINSTANCE gInstance;
 	static HWND gHandle;
+    static std::function<void(ScreenPoint& InNewScreenSize)> gOnResizeFunc;
 
     static const TCHAR* gClassName = _T("SOFTRENDERER_PLAYER");
-    static TCHAR gTitle[64];
+    static TCHAR gTitle[64] = TEXT("KKRenderer");
     static TCHAR gPlayTitle[128];
 
     // 전방 선언 
@@ -42,6 +43,17 @@ namespace WindowsPlayer {
             }
         }
         break;
+        		case WM_SIZE:
+		{
+			int newWidth = (lParam & 0xffff);
+			int newHeight = ((lParam >> 16) & 0xffff);
+			if (gOnResizeFunc)
+			{
+                ScreenPoint ScreenSize(newWidth, newHeight);
+				gOnResizeFunc(ScreenSize);
+			}
+			break;
+		}
         case WM_CLOSE:
             DestroyWindow(hWnd);
             return 0;

@@ -131,6 +131,7 @@
     <ClInclude Include="MathUtil.h" />
     <ClInclude Include="ScreenPoint.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Color.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />

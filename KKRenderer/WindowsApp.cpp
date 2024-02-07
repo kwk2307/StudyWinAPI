@@ -23,9 +23,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Renderer Instance(new WindowsRenderer());
     ScreenPoint defScreenSize(800, 600);
 
+    WindowsPlayer::gOnResizeFunc = [&Instance](const ScreenPoint& InNewScreenSize) {
+        if (InNewScreenSize.HasZero()) {
+            return;
+        }
+        Instance.OnResize(InNewScreenSize);
+    };
+
     Instance._PerformanceInitFunc = WindowsUtil::GetCyclesPerMilliSeconds;
     Instance._PerformanceMeasureFunc = WindowsUtil::GetCurrentTimeStamp;
-
 
     // 애플리케이션 초기화를 수행합니다:
     if (!WindowsPlayer::InitInstance (nCmdShow, defScreenSize))
@@ -45,8 +51,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         float currentTime = Instance.GetElapsedTime();
         if (currentTime - previousTimer > updatePeriod)
         {
-            float frameFPS = Instance.GetFrameFPS();
-            WindowsPlayer::SetWindowsStatTitle(frameFPS);
+            //float frameFPS = Instance.GetFrameFPS();
+            float AverFPS = Instance.GetAverageFPS();
+            WindowsPlayer::SetWindowsStatTitle(AverFPS);
             previousTimer = currentTime;
         }
     }

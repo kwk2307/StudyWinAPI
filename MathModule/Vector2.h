@@ -11,7 +11,7 @@ public:
 	static const Vector2 UnitY;
 	static const Vector2 One;
 	static const Vector2 Zero;
-	static constexpr unsigned char Dimension = 2;
+	static constexpr BYTE Dimension = 2;
 
 	// ¸â¹öº¯¼ö
 	union
