@@ -1,10 +1,8 @@
 #include "Precompiled.h"
 #include "Renderer.h"
 
-Renderer::Renderer(RendererInterface* RI):_RIPtr(RI)
-{
-
-}
+Renderer::Renderer(RendererInterface* RI) :_RIPtr(RI)
+{}
 
 void Renderer::Tick()
 {
@@ -40,10 +38,23 @@ void Renderer::Tick()
 		}
 	}
 
+	// 게임 엔진 초기화
+	_GameEngineInitialized = _GameEngine.IsInitailzed();
+	if (!_GameEngineInitialized) {
+
+		_GameEngineInitialized = _GameEngine.Init();
+		if (!_GameEngineInitialized)
+		{
+			assert(false);
+			return;
+		}
+	}
+
+
 	assert(_RIPtr != nullptr && GetRenderer().IsInitialized() && !_ScreenSize.HasZero());
 
-	if (_PerformanceCheckInitialized && _RendererInitialized) {
-	
+	if (_PerformanceCheckInitialized && _RendererInitialized && _GameEngineInitialized) {
+
 		PreUpdate();
 
 		PostUpdate();
@@ -65,7 +76,7 @@ void Renderer::PreUpdate()
 	}
 
 	// 배경 지우기.
-	GetRenderer().Clear(Color(123,123,123));
+	GetRenderer().Clear(Color::Black);
 
 }
 
@@ -82,5 +93,21 @@ void Renderer::PostUpdate()
 	_ElapsedTime = elapsedCycles / _CyclesPerMilliSeconds;
 	_FrameFPS = _FrameTime == 0.f ? 0.f : 1000.f / _FrameTime;
 	_AverageFPS = _ElapsedTime == 0.f ? 0.f : 1000.f / _ElapsedTime * _FrameCount;
+}
+
+void Renderer::LoadScene()
+{
+}
+
+void Renderer::Update(float InDeltaSeconds)
+{
+}
+
+void Renderer::LateUpdate(float InDeltaSeconds)
+{
+}
+
+void Renderer::Render()
+{
 }
 

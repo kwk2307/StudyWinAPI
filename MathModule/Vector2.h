@@ -4,7 +4,7 @@ struct Vector2 {
 public:
 	constexpr Vector2() = default;
 	explicit constexpr Vector2(int InX, int InY) : X((float)InX), Y((float)InY) { };
-	explicit constexpr Vector2(float InX, float InY) : X(InX), Y(InY) { }
+	explicit constexpr Vector2(float InX, float InY) : X(InX), Y(InY) { };
 
 	// 정적멤버변수 
 	static const Vector2 UnitX;

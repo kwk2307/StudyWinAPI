@@ -15,39 +15,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MathHeaders.h">
+    <ClInclude Include="Precomplied.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenPoint.h">
+    <ClInclude Include="EngineHeaders.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MathUtil.h">
+    <ClInclude Include="GameEngine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
+    <ClInclude Include="Object.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
+    <ClInclude Include="Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Rotator.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4.h">
+    <ClInclude Include="TransformComponent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Precomplied.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
+    <ClCompile Include="GameEngine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3.cpp">
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
