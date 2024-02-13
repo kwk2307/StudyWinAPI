@@ -42,7 +42,7 @@ void Renderer::Tick()
 	_GameEngineInitialized = _GameEngine.IsInitailzed();
 	if (!_GameEngineInitialized) {
 
-		_GameEngineInitialized = _GameEngine.Init();
+		_GameEngineInitialized = _GameEngine.Init(_CurrentScene);
 		if (!_GameEngineInitialized)
 		{
 			assert(false);
@@ -56,6 +56,9 @@ void Renderer::Tick()
 	if (_PerformanceCheckInitialized && _RendererInitialized && _GameEngineInitialized) {
 
 		PreUpdate();
+
+		Update(_FrameTime / 1000.f);
+		Render();
 
 		PostUpdate();
 	}
@@ -101,6 +104,10 @@ void Renderer::LoadScene()
 
 void Renderer::Update(float InDeltaSeconds)
 {
+	GameEngine& g = GetGameEngine();
+	
+
+	
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)

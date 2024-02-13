@@ -134,6 +134,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Precomplied.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMng.h" />
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
