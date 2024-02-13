@@ -1,8 +1,11 @@
 #include "Precompiled.h"
 #include "Renderer.h"
 
-Renderer::Renderer(RendererInterface* RI) :_RIPtr(RI)
-{}
+Renderer::Renderer(RendererInterface* RI) :
+	_RIPtr(RI)
+{
+
+}
 
 void Renderer::Tick()
 {
@@ -39,17 +42,17 @@ void Renderer::Tick()
 	}
 
 	// 게임 엔진 초기화
-	_GameEngineInitialized = _GameEngine.IsInitailzed();
+	_GameEngineInitialized = GetGameEngine().IsInitailzed();
 	if (!_GameEngineInitialized) {
 
-		_GameEngineInitialized = _GameEngine.Init(_CurrentScene);
+		_GameEngineInitialized = GetGameEngine().Init(_CurrentScene);
+
 		if (!_GameEngineInitialized)
 		{
 			assert(false);
 			return;
 		}
 	}
-
 
 	assert(_RIPtr != nullptr && GetRenderer().IsInitialized() && !_ScreenSize.HasZero());
 
@@ -98,23 +101,25 @@ void Renderer::PostUpdate()
 	_AverageFPS = _ElapsedTime == 0.f ? 0.f : 1000.f / _ElapsedTime * _FrameCount;
 }
 
-void Renderer::LoadScene()
+void Renderer::LoadScene(std::string& SceneName)
 {
+	Engine& g = GetGameEngine();
 }
 
 void Renderer::Update(float InDeltaSeconds)
 {
-	GameEngine& g = GetGameEngine();
-	
+	Engine& g = GetGameEngine();
+	//g.GetSceneMng().Update(InDeltaSeconds);
 
-	
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
 {
+
 }
 
 void Renderer::Render()
 {
+
 }
 

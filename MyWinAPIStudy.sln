@@ -7,6 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KKRenderer", "KKRenderer\KKRenderer.vcxproj", "{428F07EA-A623-4E02-81B5-2D4CB74B4091}"
 	ProjectSection(ProjectDependencies) = postProject
+		{BB091E02-F2DE-48B1-B098-1B2E364A1286} = {BB091E02-F2DE-48B1-B098-1B2E364A1286}
 		{C79A16AE-D8EE-4FB2-BF1F-EFA146C11E1E} = {C79A16AE-D8EE-4FB2-BF1F-EFA146C11E1E}
 		{E3A8E33E-BEBA-4FC1-A422-BA05CFE67CB2} = {E3A8E33E-BEBA-4FC1-A422-BA05CFE67CB2}
 	EndProjectSection
@@ -19,6 +20,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RendererModule", "RendererM
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineModule", "EngineModule\EngineModule.vcxproj", "{BB091E02-F2DE-48B1-B098-1B2E364A1286}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C79A16AE-D8EE-4FB2-BF1F-EFA146C11E1E} = {C79A16AE-D8EE-4FB2-BF1F-EFA146C11E1E}
+		{E3A8E33E-BEBA-4FC1-A422-BA05CFE67CB2} = {E3A8E33E-BEBA-4FC1-A422-BA05CFE67CB2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

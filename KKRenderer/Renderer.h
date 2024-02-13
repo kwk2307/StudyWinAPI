@@ -16,7 +16,7 @@ public:
 	//std::function<void(InputManager&)> _InputBindingFunc;
 
 	void OnResize(const ScreenPoint& InScreeSize);
-	GameEngine& GetGameEngine() { return _GameEngine; }
+	Engine& GetGameEngine() { return _GameEngine; }
 
 private:
 	RendererInterface& GetRenderer() { return *_RIPtr.get(); }
@@ -24,7 +24,7 @@ private:
 	void PreUpdate();
 	void PostUpdate();
 
-	void LoadScene();
+	void LoadScene(std::string& SceneName);
 	void Update(float InDeltaSeconds);
 	void LateUpdate(float InDeltaSeconds);
 	void Render();
@@ -46,12 +46,12 @@ private:
 	float _AverageFPS = 0.f;
 	float _FrameFPS = 0.f;
 
-	std::string _CurrentScene = "StartScene";
+	std::string _CurrentScene = "StratScene";
 
 	ScreenPoint _ScreenSize;
 
 	std::unique_ptr<RendererInterface> _RIPtr;
 	
-	GameEngine _GameEngine;
+	Engine _GameEngine;
 };
 
