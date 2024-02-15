@@ -41,6 +41,9 @@ void Renderer::Tick()
 		}
 	}
 
+	Scene Scene("StartScene");
+	Scene.GetHash();
+
 	// 게임 엔진 초기화
 	_GameEngineInitialized = GetGameEngine().IsInitailzed();
 	if (!_GameEngineInitialized) {

@@ -107,7 +107,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)MathModule;$(SolutionDir)RendererModule;$(SolutionDir)EngineModule;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>Precomplied.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,8 +142,9 @@
     <ClInclude Include="WindowsUtil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Precomplied.cpp">
+    <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="WindowsApp.cpp" />

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Precomplied.h">
+    <ClInclude Include="Precompiled.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EngineHeaders.h">
@@ -38,7 +38,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Precomplied.cpp">
+    <ClCompile Include="Precompiled.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">

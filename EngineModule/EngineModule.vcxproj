@@ -104,10 +104,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>Default</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)MathModule</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>Precomplied.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,7 +137,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineHeaders.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Precomplied.h" />
+    <ClInclude Include="Precompiled.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMng.h" />
     <ClInclude Include="TransformComponent.h" />
@@ -144,11 +145,20 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Precomplied.cpp">
+    <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMng.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MathModule\MathModule.vcxproj">
+      <Project>{e3a8e33e-beba-4fc1-a422-ba05cfe67cb2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RendererModule\RendererModule.vcxproj">
+      <Project>{c79a16ae-d8ee-4fb2-bf1f-efa146c11e1e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

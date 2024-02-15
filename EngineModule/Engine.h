@@ -1,16 +1,13 @@
 #pragma once
+
 class Engine
 {
 public:
 	Engine() = default;
 
 public:
-	bool Init(std::string& InName){
-		_IsInitialized = true;
-		return _IsInitialized;
-	}
-	;
-	bool IsInitailzed() { return _IsInitialized; }
+	bool Init(std::string& InName);
+	bool IsInitailzed();
 
 	SceneMng GetSceneMng() { return _SceneMng; }
 private:

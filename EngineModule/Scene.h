@@ -2,9 +2,7 @@
 class Scene
 {
 public:
-	Scene(const std::string& InName) : _Name(InName) {
-		_Hash = std::hash<std::string>()(_Name);
-	}
+	Scene(const std::string& InName);
 	~Scene() {}
 
 public:

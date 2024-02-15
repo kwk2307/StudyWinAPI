@@ -18,7 +18,7 @@
     <ClInclude Include="RendererHeaders.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Precomplied.h">
+    <ClInclude Include="Precompiled.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="RendererInterface.h">
@@ -32,7 +32,7 @@
     <ClCompile Include="WindowsRenderer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Precomplied.cpp">
+    <ClCompile Include="Precompiled.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
