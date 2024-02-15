@@ -1,13 +1,13 @@
 #pragma once
 
-class Engine
+class GameEngine
 {
 public:
-	Engine() = default;
+	GameEngine();
 
 public:
 	bool Init(std::string& InName);
-	bool IsInitailzed();
+	bool IsInitailzed() { return _IsInitialized; }
 
 	SceneMng GetSceneMng() { return _SceneMng; }
 private:

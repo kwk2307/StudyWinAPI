@@ -17,7 +17,7 @@ public:
 
 private:
 	// 여러개의 씬을 담아 둘 벡터
-	// std::vector<std::unique_ptr<Scene>> _vecScene;
+	std::vector<std::unique_ptr<Scene>> _vecScene;
 
 	// LoadScene에 의해서 선택된 Scene을 담아둘 변수 
 	//std::vector<std::unique_ptr<Object>> _Scene;

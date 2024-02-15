@@ -106,12 +106,12 @@ void Renderer::PostUpdate()
 
 void Renderer::LoadScene(std::string& SceneName)
 {
-	Engine& g = GetGameEngine();
+	GameEngine& g = GetGameEngine();
 }
 
 void Renderer::Update(float InDeltaSeconds)
 {
-	Engine& g = GetGameEngine();
+	GameEngine& g = GetGameEngine();
 	//g.GetSceneMng().Update(InDeltaSeconds);
 
 }

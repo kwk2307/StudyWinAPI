@@ -16,7 +16,7 @@ public:
 	//std::function<void(InputManager&)> _InputBindingFunc;
 
 	void OnResize(const ScreenPoint& InScreeSize);
-	Engine& GetGameEngine() { return *_GameEngine.get(); }
+	GameEngine& GetGameEngine() { return _GameEngine; }
 
 private:
 	RendererInterface& GetRenderer() { return *_RIPtr.get(); }
@@ -52,6 +52,6 @@ private:
 
 	std::unique_ptr<RendererInterface> _RIPtr;
 	
-	std::unique_ptr<Engine> _GameEngine;
+	GameEngine _GameEngine;
 };
 
