@@ -1,7 +1,7 @@
 #pragma once
 
-#include <functional>
 #include <memory>
+#include <functional>
 
 #include "TransformComponent.h"
 #include "Object.h"
