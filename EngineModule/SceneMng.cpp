@@ -34,11 +34,3 @@ bool SceneMng::Init() {
 //	return false;
 //}
 
-void SceneMng::Update(float InDeltaSeconds)
-{
-	for (auto it = _VecScene.begin(); it != _VecScene.end(); ++it) {
-		Scene& scene = *(*it);
-		scene.Update(InDeltaSeconds);
-
-	}
-}

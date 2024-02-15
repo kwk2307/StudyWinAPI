@@ -1,8 +1,9 @@
 #include "Precompiled.h"
 
-bool GameEngine::Init(std::string& InName)
+bool GameEngine::Init()
 {
-	GetSceneMng().Init();
+	_IsInitialized = GetSceneMng().Init();
+
 	return _IsInitialized;
 }
 

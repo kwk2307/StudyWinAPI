@@ -45,7 +45,7 @@ void Renderer::Tick()
 	_GameEngineInitialized = GetGameEngine().IsInitailzed();
 	if (!_GameEngineInitialized) {
 
-		_GameEngineInitialized = GetGameEngine().Init(_CurrentScene);
+		_GameEngineInitialized = GetGameEngine().Init();
 
 		if (!_GameEngineInitialized)
 		{
