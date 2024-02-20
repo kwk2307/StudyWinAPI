@@ -61,10 +61,22 @@ std::unique_ptr<Object> SceneMng::MakeObject(const ObjectInfo& Info)
 {
 	// 생성 디자인 패턴을 고민 해봐야할듯?
 	// 클래스가 하나 늘어날 때 마다 이 함수를 고치는 것은 너무 비효율적 
-
-	// 
 	
-	return std::unique_ptr<Object>();
+	switch (Info.type)
+	{
+	case ObjectType::Default:		
+		break;
+	case ObjectType::Camera:
+		
+		return std::make_unique<Camera>(Info);
+		break;
+	case ObjectType::Player:
+
+		return std::make_unique<Player>(Info);
+		break;
+	default:
+		break;
+	}
 }
 
 void SceneMng::Update(float InDeltaSecond)
@@ -76,4 +88,10 @@ void SceneMng::Update(float InDeltaSecond)
 	}
 }
 
-
+void SceneMng::Render() {
+	for (auto it = _Scene.begin(); it != _Scene.end(); ++it) {
+		Object& object = *(*it);
+	
+		object.Render();
+	}
+}

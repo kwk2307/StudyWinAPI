@@ -10,6 +10,7 @@ public:
 	bool LoadScene(std::string SceneName);
 	std::unique_ptr<Object> MakeObject(const ObjectInfo& Info);
 	void Update(float InDeltaSecond);
+	void Render();
 
 private:
 

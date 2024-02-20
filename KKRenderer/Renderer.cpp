@@ -103,14 +103,15 @@ void Renderer::PostUpdate()
 
 void Renderer::LoadScene(std::string& SceneName)
 {
-	GameEngine& g = GetGameEngine();
+	const GameEngine& g = GetGameEngine();
 }
 
 void Renderer::Update(float InDeltaSeconds)
 {
 	GameEngine& g = GetGameEngine();
-	//g.GetSceneMng().Update(InDeltaSeconds);
+	g.GetSceneMng().Update(InDeltaSeconds);
 
+	//플레이어는 키입력을 받아 움직인다 
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
@@ -120,6 +121,10 @@ void Renderer::LateUpdate(float InDeltaSeconds)
 
 void Renderer::Render()
 {
+	auto& r = GetRenderer();
+	GameEngine& g = GetGameEngine();
+	g.GetSceneMng().
 
+	
 }
 

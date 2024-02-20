@@ -8,3 +8,6 @@
 #include "Scene.h"
 #include "SceneMng.h"
 #include "GameEngine.h"
+
+#include "Camera.h"
+#include "Player.h"

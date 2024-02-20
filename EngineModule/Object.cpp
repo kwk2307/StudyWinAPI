@@ -1,11 +1,16 @@
 #include "Precompiled.h"
 
-Object::Object():
-	_ObjectType(ObjectType::Default)
-{
 
+Object::Object(const ObjectInfo& Info):
+	_ObjectType(Info.type),
+	_Transform(Info.transform)
+{
 }
 
 void Object::Update(float InDeltaSeconds)
+{
+}
+
+void Object::Render()
 {
 }
