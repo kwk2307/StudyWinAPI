@@ -7,12 +7,12 @@ public:
 	bool Init();
 
 	const std::string& GetCurrentSceneName() const { return _CurrentSceneName; }
-	const std::vector<std::unique_ptr<Object>>GetCurrentScene() const { return _Scene; }
+	const std::vector<std::unique_ptr<Object>>& GetCurrentScene() const { return _Scene; }
 
-	const Camera GetMainCamera() const {return _MainCamera;}
+	const std::unique_ptr<Camera>& GetCamera() const { return _Camera; }
+	const std::unique_ptr<Player>& GetPlayer() const { return _Player; }
 
 	bool LoadScene(std::string SceneName);
-	std::unique_ptr<Object> MakeObject(const ObjectInfo& Info);
 
 private:
 	// 여러개의 씬을 담아 둘 벡터
@@ -23,5 +23,6 @@ private:
 	std::vector<std::unique_ptr<Object>> _Scene;
 	std::string _CurrentSceneName = "StartScene";
 
-	Camera _MainCamera;
+	std::unique_ptr<Camera> _Camera;
+	std::unique_ptr<Player> _Player;
 };

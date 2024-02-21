@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>

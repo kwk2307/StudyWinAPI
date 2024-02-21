@@ -9,15 +9,18 @@ public:
 	bool Init();
 	bool IsInitailzed() { return _IsInitialized; }
 
-	//복사 생성자가 안일어나게 참조자로서 넘겨주면 됨
+// 함수에서의 const 
+
+// 1. 매개변수 자료형에 const : 매개변수 를 수정할 수 없게됨
+// 2. 함수 뒤에 const : const 맴버 함수로 만들어줌 이 함수는 객체의 맴버 변수를 수정할 수 없게 됨 const 객체는 이 함수만을 호출 할 수 있음 
+// 3. 리턴에서의 const : 리턴이 const 객체가 됨
 	SceneMng& GetSceneMng() { return _SceneMng; }
-
-private:
-
-public:
 
 private:
 	bool _IsInitialized = false;
 	SceneMng _SceneMng;
+
 };
+
+
 

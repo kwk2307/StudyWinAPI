@@ -33,6 +33,7 @@ bool SceneMng::Init() {
 	return LoadScene("StartScene");
 }
 
+
 bool SceneMng::LoadScene(std::string SceneName)
 {
 	std::size_t targetHash = std::hash<std::string>()(SceneName);
@@ -48,33 +49,26 @@ bool SceneMng::LoadScene(std::string SceneName)
 	_Scene.clear();
 	
 	for (auto it = Scene.GetInfo().begin(); it != Scene.GetInfo().end(); ++it) {
-		// 오브젝트 만드는 코드 
-
+		
+		//값 복사가 일어나지 않게 참조자로 받아옴
 		const ObjectInfo& objectinfo = (*it);
-		_Scene.push_back(std::move(MakeObject(objectinfo)));
-	}
+		switch (objectinfo.type)
+		{
+		case ObjectType::Default:
+			_Scene.push_back(std::move(std::make_unique<Object>(objectinfo)));
+			break;
+		case ObjectType::Camera:
 
+			_Camera = std::make_unique<Camera>(objectinfo);
+			break;
+		case ObjectType::Player:
+
+			_Player = std::make_unique<Player>(objectinfo);
+			break;
+		default:
+			break;
+		}
+	}
 	return true;
 }
 
-std::unique_ptr<Object> SceneMng::MakeObject(const ObjectInfo& Info)
-{
-	// 생성 디자인 패턴을 고민 해봐야할듯?
-	// 클래스가 하나 늘어날 때 마다 이 함수를 고치는 것은 너무 비효율적 
-	
-	switch (Info.type)
-	{
-	case ObjectType::Default:		
-		break;
-	case ObjectType::Camera:
-		
-		return std::make_unique<Camera>(Info);
-		break;
-	case ObjectType::Player:
-
-		return std::make_unique<Player>(Info);
-		break;
-	default:
-		break;
-	}
-}

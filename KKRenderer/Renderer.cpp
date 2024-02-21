@@ -116,7 +116,9 @@ void Renderer::Update(float InDeltaSeconds)
 		Object& object = *(*it);
 		object.Update(InDeltaSeconds);
 	}
-	//플레이어는 키입력을 받아 움직인다 
+	// 플레이어는 키입력을 받아 움직인다 
+
+	// 카메라는 플레이어의 x 위치에 맞게 움직인다. 
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
@@ -129,8 +131,6 @@ void Renderer::Render()
 	auto& r = GetRenderer();
 	GameEngine& g = GetGameEngine();
 
-	
-
 	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
 		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
 
@@ -140,6 +140,8 @@ void Renderer::Render()
 			continue;
 		}
 
+		//카메라를 통해 NDC 를 만들고 
+		g.GetSceneMng().GetCamera();
 	
 	}
 }
