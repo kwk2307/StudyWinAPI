@@ -11,6 +11,3 @@ void Object::Update(float InDeltaSeconds)
 {
 }
 
-void Object::Render()
-{
-}

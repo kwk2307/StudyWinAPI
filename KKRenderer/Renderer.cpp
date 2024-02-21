@@ -109,8 +109,13 @@ void Renderer::LoadScene(std::string& SceneName)
 void Renderer::Update(float InDeltaSeconds)
 {
 	GameEngine& g = GetGameEngine();
-	g.GetSceneMng().Update(InDeltaSeconds);
 
+	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
+		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
+
+		Object& object = *(*it);
+		object.Update(InDeltaSeconds);
+	}
 	//플레이어는 키입력을 받아 움직인다 
 }
 
@@ -123,8 +128,19 @@ void Renderer::Render()
 {
 	auto& r = GetRenderer();
 	GameEngine& g = GetGameEngine();
-	g.GetSceneMng().
 
 	
+
+	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
+		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
+
+		const Object& object = *(*it);
+		const TransformComponent& transform = object.GetTransform();
+		if (!object.HasMesh() || !object.IsVisible()) {
+			continue;
+		}
+
+	
+	}
 }
 

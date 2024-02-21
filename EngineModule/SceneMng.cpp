@@ -78,20 +78,3 @@ std::unique_ptr<Object> SceneMng::MakeObject(const ObjectInfo& Info)
 		break;
 	}
 }
-
-void SceneMng::Update(float InDeltaSecond)
-{
-	for (auto it = _Scene.begin(); it != _Scene.end(); ++it) {
-		Object& object = *(*it);
-
-		object.Update(InDeltaSecond);
-	}
-}
-
-void SceneMng::Render() {
-	for (auto it = _Scene.begin(); it != _Scene.end(); ++it) {
-		Object& object = *(*it);
-	
-		object.Render();
-	}
-}

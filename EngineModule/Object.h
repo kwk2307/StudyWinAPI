@@ -23,14 +23,13 @@ public:
 
 public:
 	virtual void Update(float InDeltaSeconds);
-	virtual void Render();
-	
+
 	const TransformComponent& GetTransform() const { return _Transform; }
+	bool IsVisible() const { return _IsVisible; }
 
 	const std::string& GetName() const { return _Name; }
 	std::size_t GetMeshKey() const { return _Meshkey; }
-
-
+	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
 
 private:
 	TransformComponent _Transform;

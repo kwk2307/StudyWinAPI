@@ -3,6 +3,8 @@
 #include <memory>
 #include <functional>
 
+#include "Mesh.h"
+
 #include "TransformComponent.h"
 #include "Object.h"
 #include "Scene.h"

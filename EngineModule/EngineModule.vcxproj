@@ -137,6 +137,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="EngineHeaders.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Precompiled.h" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Precompiled.cpp">
