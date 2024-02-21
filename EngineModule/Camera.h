@@ -5,6 +5,13 @@ class Camera :
 public:
     Camera(const ObjectInfo& Info);
 
+    // 행렬 생성
+     void GetViewAxes(Vector3& OutViewX, Vector3& OutViewY, Vector3& OutViewZ) const;
+     Matrix4 GetViewMatrix() const;
+     Matrix4 GetViewMatrixRotationOnly() const;
+     Matrix4 GetPerspectiveMatrix() const;
+     Matrix4 GetPerspectiveViewMatrix() const;
+
 private:
     CameraMode _Mode = CameraMode::Orthographic;
     // 스크린 사이즈

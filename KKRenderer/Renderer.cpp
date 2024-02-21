@@ -82,7 +82,7 @@ void Renderer::PreUpdate()
 	}
 
 	// 배경 지우기.
-	GetRenderer().Clear(Color::Black);
+	GetRenderer().Clear(Color::White);
 
 }
 
@@ -128,8 +128,13 @@ void Renderer::LateUpdate(float InDeltaSeconds)
 
 void Renderer::Render()
 {
-	auto& r = GetRenderer();
+
 	GameEngine& g = GetGameEngine();
+	auto& r = GetRenderer();
+	auto& mainCamera = g.GetSceneMng().GetCamera();
+
+	//ViewMatrix 만듦
+	const 
 
 	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
 		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
@@ -140,8 +145,6 @@ void Renderer::Render()
 			continue;
 		}
 
-		//카메라를 통해 NDC 를 만들고 
-		g.GetSceneMng().GetCamera();
 	
 	}
 }

@@ -29,8 +29,6 @@ private:
 	void LateUpdate(float InDeltaSeconds);
 	void Render();
 
-public:
-
 private:
 	// 초기화 점검 변수
 	bool _PerformanceCheckInitialized = false;

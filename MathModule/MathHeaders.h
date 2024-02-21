@@ -25,6 +25,9 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 
 #include "Rotator.h"
 
+#include "Matrix3.h"
+#include "Matrix4.h"
+
 #include "Color.h"
 
 #include "ScreenPoint.h"

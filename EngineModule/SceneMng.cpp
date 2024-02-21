@@ -28,6 +28,7 @@ bool SceneMng::Init() {
 	Camera.type = ObjectType::Camera;
 
 	startScene.get()->AddObject(Camera);
+
 	_vecScene.push_back(std::move(startScene));
 
 	return LoadScene("StartScene");
