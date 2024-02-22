@@ -4,7 +4,7 @@ class TransformComponent
 public:
 	TransformComponent() = default;
 
-	constexpr Vector3 GetXAxis() const { return }
+	constexpr Vector3 GetXAxis() const { return; }
 
 private:
 	Vector3 _Position = Vector3::Zero;
