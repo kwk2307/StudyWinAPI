@@ -155,7 +155,6 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 	auto& r = GetRenderer();
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
-	
 	// 1. 삼각형이 그려질 공간을 정한다.
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
@@ -180,6 +179,12 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 	ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
 	ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
 	
+
+	// 각 정점마다 보존된 뷰 공간의 z값
+	float invZ0 = 1.f / InVertices[0].Position.W;
+	float invZ1 = 1.f / InVertices[1].Position.W;
+	float invZ2 = 1.f / InVertices[2].Position.W;
+
 	for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
 	{
 		for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
@@ -194,8 +199,17 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 			float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
 			float oneMinusST = 1.f - s - t;
 
+			// 투영보정에 사용할 공통 분모
+			float z = invZ0 * oneMinusST + invZ1 * s + invZ2 * t;
+			float invZ = 1.f / z;
+
+			//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.. 
 			if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
 			{
+				// 최종 보정보간된 UV 좌표
+				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
+				r.DrawPoint(fragment,Color::Blue);
+
 			}
 		}
 	}

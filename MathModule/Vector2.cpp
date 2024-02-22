@@ -5,10 +5,6 @@ const Vector2 Vector2::UnitY(0.f, 1.f);
 const Vector2 Vector2::Zero(0.f, 0.f);
 const Vector2 Vector2::One(1.f, 1.f);
 
-constexpr float Vector2::operator[](BYTE InIndex) const
-{
-    return 0.0f;
-}
 
 constexpr float Vector2::operator[](BYTE InIndex) const
 {
