@@ -137,6 +137,7 @@
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="RendererHeaders.h" />
     <ClInclude Include="RendererInterface.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="WindowsRenderer.h" />
   </ItemGroup>
   <ItemGroup>

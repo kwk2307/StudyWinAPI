@@ -6,17 +6,15 @@ Camera::Camera(const ObjectInfo& Info):
 
 }
 
-void Camera::GetViewAxes(Vector3& OutViewX, Vector3& OutViewY, Vector3& OutViewZ) const
-{
-	// 로컬 Z축 값의 반대 방향을 뷰 공간의 Z축으로 설정
-	OutViewZ = -GetTransform().GetLocalZ();
-	OutViewY = GetTransform().GetLocalY();
-	OutViewX = -GetTransform().GetLocalX();
-}
 
 Matrix4 Camera::GetViewMatrix() const
 {
-	return Matrix4();
+	return Matrix4(
+		Vector4::UnitX,
+		Vector4::UnitY,
+		Vector4::UnitZ,
+		Vector4::Zero
+	);
 }
 
 Matrix4 Camera::GetViewMatrixRotationOnly() const

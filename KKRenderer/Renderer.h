@@ -29,6 +29,9 @@ private:
 	void LateUpdate(float InDeltaSeconds);
 	void Render();
 
+	void DrawTriangle(std::vector<Vertex>& InVertices);
+
+
 private:
 	// 초기화 점검 변수
 	bool _PerformanceCheckInitialized = false;

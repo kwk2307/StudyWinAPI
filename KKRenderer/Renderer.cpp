@@ -134,7 +134,7 @@ void Renderer::Render()
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
 	//ViewMatrix 만듦
-	const 
+	const Matrix4 ViewMatrix = mainCamera.get()->GetViewMatrix();
 
 	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
 		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
@@ -146,6 +146,58 @@ void Renderer::Render()
 		}
 
 	
+	}
+}
+
+void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
+{
+	GameEngine& g = GetGameEngine();
+	auto& r = GetRenderer();
+	auto& mainCamera = g.GetSceneMng().GetCamera();
+
+	
+	// 1. 삼각형이 그려질 공간을 정한다.
+	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
+	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
+
+	// 무게 중심 좌표를 위한 벡터 변환 
+	Vector2 u = InVertices[1].Position.ToVector2() - InVertices[0].Position.ToVector2();
+	Vector2 v = InVertices[2].Position.ToVector2() - InVertices[0].Position.ToVector2();
+
+	// 공통 분모 값 ( uu * vv - uv * uv )
+	float udotv = u.Dot(v);
+	float vdotv = v.Dot(v);
+	float udotu = u.Dot(u);
+	float denominator = udotv * udotv - vdotv * udotu;
+
+	// 퇴화 삼각형 판정.
+	if (denominator == 0.f)
+	{
+		return;
+	}
+
+	float invDenominator = 1.f / denominator;
+	ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
+	ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
+	
+	for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
+	{
+		for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
+		{
+			ScreenPoint fragment = ScreenPoint(x, y);
+			Vector2 pointToTest = fragment.ToCartesianCoordinate(_ScreenSize);
+			Vector2 w = pointToTest - InVertices[0].Position.ToVector2();
+			float wdotu = w.Dot(u);
+			float wdotv = w.Dot(v);
+
+			float s = (wdotv * udotv - wdotu * vdotv) * invDenominator;
+			float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
+			float oneMinusST = 1.f - s - t;
+
+			if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
+			{
+			}
+		}
 	}
 }
 

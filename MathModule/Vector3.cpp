@@ -12,12 +12,6 @@ constexpr float Vector3::operator[](BYTE InIndex) const
 	return Scalars[InIndex];
 }
 
- constexpr float Vector3::operator[](BYTE InIndex) const
-{
-	assert(InIndex < Dimension);
-	return Scalars[InIndex];
-}
-
  constexpr float& Vector3::operator[](BYTE InIndex)
 {
 	assert(InIndex < Dimension);

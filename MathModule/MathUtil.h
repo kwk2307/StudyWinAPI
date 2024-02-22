@@ -22,4 +22,29 @@ struct MathUtil{
 	{
 		return TruncToInt(floorf(InFloat));
 	}
+
+
+	template<class T>
+	static constexpr T Max(const T A, const T B)
+	{
+		return (A >= B) ? A : B;
+	}
+
+	template<class T>
+	static constexpr T Min(const T A, const T B)
+	{
+		return (A <= B) ? A : B;
+	}
+
+	template< class T >
+	static T constexpr Max3(const T A, const T B, const T C)
+	{
+		return Max(Max(A, B), C);
+	}
+
+	template< class T >
+	static T constexpr Min3(const T A, const T B, const T C)
+	{
+		return Min(Min(A, B), C);
+	}
 };

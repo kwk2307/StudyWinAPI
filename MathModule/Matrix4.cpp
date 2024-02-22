@@ -54,7 +54,7 @@ constexpr Vector3 Matrix4::operator*(const Vector3& InVector) const
 	return Vector3(result.X, result.Y, result.Z);
 }
 
-Matrix4 Matrix4::ToMatrix3() const
+Matrix3 Matrix4::ToMatrix3() const
 {
 	return Matrix3(Cols[0].ToVector3(), Cols[1].ToVector3(), Cols[2].ToVector3());
 }

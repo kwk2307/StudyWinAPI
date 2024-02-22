@@ -8,23 +8,23 @@ public:
 	explicit constexpr Vector3(float InX, float InY, float InZ) : X(InX), Y(InY), Z(InZ) { };
 
 	// 연산자 
-	__forceinline constexpr float operator[](BYTE InIndex) const;
-	__forceinline constexpr float& operator[](BYTE InIndex);
-	__forceinline constexpr Vector3 operator-() const;
-	__forceinline constexpr Vector3 operator*(float InScale) const;
-	__forceinline constexpr Vector3 operator/(float InScale) const;
-	__forceinline constexpr Vector3 operator*(const Vector3& InVector) const;
-	__forceinline constexpr Vector3 operator+(const Vector3& InVector) const;
-	__forceinline constexpr Vector3 operator-(const Vector3& InVector) const;
-	__forceinline constexpr Vector3& operator*=(float InScale);
-	__forceinline constexpr Vector3& operator/=(float InScale);
-	__forceinline constexpr Vector3& operator+=(const Vector3& InVector);
-	__forceinline constexpr Vector3& operator-=(const Vector3& InVector);
+	 constexpr float operator[](BYTE InIndex) const;
+	 constexpr float& operator[](BYTE InIndex);
+	 constexpr Vector3 operator-() const;
+	 constexpr Vector3 operator*(float InScale) const;
+	 constexpr Vector3 operator/(float InScale) const;
+	 constexpr Vector3 operator*(const Vector3& InVector) const;
+	 constexpr Vector3 operator+(const Vector3& InVector) const;
+	 constexpr Vector3 operator-(const Vector3& InVector) const;
+	 constexpr Vector3& operator*=(float InScale);
+	 constexpr Vector3& operator/=(float InScale);
+	 constexpr Vector3& operator+=(const Vector3& InVector);
+	 constexpr Vector3& operator-=(const Vector3& InVector);
 
 
 	// 맴버 함수 
-	__forceinline constexpr Vector2 ToVector2() const;
-	__forceinline constexpr float Dot(const Vector3& InVector) const;
+	 constexpr Vector2 ToVector2() const;
+	 constexpr float Dot(const Vector3& InVector) const;
 
 	// 정적멤버변수 
 	static const Vector3 UnitX;
