@@ -17,7 +17,7 @@ public:
 	{
 		struct
 		{
-			BYTE R, G, B, A;
+			BYTE B, G, R, A;
 		};
 
 		UINT32 ColorValue;

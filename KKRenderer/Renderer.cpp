@@ -4,7 +4,6 @@
 Renderer::Renderer(RendererInterface* RI) :
 	_RIPtr(RI)
 {
-
 }
 
 void Renderer::Tick()
@@ -136,17 +135,23 @@ void Renderer::Render()
 	//ViewMatrix 만듦
 	const Matrix4 ViewMatrix = mainCamera.get()->GetViewMatrix();
 
-	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
-		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
+	//for (auto it = g.GetSceneMng().GetCurrentScene().begin();
+	//	it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
 
-		const Object& object = *(*it);
-		const TransformComponent& transform = object.GetTransform();
-		if (!object.HasMesh() || !object.IsVisible()) {
-			continue;
-		}
+	//	const Object& object = *(*it);
+	//	const TransformComponent& transform = object.GetTransform();
+	//	if (!object.HasMesh() || !object.IsVisible()) {
+	//		continue;
+	//	}
+	//}
 
-	
-	}
+	std::vector<Vertex> Test;
+
+	Test.push_back(Vertex(Vector4(100.f, 100.f, 0.f, 0.f)));
+	Test.push_back(Vertex(Vector4(200.f, 100.f, 0.f, 0.f)));
+	Test.push_back(Vertex(Vector4(200.f, 200.f, 0.f, 0.f)));
+
+	DrawTriangle(Test);
 }
 
 void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
@@ -203,13 +208,12 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 			float z = invZ0 * oneMinusST + invZ1 * s + invZ2 * t;
 			float invZ = 1.f / z;
 
-			//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.. 
+			//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.
 			if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
 			{
 				// 최종 보정보간된 UV 좌표
 				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
 				r.DrawPoint(fragment,Color::Blue);
-
 			}
 		}
 	}

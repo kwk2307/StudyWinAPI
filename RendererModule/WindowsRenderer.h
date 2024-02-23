@@ -16,9 +16,8 @@ private:
 	void Release();
 	void FillBuffer(Color InColor);
 
-
 	bool IsInScreen(const ScreenPoint& InPos) const;
-	int GetScreenBufferIndex(const ScreenPoint& InPos) const;
+	int  GetScreenBufferIndex(const ScreenPoint& InPos) const;
 
 	template <class T>
 	T* CopyBuffer(T* InDst, T* InSrc, int InCount);

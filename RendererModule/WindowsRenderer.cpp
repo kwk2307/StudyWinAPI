@@ -74,6 +74,18 @@ void WindowsRenderer::EndFrame()
 	SwapBuffer();
 }
 
+void WindowsRenderer::DrawPoint(const ScreenPoint& InScreenPos, const Color& InColor)
+{
+	if (!IsInScreen(InScreenPos))
+	{
+		return;
+	}
+
+	Color* dest = _ScreenBuffer;
+	*(dest + GetScreenBufferIndex(InScreenPos)) = InColor;
+	return;
+}
+
 void WindowsRenderer::Release()
 {
 	if (_Initialized) {
@@ -94,6 +106,21 @@ void WindowsRenderer::FillBuffer(Color InColor)
 	UINT32 totalCount = _ScreenSize.X * _ScreenSize.Y;
 	CopyBuffer<Color>(_ScreenBuffer, &InColor, totalCount);
 	return;
+}
+
+bool WindowsRenderer::IsInScreen(const ScreenPoint& InPos) const
+{
+	if ((InPos.X < 0 || InPos.X >= _ScreenSize.X) || (InPos.Y < 0 || InPos.Y >= _ScreenSize.Y))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+int WindowsRenderer::GetScreenBufferIndex(const ScreenPoint& InPos) const
+{
+	return InPos.Y * _ScreenSize.X + InPos.X;
 }
 
 void WindowsRenderer::SwapBuffer()

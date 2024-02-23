@@ -23,7 +23,6 @@ struct MathUtil{
 		return TruncToInt(floorf(InFloat));
 	}
 
-
 	template<class T>
 	static constexpr T Max(const T A, const T B)
 	{
