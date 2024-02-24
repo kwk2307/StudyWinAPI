@@ -9,11 +9,13 @@ Camera::Camera(const ObjectInfo& Info):
 
 Matrix4 Camera::GetViewMatrix() const
 {
+	GetTransform().GetPosition();
+
 	return Matrix4(
 		Vector4::UnitX,
 		Vector4::UnitY,
 		Vector4::UnitZ,
-		Vector4::Zero
+		Vector4()
 	);
 }
 

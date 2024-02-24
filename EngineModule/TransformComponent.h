@@ -3,9 +3,8 @@ class TransformComponent
 {
 public:
 	TransformComponent() = default;
-
-	 constexpr Vector3 GetPosition() const { return _Position; }
-
+	
+	constexpr Matrix4 GetModelingMatrix() const;
 
 private:
 	Vector3 _Position = Vector3::Zero;

@@ -15,6 +15,8 @@ struct ObjectInfo {
 	std::string data = "";
 };
 
+
+//왼손 좌표계를 기준으로 저장함
 class Object
 {
 public:

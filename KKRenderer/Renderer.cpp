@@ -133,17 +133,24 @@ void Renderer::Render()
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
 	//ViewMatrix ¸¸µê
-	const Matrix4 ViewMatrix = mainCamera.get()->GetViewMatrix();
+	const Matrix4 viewMatrix = mainCamera.get()->GetViewMatrix();
 
-	//for (auto it = g.GetSceneMng().GetCurrentScene().begin();
-	//	it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
+	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
+		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
 
-	//	const Object& object = *(*it);
-	//	const TransformComponent& transform = object.GetTransform();
-	//	if (!object.HasMesh() || !object.IsVisible()) {
-	//		continue;
-	//	}
-	//}
+		const Object& object = *(*it);
+		if (!object.HasMesh() || !object.IsVisible()) {
+			continue;
+		}
+
+		const Mesh& mesh = g.GetMesh(object.GetMeshKey());
+		const TransformComponent& transform = object.GetTransform();
+
+
+		//ºäÇà·Ä * ¸ðµ¨¸µ Çà·Ä 
+		Matrix4 finalMatrix = viewMatrix* transform
+	
+	}
 
 	std::vector<Vertex> Test;
 

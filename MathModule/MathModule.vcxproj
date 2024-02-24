@@ -135,6 +135,7 @@
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Rotator.h" />
     <ClInclude Include="ScreenPoint.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Vector3.h" />
