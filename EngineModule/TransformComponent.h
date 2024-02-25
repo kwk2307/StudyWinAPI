@@ -3,16 +3,31 @@ class TransformComponent
 {
 public:
 	TransformComponent() = default;
-	
+	TransformComponent(const Vector3& InPos,const Rotator& InRot,const Vector3& InScale):
+		_Position(InPos),
+		_Rotation(InRot),
+		_Scale(InScale){}
+
 	constexpr Matrix4 GetModelingMatrix() const;
+public:
+	const Vector3& GetPosition() const{ return _Position; }
+	const Rotator& GetRotator() const { return _Rotation; }
+	const Vector3& GetScale() const { return _Scale; }
 
 private:
 	Vector3 _Position = Vector3::Zero;
 	Rotator _Rotation;
 	Vector3 _Scale = Vector3::One;
 
-	Vector3 _Right = Vector3::UnitX;
-	Vector3 _Up = Vector3::UnitY;
-	Vector3 _Forward = Vector3::UnitZ;
 };
 
+constexpr Matrix4 TransformComponent::GetModelingMatrix() const {
+	Vector3 XAxis, YAxis, ZAxis;
+	GetRotator().GetLocalAxes(XAxis, YAxis, ZAxis);
+	return Matrix4(
+		Vector4(XAxis * GetScale().X, false),
+		Vector4(YAxis * GetScale().Y, false),
+		Vector4(ZAxis * GetScale().Z, false), 
+		Vector4(GetPosition(), true)
+	);
+}

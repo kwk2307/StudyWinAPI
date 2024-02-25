@@ -29,6 +29,7 @@ private:
 	void LateUpdate(float InDeltaSeconds);
 	void Render();
 
+	void DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix);
 	void DrawTriangle(std::vector<Vertex>& InVertices);
 
 

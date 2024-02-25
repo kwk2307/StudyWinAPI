@@ -146,19 +146,41 @@ void Renderer::Render()
 		const Mesh& mesh = g.GetMesh(object.GetMeshKey());
 		const TransformComponent& transform = object.GetTransform();
 
-
 		//뷰행렬 * 모델링 행렬 
-		Matrix4 finalMatrix = viewMatrix* transform
-	
+		Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
+		
+		DrawMesh(mesh, finalMatrix);
+	}
+}
+
+void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix)
+{
+	size_t vertexCount = InMesh.GetVertices().size();
+	size_t indexCount = InMesh.GetIndices().size();
+	size_t triangleCount = indexCount / 3;
+
+	// 렌더러가 사용할 정점 버퍼와 인덱스 버퍼로 변환
+	std::vector<Vertex> vertices(vertexCount);
+	std::vector<size_t> indices(InMesh.GetIndices());
+	for (size_t vi = 0; vi < vertexCount; ++vi) {
+		vertices[vi].Position = Vector4(InMesh.GetVertices()[vi]);
 	}
 
-	std::vector<Vertex> Test;
+	for (Vertex& v : vertices) {
+		v.Position = InMatrix * v.Position;
+	}
+	for (int ti = 0; ti < triangleCount; ++ti) {
+		int bi0 = ti * 3, bi1 = ti * 3 + 1, bi2 = ti * 3 + 2;
+		std::vector<Vertex> tvs = { vertices[indices[bi0]] , vertices[indices[bi1]] , vertices[indices[bi2]] };
 
-	Test.push_back(Vertex(Vector4(100.f, 100.f, 0.f, 0.f)));
-	Test.push_back(Vertex(Vector4(200.f, 100.f, 0.f, 0.f)));
-	Test.push_back(Vertex(Vector4(200.f, 200.f, 0.f, 0.f)));
-
-	DrawTriangle(Test);
+		size_t triangles = tvs.size() / 3;
+		for (size_t ti = 0; ti < triangles; ++ti)
+		{
+			size_t si = ti * 3;
+			std::vector<Vertex> sub(tvs.begin() + si, tvs.begin() + si + 3);
+			DrawTriangle(sub);
+		}
+	}
 }
 
 void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
