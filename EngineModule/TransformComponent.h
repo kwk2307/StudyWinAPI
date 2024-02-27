@@ -8,7 +8,7 @@ public:
 		_Rotation(InRot),
 		_Scale(InScale){}
 
-	constexpr Matrix4 GetModelingMatrix() const;
+	__forceinline Matrix4 GetModelingMatrix() const;
 public:
 	const Vector3& GetPosition() const{ return _Position; }
 	const Rotator& GetRotator() const { return _Rotation; }
@@ -21,7 +21,7 @@ private:
 
 };
 
-constexpr Matrix4 TransformComponent::GetModelingMatrix() const {
+__forceinline Matrix4 TransformComponent::GetModelingMatrix() const {
 	Vector3 XAxis, YAxis, ZAxis;
 	GetRotator().GetLocalAxes(XAxis, YAxis, ZAxis);
 	return Matrix4(
