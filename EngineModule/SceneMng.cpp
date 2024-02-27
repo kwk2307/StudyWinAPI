@@ -30,13 +30,13 @@ bool SceneMng::Init() {
 	};
 	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
 
-
 	ObjectInfo Player;
 	Player.name = "player";
 	Player.type = ObjectType::Player;
 	Player.MeshKey = std::hash<std::string>()("M_Plane");
-	startScene.get()->AddObject(Player);
 
+	Player.transform = TransformComponent(Vector3(0, 0, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	startScene.get()->AddObject(Player);
 
 	ObjectInfo Camera;
 	Camera.name = "camera";
