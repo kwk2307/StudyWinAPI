@@ -17,21 +17,43 @@ bool SceneMng::Init() {
 
 	std::unique_ptr<Scene> startScene = std::make_unique<Scene>("StartScene");
 
+	Mesh& Plane = CreateMesh(std::hash<std::string>()("M_Plane"));
+
+	std::vector<size_t> vec_Indices = { 0,1,2,0,2,3 };
+	Plane.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
+
+	std::vector<Vector2> vec_Vertices = {
+		Vector2(-100.f,-100.f),
+		Vector2(100.f,-100.f),
+		Vector2(100.f,100.f),
+		Vector2(-100.f,100.f)
+	};
+	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
+
+
 	ObjectInfo Player;
 	Player.name = "player";
 	Player.type = ObjectType::Player;
-
+	Player.MeshKey = std::hash<std::string>()("M_Plane");
 	startScene.get()->AddObject(Player);
+
 
 	ObjectInfo Camera;
 	Camera.name = "camera";
 	Camera.type = ObjectType::Camera;
-
 	startScene.get()->AddObject(Camera);
 
 	_vecScene.push_back(std::move(startScene));
 
 	return LoadScene("StartScene");
+}
+
+Mesh& SceneMng::CreateMesh(const std::size_t& Inkey)
+{
+	auto meshPtr = std::make_unique<Mesh>();
+	_Meshes.insert({ Inkey,std::move(meshPtr) });
+
+	return *_Meshes.at(Inkey).get();
 }
 
 
@@ -50,22 +72,28 @@ bool SceneMng::LoadScene(std::string SceneName)
 	_Scene.clear();
 	
 	for (auto it = Scene.GetInfo().begin(); it != Scene.GetInfo().end(); ++it) {
-		
-		//값 복사가 일어나지 않게 참조자로 받아옴
 		const ObjectInfo& objectinfo = (*it);
 		switch (objectinfo.type)
 		{
-		case ObjectType::Default:
+		case ObjectType::Default: 
+		{
 			_Scene.push_back(std::move(std::make_unique<Object>(objectinfo)));
 			break;
+		}
 		case ObjectType::Camera:
-
-			_Camera = std::make_unique<Camera>(objectinfo);
+		{
+			std::unique_ptr<Camera> CameraPtr = std::make_unique<Camera>(objectinfo);
+			_Camera = CameraPtr.get();
+			_Scene.push_back(std::move(CameraPtr));
 			break;
+		}
 		case ObjectType::Player:
-
-			_Player = std::make_unique<Player>(objectinfo);
+		{
+			std::unique_ptr<Player> PlayerPtr = std::make_unique<Player>(objectinfo);
+			_Player = PlayerPtr.get();
+			_Scene.push_back(std::move(PlayerPtr));
 			break;
+		}
 		default:
 			break;
 		}

@@ -8,23 +8,23 @@ public:
 	explicit constexpr Vector3(float InX, float InY, float InZ) : X(InX), Y(InY), Z(InZ) { };
 
 	// 연산자 
-	 constexpr float operator[](BYTE InIndex) const;
-	 constexpr float& operator[](BYTE InIndex);
-	 constexpr Vector3 operator-() const;
-	 constexpr Vector3 operator*(float InScale) const;
-	 constexpr Vector3 operator/(float InScale) const;
-	 constexpr Vector3 operator*(const Vector3& InVector) const;
-	 constexpr Vector3 operator+(const Vector3& InVector) const;
-	 constexpr Vector3 operator-(const Vector3& InVector) const;
-	 constexpr Vector3& operator*=(float InScale);
-	 constexpr Vector3& operator/=(float InScale);
-	 constexpr Vector3& operator+=(const Vector3& InVector);
-	 constexpr Vector3& operator-=(const Vector3& InVector);
+	__forceinline constexpr float operator[](BYTE InIndex) const;
+	__forceinline constexpr float& operator[](BYTE InIndex);
+	__forceinline constexpr Vector3 operator-() const;
+	__forceinline constexpr Vector3 operator*(float InScale) const;
+	__forceinline constexpr Vector3 operator/(float InScale) const;
+	__forceinline constexpr Vector3 operator*(const Vector3& InVector) const;
+	__forceinline constexpr Vector3 operator+(const Vector3& InVector) const;
+	__forceinline constexpr Vector3 operator-(const Vector3& InVector) const;
+	__forceinline constexpr Vector3& operator*=(float InScale);
+	__forceinline constexpr Vector3& operator/=(float InScale);
+	__forceinline constexpr Vector3& operator+=(const Vector3& InVector);
+	__forceinline constexpr Vector3& operator-=(const Vector3& InVector);
 
 
 	// 맴버 함수 
-	 constexpr Vector2 ToVector2() const;
-	 constexpr float Dot(const Vector3& InVector) const;
+	__forceinline constexpr Vector2 ToVector2() const;
+	__forceinline constexpr float Dot(const Vector3& InVector) const;
 
 	// 정적멤버변수 
 	static const Vector3 UnitX;
@@ -46,49 +46,49 @@ public:
 	};
 };
 
-constexpr float Vector3::operator[](BYTE InIndex) const
+__forceinline constexpr float Vector3::operator[](BYTE InIndex) const
 {
 	assert(InIndex < Dimension);
 	return Scalars[InIndex];
 }
 
-constexpr float& Vector3::operator[](BYTE InIndex)
+__forceinline constexpr float& Vector3::operator[](BYTE InIndex)
 {
 	assert(InIndex < Dimension);
 	return Scalars[InIndex];
 }
 
-constexpr Vector3 Vector3::operator-() const
+__forceinline constexpr Vector3 Vector3::operator-() const
 {
 	return Vector3(-X, -Y, -Z);
-}
 
-constexpr Vector3 Vector3::operator*(float InScale) const
+}
+__forceinline constexpr Vector3 Vector3::operator*(float InScale) const
 {
 	return Vector3(X * InScale, Y * InScale, Z * InScale);
 }
 
-constexpr Vector3 Vector3::operator/(float InScale) const
+__forceinline constexpr Vector3 Vector3::operator/(float InScale) const
 {
 	return Vector3(X / InScale, Y / InScale, Z / InScale);
 }
 
-constexpr Vector3 Vector3::operator*(const Vector3& InVector) const
+__forceinline constexpr Vector3 Vector3::operator*(const Vector3& InVector) const
 {
 	return Vector3(X * InVector.X, Y * InVector.Y, Z * InVector.Z);
 }
 
-constexpr Vector3 Vector3::operator+(const Vector3& InVector) const
+__forceinline constexpr Vector3 Vector3::operator+(const Vector3& InVector) const
 {
 	return Vector3(X + InVector.X, Y + InVector.Y, Z + InVector.Z);
 }
 
-constexpr Vector3 Vector3::operator-(const Vector3& InVector) const
+__forceinline constexpr Vector3 Vector3::operator-(const Vector3& InVector) const
 {
 	return Vector3(X - InVector.X, Y - InVector.Y, Z - InVector.Z);
 }
 
-constexpr Vector3& Vector3::operator*=(float InScale)
+__forceinline constexpr Vector3& Vector3::operator*=(float InScale)
 {
 	X *= InScale;
 	Y *= InScale;
@@ -96,7 +96,7 @@ constexpr Vector3& Vector3::operator*=(float InScale)
 	return *this;
 }
 
-constexpr Vector3& Vector3::operator/=(float InScale)
+__forceinline constexpr Vector3& Vector3::operator/=(float InScale)
 {
 	X /= InScale;
 	Y /= InScale;
@@ -104,7 +104,7 @@ constexpr Vector3& Vector3::operator/=(float InScale)
 	return *this;
 }
 
-constexpr Vector3& Vector3::operator+=(const Vector3& InVector)
+__forceinline constexpr Vector3& Vector3::operator+=(const Vector3& InVector)
 {
 	X += InVector.X;
 	Y += InVector.Y;
@@ -112,7 +112,7 @@ constexpr Vector3& Vector3::operator+=(const Vector3& InVector)
 	return *this;
 }
 
-constexpr Vector3& Vector3::operator-=(const Vector3& InVector)
+__forceinline constexpr Vector3& Vector3::operator-=(const Vector3& InVector)
 {
 	X -= InVector.X;
 	Y -= InVector.Y;
@@ -120,12 +120,12 @@ constexpr Vector3& Vector3::operator-=(const Vector3& InVector)
 	return *this;
 }
 
-constexpr Vector2 Vector3::ToVector2() const
+__forceinline constexpr Vector2 Vector3::ToVector2() const
 {
 	return Vector2(X, Y);
 }
 
-constexpr float Vector3::Dot(const Vector3& InVector) const
+__forceinline constexpr float Vector3::Dot(const Vector3& InVector) const
 {
 	return X * InVector.X + Y * InVector.Y + Z * InVector.Z;
 }

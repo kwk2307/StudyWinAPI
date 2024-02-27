@@ -16,13 +16,13 @@ public:
 // 3. 리턴에서의 const : 리턴이 const 객체가 됨
 	SceneMng& GetSceneMng() { return _SceneMng; }
 	
-	Mesh& GetMesh(const std::size_t& InMeshKey) const { return *_Meshes.at(InMeshKey).get(); }
+	// Mesh& GetMesh(const std::size_t& InMeshKey) const { return *_Meshes.at(InMeshKey).get(); }
 
 private:
 	bool _IsInitialized = false;
 	SceneMng _SceneMng;
 
-	std::unordered_map<std::size_t, std::unique_ptr<Mesh>> _Meshes;
+	// std::unordered_map<std::size_t, std::unique_ptr<Mesh>> _Meshes;
 	//std::unordered_map<std::size_t, std::unique_ptr<Texture>> _Textures;
 
 };

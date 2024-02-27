@@ -3,7 +3,8 @@
 
 Object::Object(const ObjectInfo& Info):
 	_ObjectType(Info.type),
-	_Transform(Info.transform)
+	_Transform(Info.transform),
+	_Meshkey(Info.MeshKey)
 {
 }
 

@@ -21,19 +21,19 @@ public:
 		return Vector2(X - InScreenSize.X * 0.5f + 0.5f, -(Y + 0.5f) + InScreenSize.Y * 0.5f);
 	}
 
-	constexpr ScreenPoint operator-(const ScreenPoint& InPoint) const;
-	constexpr ScreenPoint operator+(const ScreenPoint& InPoint) const;
+	__forceinline constexpr ScreenPoint operator-(const ScreenPoint& InPoint) const;
+	__forceinline constexpr ScreenPoint operator+(const ScreenPoint& InPoint) const;
 
 	int X = 0;
 	int Y = 0;
 };
 
-constexpr ScreenPoint ScreenPoint::operator-(const ScreenPoint& InPoint) const
+__forceinline constexpr ScreenPoint ScreenPoint::operator-(const ScreenPoint& InPoint) const
 {
 	return ScreenPoint(X - InPoint.X, Y - InPoint.Y);
 }
 
-constexpr ScreenPoint ScreenPoint::operator+(const ScreenPoint& InPoint) const
+__forceinline constexpr ScreenPoint ScreenPoint::operator+(const ScreenPoint& InPoint) const
 {
 	return ScreenPoint(X + InPoint.X, Y + InPoint.Y);
 }

@@ -133,7 +133,7 @@ void Renderer::Render()
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
 	//ViewMatrix 만듦
-	const Matrix4 viewMatrix = mainCamera.get()->GetViewMatrix();
+	const Matrix4 viewMatrix = mainCamera.GetViewMatrix();
 
 	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
 		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
@@ -143,7 +143,7 @@ void Renderer::Render()
 			continue;
 		}
 
-		const Mesh& mesh = g.GetMesh(object.GetMeshKey());
+		const Mesh& mesh = g.GetSceneMng().GetMesh(object.GetMeshKey());
 		const TransformComponent& transform = object.GetTransform();
 
 		//뷰행렬 * 모델링 행렬 
@@ -151,6 +151,7 @@ void Renderer::Render()
 		
 		DrawMesh(mesh, finalMatrix);
 	}
+
 }
 
 void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix)
@@ -189,7 +190,6 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 	auto& r = GetRenderer();
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
-	// 1. 삼각형이 그려질 공간을 정한다.
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 
