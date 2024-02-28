@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <functional>
+#include <windows.h>
 
 #include "Mesh.h"
 
@@ -15,3 +16,4 @@
 #include "SceneMng.h"
 #include "GameEngine.h"
 
+#include "InputManager.h"
