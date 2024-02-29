@@ -42,8 +42,8 @@ public:
 	InputManager();
 	
 public:
-
 	void Update();
+	KeyState GetKeyState(Key InKey) const { return vecKey[static_cast<int>(InKey)].state; }
 
 private:
 	std::vector<keyinfo> vecKey;

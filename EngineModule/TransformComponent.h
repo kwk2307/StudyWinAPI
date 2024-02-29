@@ -9,10 +9,15 @@ public:
 		_Scale(InScale){}
 
 	__forceinline Matrix4 GetModelingMatrix() const;
+
 public:
 	const Vector3& GetPosition() const{ return _Position; }
 	const Rotator& GetRotator() const { return _Rotation; }
 	const Vector3& GetScale() const { return _Scale; }
+
+	void AddPosition (const Vector3& InVec){
+		_Position += InVec;
+	}
 
 private:
 	Vector3 _Position = Vector3::Zero;

@@ -29,6 +29,7 @@ public:
 	virtual void Update(float InDeltaSeconds);
 
 	const TransformComponent& GetTransform() const { return _Transform; }
+	TransformComponent& GetTransform() { return _Transform; }
 	bool IsVisible() const { return _IsVisible; }
 
 	const ObjectType& GetType() const { return _ObjectType; }

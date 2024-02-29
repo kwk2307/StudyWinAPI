@@ -25,7 +25,7 @@ int KeyMap[(int)Key::LAST] = {
 
 InputManager::InputManager()
 {
-	for (int i = 0; i < (int)Key::LAST; ++i) {
+	for (int i = 0; i < static_cast<int>(Key::LAST); ++i) {
 		vecKey.push_back(keyinfo{ false, KeyState::NONE });
 	}
 }
@@ -58,8 +58,20 @@ void InputManager::Update()
 				vecKey[i].prev = false;
 			}
 		}
+
+		//
+		//
+		//
 	}
 	else {
-
+		for (int i = 0; i < static_cast<int>(Key::LAST); ++i) {
+			if (vecKey[i].state == KeyState::HOLD || vecKey[i].state == KeyState::TAP) {
+				vecKey[i].state = KeyState::AWAY;
+			}
+			else if (vecKey[i].state == KeyState::AWAY) {
+				vecKey[i].state = KeyState::NONE;
+			}
+			vecKey[i].prev = false;
+		}
 	}
 }

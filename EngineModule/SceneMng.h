@@ -12,8 +12,8 @@ public:
 	Mesh& CreateMesh(const std::size_t& Inkey);
 	Mesh& GetMesh(const std::size_t& InMeshKey) const { return *_Meshes.at(InMeshKey).get(); }
 
-	const Camera& GetCamera() const { return *_Camera; }
-	const Player& GetPlayer() const { return *_Player; }
+	Camera& GetCamera() { return *_Camera; }
+	Player& GetPlayer() { return *_Player; }
 
 	bool LoadScene(std::string SceneName);
 

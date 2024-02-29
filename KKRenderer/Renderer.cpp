@@ -73,12 +73,16 @@ void Renderer::OnResize(const ScreenPoint& InScreeSize)
 
 void Renderer::PreUpdate()
 {
+
 	// 성능 측정 시작.
 	_FrameTimeStamp = _PerformanceMeasureFunc();
 	if (_FrameCount == 0)
 	{
 		_StartTimeStamp = _FrameTimeStamp;
 	}
+
+	//inputManger 업데이트 
+	GetGameEngine().GetInputMng().Update();
 
 	// 배경 지우기.
 	GetRenderer().Clear(Color::White);
@@ -117,6 +121,10 @@ void Renderer::Update(float InDeltaSeconds)
 	}
 	// 플레이어는 키입력을 받아 움직인다 
 
+	if (g.GetInputMng().GetKeyState(Key::RIGHT) == KeyState::HOLD)
+	{
+		g.GetSceneMng().GetPlayer().GetTransform().AddPosition(Vector3(100.f*InDeltaSeconds, 0.f, 0.f));
+	}
 	// 카메라는 플레이어의 x 위치에 맞게 움직인다. 
 }
 
