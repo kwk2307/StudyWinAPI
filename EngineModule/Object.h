@@ -9,9 +9,11 @@ enum class ObjectType
 struct ObjectInfo {
 	ObjectType type;
 	std::string name;
-	std::size_t MeshKey = MathUtil::InvalidHash;
 	TransformComponent transform;
 	
+	std::string Mesh;
+	std::string Texture;
+
 	// 추가적인 정보는 json 데이터 형식으로 
 	// 저장해둠 
 	std::string data = "";
@@ -35,15 +37,24 @@ public:
 	const ObjectType& GetType() const { return _ObjectType; }
 	const std::string& GetName() const { return _Name; }
 	std::size_t GetMeshKey() const { return _Meshkey; }
+	std::size_t GetTextureKey() const { return _Texturekey; }
+
+
 	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
+	
+	void SetMeshKey(size_t InKey) { _Meshkey = InKey; }
+	void SetTextureKey(size_t InKey) { _Texturekey = InKey; }
 
 private:
 	TransformComponent _Transform;
 	ObjectType _ObjectType;
+	
 	bool _IsVisible = true;
 	std::size_t _Hash = MathUtil::InvalidHash;
 	std::string _Name;
-	std::size_t _Meshkey;
+
+	std::size_t _Meshkey =  MathUtil::InvalidHash;
+	std::size_t _Texturekey = MathUtil::InvalidHash;
 
 private:
 	//void DrawMesh(const Mesh& InMesh, const )

@@ -7,6 +7,7 @@
 #include "InputManager.h"
 
 #include "Mesh.h"
+#include "Texture.h"
 
 #include "TransformComponent.h"
 

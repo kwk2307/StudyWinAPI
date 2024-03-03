@@ -30,6 +30,10 @@ InputManager::InputManager()
 	}
 }
 
+InputManager::~InputManager()
+{
+}
+
 void InputManager::Update()
 {
 	// 윈도우가 포커스 상태가 아닌경우 키 입력이 일어나지 않아야 한다.
@@ -74,4 +78,26 @@ void InputManager::Update()
 			vecKey[i].prev = false;
 		}
 	}
+}
+
+float InputManager::GetXAxis()
+{
+	bool isLeft = (GetKeyState(Key::LEFT) == KeyState::HOLD);
+	bool isRight = (GetKeyState(Key::RIGHT) == KeyState::HOLD);
+
+	if (isLeft ^ isRight) {
+		return isLeft ? -1.f : 1.f;
+	}
+	return 0.0f;
+}
+
+float InputManager::GetYAxis()
+{
+	bool isDown = (GetKeyState(Key::DOWN) == KeyState::HOLD);
+	bool isUp = (GetKeyState(Key::UP) == KeyState::HOLD);
+
+	if (isDown ^ isUp) {
+		return isDown ? -1.f : 1.f;
+	}
+	return 0.0f;
 }

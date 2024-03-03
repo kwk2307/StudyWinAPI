@@ -82,7 +82,7 @@ void Renderer::PreUpdate()
 	}
 
 	//inputManger 업데이트 
-	GetGameEngine().GetInputMng().Update();
+	InputManager::GetInstanc().Update();
 
 	// 배경 지우기.
 	GetRenderer().Clear(Color::White);
@@ -115,17 +115,10 @@ void Renderer::Update(float InDeltaSeconds)
 
 	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
 		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
-
 		Object& object = *(*it);
-		object.Update(InDeltaSeconds);
-	}
-	// 플레이어는 키입력을 받아 움직인다 
 
-	if (g.GetInputMng().GetKeyState(Key::RIGHT) == KeyState::HOLD)
-	{
-		g.GetSceneMng().GetPlayer().GetTransform().AddPosition(Vector3(100.f*InDeltaSeconds, 0.f, 0.f));
-	}
-	// 카메라는 플레이어의 x 위치에 맞게 움직인다. 
+		object.Update(InDeltaSeconds);
+	}	
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
@@ -153,16 +146,17 @@ void Renderer::Render()
 
 		const Mesh& mesh = g.GetSceneMng().GetMesh(object.GetMeshKey());
 		const TransformComponent& transform = object.GetTransform();
+		const Texture& texture = g.GetSceneMng().GetTexture(object.GetTextureKey());
 
 		//뷰행렬 * 모델링 행렬 
 		Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
 		
-		DrawMesh(mesh, finalMatrix);
+		DrawMesh(mesh, finalMatrix, texture);
 	}
 
 }
 
-void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix)
+void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix , const Texture& InTexture)
 {
 	size_t vertexCount = InMesh.GetVertices().size();
 	size_t indexCount = InMesh.GetIndices().size();
@@ -171,8 +165,14 @@ void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix)
 	// 렌더러가 사용할 정점 버퍼와 인덱스 버퍼로 변환
 	std::vector<Vertex> vertices(vertexCount);
 	std::vector<size_t> indices(InMesh.GetIndices());
+
 	for (size_t vi = 0; vi < vertexCount; ++vi) {
+		
 		vertices[vi].Position = Vector4(InMesh.GetVertices()[vi]);
+		if (InMesh.HasUV())
+		{
+			vertices[vi].UV = InMesh.GetUVs()[vi];
+		}
 	}
 
 	for (Vertex& v : vertices) {
@@ -187,12 +187,12 @@ void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix)
 		{
 			size_t si = ti * 3;
 			std::vector<Vertex> sub(tvs.begin() + si, tvs.begin() + si + 3);
-			DrawTriangle(sub);
+			DrawTriangle(sub,InTexture);
 		}
 	}
 }
 
-void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
+void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTexture)
 {
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
@@ -250,7 +250,9 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices)
 			{
 				// 최종 보정보간된 UV 좌표
 				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
-				r.DrawPoint(fragment,Color::Blue);
+				
+				r.DrawPoint(fragment, InTexture.GetSample(targetUV));
+				//r.DrawPoint(fragment, Color::Blue);
 			}
 		}
 	}

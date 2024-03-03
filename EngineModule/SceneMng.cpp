@@ -30,12 +30,23 @@ bool SceneMng::Init() {
 	};
 	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
 
+	std::vector<Vector2> vec_UV = {
+		Vector2(0.f,0.f),
+		Vector2(1.f,0.f),
+		Vector2(1.f,1.f),
+		Vector2(0.f,1.f)
+	};
+	Plane.GetUVs().assign(vec_UV.begin(), vec_UV.end());
+
+	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"),"C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.bmp");
+
 	ObjectInfo Player;
 	Player.name = "player";
 	Player.type = ObjectType::Player;
-	Player.MeshKey = std::hash<std::string>()("M_Plane");
-
 	Player.transform = TransformComponent(Vector3(0, 0, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	Player.Mesh = "M_Plane";
+	Player.Texture = "T_Player";
+
 	startScene.get()->AddObject(Player);
 
 	ObjectInfo Camera;
@@ -56,7 +67,14 @@ Mesh& SceneMng::CreateMesh(const std::size_t& Inkey)
 	return *_Meshes.at(Inkey).get();
 }
 
+Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const std::string& InAddress)
+{
+	auto meshPtr = std::make_unique<Texture>(InAddress);
+	_Textures.insert({ Inkey,std::move(meshPtr) });
 
+	return *_Textures.at(Inkey).get();
+
+}
 bool SceneMng::LoadScene(std::string SceneName)
 {
 	std::size_t targetHash = std::hash<std::string>()(SceneName);

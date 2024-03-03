@@ -38,12 +38,21 @@ struct keyinfo {
 
 class InputManager
 {
-public:
+
+private:
 	InputManager();
-	
+	~InputManager();
+
 public:
+	static InputManager& GetInstanc() {
+		static InputManager _InputManager;
+		return _InputManager;
+	}
+
 	void Update();
-	KeyState GetKeyState(Key InKey) const { return vecKey[static_cast<int>(InKey)].state; }
+	KeyState GetKeyState(Key InKey) { return vecKey[static_cast<int>(InKey)].state; }
+	float GetXAxis();
+	float GetYAxis();
 
 private:
 	std::vector<keyinfo> vecKey;
