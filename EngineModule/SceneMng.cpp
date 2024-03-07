@@ -31,14 +31,14 @@ bool SceneMng::Init() {
 	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
 
 	std::vector<Vector2> vec_UV = {
-		Vector2(0.f,0.f),
-		Vector2(1.f,0.f),
-		Vector2(1.f,1.f),
-		Vector2(0.f,1.f)
+		Vector2(35.f / 491.f,27.f / 346.f),
+		Vector2(70.f / 491.f,27.f / 346.f),
+		Vector2(70.f / 491.f,0.f),
+		Vector2(35.f / 491.f,0.f),
 	};
 	Plane.GetUVs().assign(vec_UV.begin(), vec_UV.end());
 
-	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"),"C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.bmp");
+	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"),"C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.png");
 
 	ObjectInfo Player;
 	Player.name = "player";

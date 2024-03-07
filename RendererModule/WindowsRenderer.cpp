@@ -76,13 +76,18 @@ void WindowsRenderer::EndFrame()
 
 void WindowsRenderer::DrawPoint(const ScreenPoint& InScreenPos, const Color& InColor)
 {
+	Color bufferColor = GetPixel(InScreenPos);
+
 	if (!IsInScreen(InScreenPos))
 	{
 		return;
 	}
 
 	Color* dest = _ScreenBuffer;
-	*(dest + GetScreenBufferIndex(InScreenPos)) = InColor;
+	*(dest + GetScreenBufferIndex(InScreenPos)) = 
+		(InColor * (InColor.A/255)) + 
+		(bufferColor * ((255 - InColor.A) / 255));
+	
 	return;
 }
 
@@ -121,6 +126,16 @@ bool WindowsRenderer::IsInScreen(const ScreenPoint& InPos) const
 int WindowsRenderer::GetScreenBufferIndex(const ScreenPoint& InPos) const
 {
 	return InPos.Y * _ScreenSize.X + InPos.X;
+}
+
+Color WindowsRenderer::GetPixel(const ScreenPoint& InPos)
+{
+	if (!IsInScreen(InPos)) {
+		return Color::Error;
+	}
+	Color* dest = _ScreenBuffer;
+	
+	return *(dest + GetScreenBufferIndex(InPos));
 }
 
 void WindowsRenderer::SwapBuffer()

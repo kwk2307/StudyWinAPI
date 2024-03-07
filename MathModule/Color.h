@@ -13,6 +13,8 @@ public:
 	static const Color Green;
 	static const Color Error;
 
+	__forceinline constexpr Color operator*(float InScalar) const;
+	__forceinline constexpr Color operator+(const Color& InColor) const;
 public:
 	union
 	{
@@ -24,3 +26,14 @@ public:
 		UINT32 ColorValue;
 	};
 };
+
+__forceinline constexpr Color Color::operator*(float InScalar) const {
+
+	return Color(R * InScalar, G * InScalar, B * InScalar, A * InScalar);
+}
+
+
+__forceinline constexpr Color Color::operator+(const Color& InColor) const {
+
+	return Color(R + InColor.R, G + InColor.G, B + InColor.B, A + InColor.A);
+}

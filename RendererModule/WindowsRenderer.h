@@ -19,6 +19,8 @@ private:
 	bool IsInScreen(const ScreenPoint& InPos) const;
 	int  GetScreenBufferIndex(const ScreenPoint& InPos) const;
 
+	Color GetPixel(const ScreenPoint& InPos);
+
 	template <class T>
 	T* CopyBuffer(T* InDst, T* InSrc, int InCount);
 

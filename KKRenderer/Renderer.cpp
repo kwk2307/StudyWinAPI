@@ -252,7 +252,6 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
 				
 				r.DrawPoint(fragment, InTexture.GetSample(targetUV));
-				//r.DrawPoint(fragment, Color::Blue);
 			}
 		}
 	}
