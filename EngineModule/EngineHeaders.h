@@ -17,5 +17,9 @@
 
 #include "Scene.h"
 #include "SceneMng.h"
+
+#include "Collider.h"
+#include "CollisionMng.h"
+
 #include "GameEngine.h"
 

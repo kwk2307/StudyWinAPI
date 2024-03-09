@@ -112,13 +112,17 @@ void Renderer::LoadScene(std::string& SceneName)
 void Renderer::Update(float InDeltaSeconds)
 {
 	GameEngine& g = GetGameEngine();
+	
+	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
+		for (auto it = g.GetSceneMng().GetCurrentScene(Type).begin();
+			it != g.GetSceneMng().GetCurrentScene(Type).end(); ++it) {
+			Object& object = *(*it);
 
-	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
-		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
-		Object& object = *(*it);
+			object.Update(InDeltaSeconds);
+		}
+	}
 
-		object.Update(InDeltaSeconds);
-	}	
+
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
@@ -136,22 +140,24 @@ void Renderer::Render()
 	//ViewMatrix ¸¸µê
 	const Matrix4 viewMatrix = mainCamera.GetViewMatrix();
 
-	for (auto it = g.GetSceneMng().GetCurrentScene().begin();
-		it != g.GetSceneMng().GetCurrentScene().end(); ++it) {
+	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
+		for (auto it = g.GetSceneMng().GetCurrentScene(Type).begin();
+			it != g.GetSceneMng().GetCurrentScene(Type).end(); ++it) {
 
-		const Object& object = *(*it);
-		if (!object.HasMesh() || !object.IsVisible()) {
-			continue;
+			const Object& object = *(*it);
+			if (!object.HasMesh() || !object.IsVisible()) {
+				continue;
+			}
+
+			const Mesh& mesh = g.GetSceneMng().GetMesh(object.GetMeshKey());
+			const TransformComponent& transform = object.GetTransform();
+			const Texture& texture = g.GetSceneMng().GetTexture(object.GetTextureKey());
+
+			//ºäÇà·Ä * ¸ðµ¨¸µ Çà·Ä 
+			Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
+
+			DrawMesh(mesh, finalMatrix, texture);
 		}
-
-		const Mesh& mesh = g.GetSceneMng().GetMesh(object.GetMeshKey());
-		const TransformComponent& transform = object.GetTransform();
-		const Texture& texture = g.GetSceneMng().GetTexture(object.GetTextureKey());
-
-		//ºäÇà·Ä * ¸ðµ¨¸µ Çà·Ä 
-		Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
-		
-		DrawMesh(mesh, finalMatrix, texture);
 	}
 
 }

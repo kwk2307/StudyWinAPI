@@ -18,10 +18,17 @@ public:
 	SceneMng& GetSceneMng() { return _SceneMng; }
 	
 private:
+	const std::vector<std::unique_ptr<Object>>& GetCurrentScene(UINT InType);
+
+public:
+
+private:
 	bool _IsInitialized = false;
 	
-	SceneMng _SceneMng;
+    SceneMng _SceneMng;
+	CollisionMng _CollisionMng;
 
+	
 };
 
 

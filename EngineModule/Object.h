@@ -3,7 +3,9 @@ enum class ObjectType
 {
 	Default,
 	Camera,
-	Player
+	Player,
+	Block,
+	End
 };
 
 struct ObjectInfo {
@@ -15,7 +17,6 @@ struct ObjectInfo {
 	std::string Texture;
 
 	// 추가적인 정보는 json 데이터 형식으로 
-	// 저장해둠 
 	std::string data = "";
 };
 

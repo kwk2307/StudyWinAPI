@@ -7,7 +7,10 @@ public:
 	bool Init();
 
 	const std::string& GetCurrentSceneName() const { return _CurrentSceneName; }
-	const std::vector<std::unique_ptr<Object>>& GetCurrentScene() const { return _Scene; }
+
+	const std::vector<std::unique_ptr<Object>>& GetCurrentScene(UINT InType) const{ 
+		return _Objects[InType];
+	}
 
 	Mesh& CreateMesh(const std::size_t& Inkey);
 	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress);
@@ -22,11 +25,11 @@ public:
 
 private:
 	// 여러개의 씬을 담아 둘 벡터
-	std::vector<std::unique_ptr<Scene>> _vecScene;
+	std::vector<std::unique_ptr<Scene>> _Scenes;
 
 private:
 	// 오브젝트를 로드해서 넣어놓을 벡터 
-	std::vector<std::unique_ptr<Object>> _Scene;
+	std::vector<std::unique_ptr<Object>> _Objects[(UINT)ObjectType::End];
 	// 메쉬를 담어둘 unordered_map 
 	std::unordered_map<std::size_t, std::unique_ptr<Mesh>> _Meshes;
 	// 텍스쳐를 담아둘 unordered_map 
