@@ -2,16 +2,13 @@
 class CollisionMng
 {
 
-private:
-	CollisionMng();
-	~CollisionMng();
+public:
+	CollisionMng() = default;
 
 public:
-	void Update();
+	void Update(float InDeltaSeconds);
 
-	using FuncPtr = const std::vector<std::unique_ptr<Object>>& (SceneMng::*)(UINT InType) const;
-	
-	FuncPtr _FuncPtr;
+	std::function< const std::vector<std::shared_ptr<Object>>& (UINT)> _FuncPtr;
 
 private:
 	// Collider끼리 충돌이 되는지 확인하는 검사 테이블 필요

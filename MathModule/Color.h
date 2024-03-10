@@ -29,7 +29,7 @@ public:
 
 __forceinline constexpr Color Color::operator*(float InScalar) const {
 
-	return Color(R * InScalar, G * InScalar, B * InScalar, A * InScalar);
+	return Color((BYTE)(R * InScalar), (BYTE)(G * InScalar), (BYTE)(B * InScalar), (BYTE)(A * InScalar));
 }
 
 

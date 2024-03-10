@@ -1,18 +1,19 @@
 #include "Precompiled.h"
 
+void GameEngine::Update(float InDeltaSeconds)
+{
+	GetSceneMng().Update(InDeltaSeconds);
+	GetCollisionMng().Update(InDeltaSeconds);
+}
+
 bool GameEngine::Init()
 {
-	_IsInitialized = GetSceneMng().Init();
+	SceneMng& sceneMng = GetSceneMng();
+	_IsInitialized = sceneMng.Init();
 
-	SceneMng scene;
-
-	_SceneMng.Init();
+	GetCollisionMng()._FuncPtr = [&sceneMng](UINT InType){
+		return  sceneMng.GetCurrentScene(InType);
+		};
 
 	return _IsInitialized;
 }
-
-const std::vector<std::unique_ptr<Object>>& GameEngine::GetCurrentScene(UINT InType)
-{
-	return _SceneMng.GetCurrentScene(InType);
-}
-

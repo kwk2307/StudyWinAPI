@@ -73,7 +73,6 @@ void Renderer::OnResize(const ScreenPoint& InScreeSize)
 
 void Renderer::PreUpdate()
 {
-
 	// 성능 측정 시작.
 	_FrameTimeStamp = _PerformanceMeasureFunc();
 	if (_FrameCount == 0)
@@ -112,17 +111,8 @@ void Renderer::LoadScene(std::string& SceneName)
 void Renderer::Update(float InDeltaSeconds)
 {
 	GameEngine& g = GetGameEngine();
-	
-	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
-		for (auto it = g.GetSceneMng().GetCurrentScene(Type).begin();
-			it != g.GetSceneMng().GetCurrentScene(Type).end(); ++it) {
-			Object& object = *(*it);
 
-			object.Update(InDeltaSeconds);
-		}
-	}
-
-
+	g.Update(InDeltaSeconds);
 }
 
 void Renderer::LateUpdate(float InDeltaSeconds)
@@ -132,7 +122,6 @@ void Renderer::LateUpdate(float InDeltaSeconds)
 
 void Renderer::Render()
 {
-
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
 	auto& mainCamera = g.GetSceneMng().GetCamera();

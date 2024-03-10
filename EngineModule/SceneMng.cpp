@@ -8,11 +8,6 @@ struct SceneCompare
 	}
 };
 
-SceneMng::SceneMng()
-{
-
-}
-
 bool SceneMng::Init() {
 
 	std::unique_ptr<Scene> startScene = std::make_unique<Scene>("StartScene");
@@ -22,11 +17,11 @@ bool SceneMng::Init() {
 	std::vector<size_t> vec_Indices = { 0,1,2,0,2,3 };
 	Plane.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
 
-	std::vector<Vector2> vec_Vertices = {
-		Vector2(-100.f,-100.f),
-		Vector2(100.f,-100.f),
-		Vector2(100.f,100.f),
-		Vector2(-100.f,100.f)
+	std::vector<Vector3> vec_Vertices = {
+		Vector3(-100.f,-100.f,0.f),
+		Vector3(100.f,-100.f,0.f),
+		Vector3(100.f,100.f,0.f),
+		Vector3(-100.f,100.f,0.f)
 	};
 	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
 
@@ -95,21 +90,21 @@ bool SceneMng::LoadScene(std::string SceneName)
 		{
 		case ObjectType::Default: 
 		{
-			_Objects[(UINT)ObjectType::Default].push_back(std::move(std::make_unique<Object>(objectinfo)));
+			_Objects[(UINT)ObjectType::Default].push_back(std::make_shared<Object>(objectinfo));
 			break;
 		}
 		case ObjectType::Camera:
 		{
-			std::unique_ptr<Camera> CameraPtr = std::make_unique<Camera>(objectinfo);
-			_Camera = CameraPtr.get();
-			_Objects[(UINT)ObjectType::Camera].push_back(std::move(CameraPtr));
+			std::shared_ptr<Camera> CameraPtr = std::make_shared<Camera>(objectinfo);
+			_MainCamera = CameraPtr.get();
+			_Objects[(UINT)ObjectType::Camera].push_back(CameraPtr);
 			break;
 		}
 		case ObjectType::Player:
 		{
-			std::unique_ptr<Player> PlayerPtr = std::make_unique<Player>(objectinfo);
-			_Player = PlayerPtr.get();
-			_Objects[(UINT)ObjectType::Camera].push_back(std::move(PlayerPtr));
+			std::shared_ptr<Player> PlayerPtr = std::make_shared<Player>(objectinfo);
+			_MainPlayer = PlayerPtr.get();
+			_Objects[(UINT)ObjectType::Camera].push_back(PlayerPtr);
 			break;
 		}
 		default:
@@ -117,5 +112,17 @@ bool SceneMng::LoadScene(std::string SceneName)
 		}
 	}
 	return true;
+}
+
+void SceneMng::Update(float InDeltaSeconds)
+{
+	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
+		for (auto it = GetCurrentScene(Type).begin();
+			it != GetCurrentScene(Type).end(); ++it) {
+			Object& object = *(*it);
+
+			object.Update(InDeltaSeconds);
+		}
+	}
 }
 

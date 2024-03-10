@@ -1,6 +1,6 @@
 #include "Precompiled.h"
 
-void CollisionMng::Update()
+void CollisionMng::Update(float InDeltaSeconds)
 {
 	for (UINT Row = 0; Row < (UINT)ObjectType::End; ++Row) {
 		for (UINT Col = 0; Col < (UINT)ObjectType::End; ++Col) {
