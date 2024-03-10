@@ -15,5 +15,7 @@ bool GameEngine::Init()
 		return  sceneMng.GetCurrentScene(InType);
 		};
 
+	GetCollisionMng().CheckGroup(ObjectType::Player, ObjectType::Block);
+
 	return _IsInitialized;
 }

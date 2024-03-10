@@ -3,6 +3,7 @@ class Texture
 {
 public:
 	Texture(std::string InFileName);
+	Texture(Color InColor);
 	~Texture() {}
 
 public:

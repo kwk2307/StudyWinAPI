@@ -14,6 +14,7 @@ public:
 
 	Mesh& CreateMesh(const std::size_t& Inkey);
 	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress);
+	Texture& CreateTexture(const std::size_t& Inkey, const Color& Incolor);
 
 	Mesh& GetMesh(const std::size_t& InMeshKey) const { return *_Meshes.at(InMeshKey).get(); }
 	Texture& GetTexture(const std::size_t InTextureKey) const { return *_Textures.at(InTextureKey).get(); }
@@ -41,6 +42,6 @@ private:
 
 	std::string _CurrentSceneName = "StartScene";
 	
-	Camera* _MainCamera;
-	Player* _MainPlayer;
+	Camera* _MainCamera = nullptr;
+	Player* _MainPlayer = nullptr;
 };

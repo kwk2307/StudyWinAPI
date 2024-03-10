@@ -7,7 +7,12 @@ public:
 
 public:
 	void Update(float InDeltaSeconds);
+	void CheckGroup(ObjectType InLeft, ObjectType InRight);
 
+private:
+	void CollisionEvent(ObjectType InLeft, ObjectType InRight);
+
+public:
 	std::function< const std::vector<std::shared_ptr<Object>>& (UINT)> _FuncPtr;
 
 private:

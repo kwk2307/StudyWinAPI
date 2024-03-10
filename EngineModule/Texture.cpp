@@ -15,6 +15,21 @@ Texture::Texture(std::string InFileName)
 	LoadFromFile(f);
 }
 
+Texture::Texture(Color InColor)
+{
+	_Width = 1;
+	_Height = 1;
+
+	for (size_t j = 0; j < _Height; j++)
+	{
+		for (size_t i = 0; i < _Width; i++)
+		{
+			size_t ix = (j * _Width + i) * 4;
+			_Buffer.push_back(InColor);
+		}
+	}
+}
+
 void Texture::LoadFromFile(FILE* f)
 {
 	if (f == NULL)

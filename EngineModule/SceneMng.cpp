@@ -12,33 +12,33 @@ bool SceneMng::Init() {
 
 	std::unique_ptr<Scene> startScene = std::make_unique<Scene>("StartScene");
 
-	Mesh& Plane = CreateMesh(std::hash<std::string>()("M_Plane"));
+	Mesh& PlayerMesh = CreateMesh(std::hash<std::string>()("M_Plane"));
 
 	std::vector<size_t> vec_Indices = { 0,1,2,0,2,3 };
-	Plane.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
+	PlayerMesh.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
 
 	std::vector<Vector3> vec_Vertices = {
-		Vector3(-100.f,-100.f,0.f),
-		Vector3(100.f,-100.f,0.f),
-		Vector3(100.f,100.f,0.f),
-		Vector3(-100.f,100.f,0.f)
+		Vector3(-35.f,-27.f,0.f),
+		Vector3(35.f,-27.f,0.f),
+		Vector3(35.f,27.f,0.f),
+		Vector3(-35.f,27.f,0.f)
 	};
-	Plane.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
-
+	PlayerMesh.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
+	// 가로 35 세로 27
 	std::vector<Vector2> vec_UV = {
-		Vector2(35.f / 491.f,27.f / 346.f),
+		Vector2(36.f / 491.f,27.f / 346.f),
 		Vector2(70.f / 491.f,27.f / 346.f),
-		Vector2(70.f / 491.f,0.f),
-		Vector2(35.f / 491.f,0.f),
+		Vector2(70.f / 491.f,1.f / 346.f),
+		Vector2(36.f / 491.f,1.f / 346.f),
 	};
-	Plane.GetUVs().assign(vec_UV.begin(), vec_UV.end());
+	PlayerMesh.GetUVs().assign(vec_UV.begin(), vec_UV.end());
 
 	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"),"C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.png");
 
 	ObjectInfo Player;
 	Player.name = "player";
 	Player.type = ObjectType::Player;
-	Player.transform = TransformComponent(Vector3(0, 0, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	Player.transform = TransformComponent(Vector3(0.f, 0.f, 0.f), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
 	Player.Mesh = "M_Plane";
 	Player.Texture = "T_Player";
 
@@ -48,6 +48,39 @@ bool SceneMng::Init() {
 	Camera.name = "camera";
 	Camera.type = ObjectType::Camera;
 	startScene.get()->AddObject(Camera);
+
+	ObjectInfo Block;
+	Block.name = "block";
+	Block.type = ObjectType::Block;
+	Block.transform = TransformComponent(Vector3(0, -200, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+
+	Mesh& BlockMesh = CreateMesh(std::hash<std::string>()("M_Block"));
+
+	std::vector<size_t> vec_Indices2 = { 0,1,2,0,2,3 };
+	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
+
+	std::vector<Vector3> vec_Vertices2 = {
+		Vector3(-500.f,-100.f,0.f),
+		Vector3(500.f,-100.f,0.f),
+		Vector3(500.f,100.f,0.f),
+		Vector3(-500.f,100.f,0.f)
+	};
+	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
+
+	std::vector<Vector2> vec_UV2 = {
+		Vector2(0.f,1.f),
+		Vector2(1.f,1.f),
+		Vector2(1.f,0.f),
+		Vector2(0.f,0.f),
+	};
+	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
+
+	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
+
+	Block.Mesh = "M_Block";
+	Block.Texture = "T_Block";
+
+	startScene.get()->AddObject(Block);
 
 	_Scenes.push_back(std::move(startScene));
 
@@ -70,6 +103,16 @@ Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const std::string& In
 	return *_Textures.at(Inkey).get();
 
 }
+
+Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const Color& Incolor)
+{
+	auto meshPtr = std::make_unique<Texture>(Incolor);
+	_Textures.insert({ Inkey,std::move(meshPtr) });
+
+	return *_Textures.at(Inkey).get();
+
+}
+
 bool SceneMng::LoadScene(std::string SceneName)
 {
 	std::size_t targetHash = std::hash<std::string>()(SceneName);
@@ -91,6 +134,11 @@ bool SceneMng::LoadScene(std::string SceneName)
 		case ObjectType::Default: 
 		{
 			_Objects[(UINT)ObjectType::Default].push_back(std::make_shared<Object>(objectinfo));
+			break;
+		}
+		case ObjectType::Block:
+		{
+			_Objects[(UINT)ObjectType::Block].push_back(std::make_shared<Object>(objectinfo));
 			break;
 		}
 		case ObjectType::Camera:
