@@ -1,14 +1,16 @@
 #pragma once
-class SceneMng {
+class SceneMng :
+	public SceneMngInterface
+{
 
 public:
 	SceneMng() = default;
 public:
-	bool Init();
+	bool Init(CollisionMngInterface* InCollisionMng);
 
 	const std::string& GetCurrentSceneName() const { return _CurrentSceneName; }
 
-	const std::vector<std::shared_ptr<Object>>& GetCurrentScene(UINT InType) const{ 
+	virtual const std::vector<std::shared_ptr<Object>>& GetCurrentScene(UINT InType) const override{ 
 		return _Objects[InType];
 	}
 
@@ -16,15 +18,15 @@ public:
 	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress);
 	Texture& CreateTexture(const std::size_t& Inkey, const Color& Incolor);
 
-	Mesh& GetMesh(const std::size_t& InMeshKey) const { return *_Meshes.at(InMeshKey).get(); }
-	Texture& GetTexture(const std::size_t InTextureKey) const { return *_Textures.at(InTextureKey).get(); }
+	virtual Mesh& GetMesh(const std::size_t& InMeshKey) const override { return *_Meshes.at(InMeshKey).get(); }
+	virtual Texture& GetTexture(const std::size_t InTextureKey) const override { return *_Textures.at(InTextureKey).get(); }
 
-	Camera& GetCamera() { return *_MainCamera; }
-	Player& GetPlayer() { return *_MainPlayer; }
+	virtual Camera& GetCamera() override { return *_MainCamera; }
+	virtual Player& GetPlayer() override { return *_MainPlayer; }
 
-	bool LoadScene(std::string SceneName);
+	virtual bool LoadScene(std::string SceneName) override;
 
-	void Update(float InDeltaSeconds);
+	virtual void Update(float InDeltaSeconds) override;
 
 private:
 	// 여러개의 씬을 담아 둘 벡터
@@ -33,7 +35,7 @@ private:
 private:
 	// 오브젝트를 로드해서 넣어놓을 벡터 
 	std::vector<std::shared_ptr<Object>> _Objects[(UINT)ObjectType::End];
-
+	 
 	// 메쉬를 담어둘 unordered_map 
 	std::unordered_map<std::size_t, std::unique_ptr<Mesh>> _Meshes;
 	
@@ -42,6 +44,8 @@ private:
 
 	std::string _CurrentSceneName = "StartScene";
 	
+	CollisionMngInterface* _CollisionMng;
+
 	Camera* _MainCamera = nullptr;
 	Player* _MainPlayer = nullptr;
 };

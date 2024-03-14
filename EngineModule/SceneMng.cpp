@@ -8,7 +8,9 @@ struct SceneCompare
 	}
 };
 
-bool SceneMng::Init() {
+bool SceneMng::Init(CollisionMngInterface* InCollisionMng)
+{
+	_CollisionMng = InCollisionMng;
 
 	std::unique_ptr<Scene> startScene = std::make_unique<Scene>("StartScene");
 
@@ -23,7 +25,7 @@ bool SceneMng::Init() {
 		Vector3(35.f,27.f,0.f),
 		Vector3(-35.f,27.f,0.f)
 	};
-	PlayerMesh.GetVertices().assign(vec_Vertices.begin(),vec_Vertices.end());
+	PlayerMesh.GetVertices().assign(vec_Vertices.begin(), vec_Vertices.end());
 	// 가로 35 세로 27
 	std::vector<Vector2> vec_UV = {
 		Vector2(36.f / 491.f,27.f / 346.f),
@@ -33,7 +35,7 @@ bool SceneMng::Init() {
 	};
 	PlayerMesh.GetUVs().assign(vec_UV.begin(), vec_UV.end());
 
-	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"),"C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.png");
+	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.png");
 
 	ObjectInfo Player;
 	Player.name = "player";

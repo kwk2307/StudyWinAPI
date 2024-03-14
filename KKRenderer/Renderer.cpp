@@ -4,6 +4,7 @@
 Renderer::Renderer(RendererInterface* RI) :
 	_RIPtr(RI)
 {
+	_GameEngine = new GameEngine(new SceneMng(), new CollisionMng());
 }
 
 void Renderer::Tick()
@@ -125,7 +126,7 @@ void Renderer::Render()
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
 	auto& mainCamera = g.GetSceneMng().GetCamera();
-
+	
 	//ViewMatrix ¸¸µê
 	const Matrix4 viewMatrix = mainCamera.GetViewMatrix();
 
@@ -150,7 +151,7 @@ void Renderer::Render()
 	}
 
 }
-
+//
 void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix , const Texture& InTexture)
 {
 	size_t vertexCount = InMesh.GetVertices().size();
@@ -191,7 +192,6 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 {
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
-	auto& mainCamera = g.GetSceneMng().GetCamera();
 
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));

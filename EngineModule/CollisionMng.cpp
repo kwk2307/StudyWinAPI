@@ -1,5 +1,11 @@
 #include "Precompiled.h"
 
+
+void CollisionMng::Init(const SceneMngInterface* InSceneMng)
+{
+	_SceneMng = InSceneMng;
+}
+
 void CollisionMng::Update(float InDeltaSeconds)
 {
 	for (UINT Row = 0; Row < (UINT)ObjectType::End; ++Row) {
@@ -13,10 +19,7 @@ void CollisionMng::Update(float InDeltaSeconds)
 
 void CollisionMng::CollisionEvent(ObjectType InLeft, ObjectType InRight)
 {
-	const std::vector<std::shared_ptr<Object>>& vecLeft = _FuncPtr((UINT)InLeft);
-	const std::vector<std::shared_ptr<Object>>& vecRIght = _FuncPtr((UINT)InRight);
-
-
+	_SceneMng->GetCurrentScene((UINT)InLeft);
 }
 
 void CollisionMng::CheckGroup(ObjectType InLeft, ObjectType InRight)

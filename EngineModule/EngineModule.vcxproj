@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionMng.h" />
+    <ClInclude Include="CollisionMngInterface.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="EngineHeaders.h" />
     <ClInclude Include="InputManager.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="SceneMng.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="SceneMngInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />

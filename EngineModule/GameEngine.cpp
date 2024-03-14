@@ -6,16 +6,18 @@ void GameEngine::Update(float InDeltaSeconds)
 	GetCollisionMng().Update(InDeltaSeconds);
 }
 
+GameEngine::GameEngine(SceneMng* InSceneMng, CollisionMng* InCollisionMng):
+	_SceneMng(InSceneMng),_CollisionMng(InCollisionMng)
+{
+
+}
+
 bool GameEngine::Init()
 {
-	SceneMng& sceneMng = GetSceneMng();
-	_IsInitialized = sceneMng.Init();
-
-	GetCollisionMng()._FuncPtr = [&sceneMng](UINT InType){
-		return  sceneMng.GetCurrentScene(InType);
-		};
+	GetSceneMng().Init(_CollisionMng);
+	GetCollisionMng().Init(_SceneMng);
 
 	GetCollisionMng().CheckGroup(ObjectType::Player, ObjectType::Block);
 
-	return _IsInitialized;
+	return true;
 }
