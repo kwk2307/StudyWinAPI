@@ -40,6 +40,8 @@ public:
 	std::size_t GetMeshKey() const { return _Meshkey; }
 	std::size_t GetTextureKey() const { return _Texturekey; }
 
+	Collider* GetCollider() { return _Collider; }
+
 	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
 	
 	void SetMeshKey(size_t InKey) { _Meshkey = InKey; }
@@ -49,6 +51,8 @@ private:
 	TransformComponent _Transform;
 	ObjectType _ObjectType;
 	
+	Collider* _Collider = nullptr;
+
 	bool _IsVisible = true;
 	std::size_t _Hash = MathUtil::InvalidHash;
 	std::string _Name;

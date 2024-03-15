@@ -8,7 +8,7 @@ struct SceneCompare
 	}
 };
 
-bool SceneMng::Init(CollisionMngInterface* InCollisionMng)
+bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 {
 	_CollisionMng = InCollisionMng;
 
@@ -95,6 +95,18 @@ Mesh& SceneMng::CreateMesh(const std::size_t& Inkey)
 	_Meshes.insert({ Inkey,std::move(meshPtr) });
 
 	return *_Meshes.at(Inkey).get();
+}
+
+Mesh& SceneMng::CreateMesh(std::string InName, std::vector<Vector3> InVertices, std::vector<size_t> Indices, std::vector<Vector2> InUVs)
+{
+	auto meshPtr = std::make_unique<Mesh>(InName,InVertices, Indices, InUVs);
+
+	std::size_t key = std::hash<std::string>()(InName);
+
+	_Meshes.insert({ key,std::move(meshPtr) });
+
+	return *_Meshes.at(key).get();
+
 }
 
 Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const std::string& InAddress)

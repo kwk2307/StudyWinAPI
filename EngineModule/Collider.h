@@ -1,15 +1,19 @@
 #pragma once
 
+class Object;
+
 class Collider
 {
 public:
-	Collider();
+	Collider(const Object& InOwner);
 	~Collider();
 public:
+	const Object& GetOwner() const { return _Owner; }
 
 private:
-	std::vector<Vector3> _Vertices;
-	std::vector<size_t> _Indices;
+	const Object& _Owner;
 
+	Vector3 _Preset;
+	Vector3 _Size;
 };
 

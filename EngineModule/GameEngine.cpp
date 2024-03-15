@@ -14,10 +14,11 @@ GameEngine::GameEngine(SceneMng* InSceneMng, CollisionMng* InCollisionMng):
 
 bool GameEngine::Init()
 {
-	GetSceneMng().Init(_CollisionMng);
+	_IsInitialized =  GetSceneMng().Init(_CollisionMng);
+
 	GetCollisionMng().Init(_SceneMng);
 
 	GetCollisionMng().CheckGroup(ObjectType::Player, ObjectType::Block);
 
-	return true;
+	return _IsInitialized;
 }
