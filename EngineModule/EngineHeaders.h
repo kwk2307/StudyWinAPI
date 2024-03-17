@@ -19,8 +19,8 @@
 #include "Camera.h"
 #include "Player.h"
 
-#include "CollisionMngInterface.h"
 #include "SceneMngInterface.h"
+#include "CollisionMngInterface.h"
 
 #include "Scene.h"
 

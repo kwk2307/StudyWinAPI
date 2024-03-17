@@ -12,6 +12,10 @@ Object::Object(const ObjectInfo& Info):
 	if (Info.Texture != "") {
 		_Texturekey = std::hash<std::string>()(Info.Texture);
 	}
+
+	if (Info.IsCollision) {
+		_Collider = std::make_unique<Collider>(*this);
+	}
 }
 
 void Object::Update(float InDeltaSeconds)

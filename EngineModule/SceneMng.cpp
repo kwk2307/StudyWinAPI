@@ -14,7 +14,7 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 
 	std::unique_ptr<Scene> startScene = std::make_unique<Scene>("StartScene");
 
-	Mesh& PlayerMesh = CreateMesh(std::hash<std::string>()("M_Plane"));
+	Mesh& PlayerMesh = CreateMesh(std::hash<std::string>()("M_PlayerPlane"));
 
 	std::vector<size_t> vec_Indices = { 0,1,2,0,2,3 };
 	PlayerMesh.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
@@ -41,8 +41,11 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	Player.name = "player";
 	Player.type = ObjectType::Player;
 	Player.transform = TransformComponent(Vector3(0.f, 0.f, 0.f), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
-	Player.Mesh = "M_Plane";
+	Player.Mesh = "M_PlayerPlane";
 	Player.Texture = "T_Player";
+
+	Player.IsCollision = true;
+	Player.ColliderMesh = "M_PlayerPlane";
 
 	startScene.get()->AddObject(Player);
 
@@ -54,7 +57,7 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	ObjectInfo Block;
 	Block.name = "block";
 	Block.type = ObjectType::Block;
-	Block.transform = TransformComponent(Vector3(0, -200, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	Block.transform = TransformComponent(Vector3(0, -200, 0), Rotator(0.f, 0.f, 0.f), Vector3(10, 10, 1));
 
 	Mesh& BlockMesh = CreateMesh(std::hash<std::string>()("M_Block"));
 
@@ -62,10 +65,10 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
 
 	std::vector<Vector3> vec_Vertices2 = {
-		Vector3(-500.f,-100.f,0.f),
-		Vector3(500.f,-100.f,0.f),
-		Vector3(500.f,100.f,0.f),
-		Vector3(-500.f,100.f,0.f)
+		Vector3(0.f,0.f,0.f),
+		Vector3(1.f,0.f,0.f),
+		Vector3(1.f,1.f,0.f),
+		Vector3(0.f,1.f,0.f)
 	};
 	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
 
@@ -87,6 +90,11 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	_Scenes.push_back(std::move(startScene));
 
 	return LoadScene("StartScene");
+}
+
+void SceneMng::SetScreenSize(const ScreenPoint& InScreen)
+{
+	return void();
 }
 
 Mesh& SceneMng::CreateMesh(const std::size_t& Inkey)
@@ -166,7 +174,7 @@ bool SceneMng::LoadScene(std::string SceneName)
 		{
 			std::shared_ptr<Player> PlayerPtr = std::make_shared<Player>(objectinfo);
 			_MainPlayer = PlayerPtr.get();
-			_Objects[(UINT)ObjectType::Camera].push_back(PlayerPtr);
+			_Objects[(UINT)ObjectType::Player].push_back(PlayerPtr);
 			break;
 		}
 		default:

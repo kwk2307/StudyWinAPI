@@ -1,6 +1,5 @@
 #pragma once
 
-
 union COLLIDER_ID {
 	struct {
 		UINT LeftID;
@@ -17,10 +16,10 @@ public:
 	CollisionMng() = default;
 
 public:
-	void Init(const SceneMngInterface* InSceneMng);
+	virtual void Init(const SceneMngInterface* InSceneMng) override;
 
-	void Update(float InDeltaSeconds);
-	void CheckGroup(ObjectType InLeft, ObjectType InRight);
+	virtual void Update(float InDeltaSeconds) override;
+	virtual void CheckGroup(ObjectType InLeft, ObjectType InRight) override;
 
 private:
 	void CollisionEvent(ObjectType InLeft, ObjectType InRight);

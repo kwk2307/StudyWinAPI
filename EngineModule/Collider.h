@@ -12,8 +12,7 @@ public:
 
 private:
 	const Object& _Owner;
-
-	Vector3 _Preset;
-	Vector3 _Size;
+	
+	std::string _MeshKey;
 };
 

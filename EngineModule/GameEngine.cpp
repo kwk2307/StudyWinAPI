@@ -6,8 +6,8 @@ void GameEngine::Update(float InDeltaSeconds)
 	GetCollisionMng().Update(InDeltaSeconds);
 }
 
-GameEngine::GameEngine(SceneMng* InSceneMng, CollisionMng* InCollisionMng):
-	_SceneMng(InSceneMng),_CollisionMng(InCollisionMng)
+GameEngine::GameEngine(SceneMngInterface* InSceneMng, CollisionMngInterface* InCollisionMng) :
+	_SceneMng(InSceneMng), _CollisionMng(InCollisionMng)
 {
 
 }

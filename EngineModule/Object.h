@@ -12,14 +12,13 @@ struct ObjectInfo {
 	ObjectType type;
 	std::string name;
 	TransformComponent transform;
-	
+
 	std::string Mesh;
 	std::string Texture;
 
-	// 추가적인 정보는 json 데이터 형식으로 
-	std::string data = "";
+	bool IsCollision;
+	std::string ColliderMesh;
 };
-
 
 //왼손 좌표계를 기준으로 저장함
 class Object
@@ -40,7 +39,10 @@ public:
 	std::size_t GetMeshKey() const { return _Meshkey; }
 	std::size_t GetTextureKey() const { return _Texturekey; }
 
-	Collider* GetCollider() { return _Collider; }
+	// 소유권을 넘겨주는 것이 아닌 잠시 빌려주는 것(?)
+	// Collider 객체의 cosnt 멤버 함수만을 호출할 수 있음
+	// const Object 객체 일때만 이 함수를 호출 가능 
+	const Collider* GetCollider() const { return _Collider.get(); }
 
 	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
 	
@@ -51,7 +53,7 @@ private:
 	TransformComponent _Transform;
 	ObjectType _ObjectType;
 	
-	Collider* _Collider = nullptr;
+	std::unique_ptr<Collider> _Collider = nullptr;
 
 	bool _IsVisible = true;
 	std::size_t _Hash = MathUtil::InvalidHash;

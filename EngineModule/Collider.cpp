@@ -5,3 +5,8 @@ Collider::Collider(const Object& InOwner):
 {
 }
 
+Collider::~Collider()
+{
+
+}
+
