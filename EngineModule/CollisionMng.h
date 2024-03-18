@@ -23,7 +23,7 @@ public:
 
 private:
 	void CollisionEvent(ObjectType InLeft, ObjectType InRight);
-	bool isCollision(Collider* InLeftCol, Collider* InRightCol);
+	bool isCollision(const Collider& InLeftCol, const Collider& InRightCol);
 
 private:
 	const SceneMngInterface* _SceneMng;

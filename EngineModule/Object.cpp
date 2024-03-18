@@ -20,6 +20,17 @@ Object::Object(const ObjectInfo& Info):
 
 void Object::Update(float InDeltaSeconds)
 {
-	
+}
+
+void Object::OnCollision(const Collider& InOther)
+{
+}
+
+void Object::BeginCollision(const Collider& InOther)
+{
+}
+
+void Object::EndCollision(const Collider& InOther)
+{
 }
 

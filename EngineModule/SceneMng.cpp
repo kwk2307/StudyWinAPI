@@ -37,28 +37,6 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 
 	Texture& PlayerTexture = CreateTexture(std::hash<std::string>()("T_Player"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Player.png");
 
-	ObjectInfo Player;
-	Player.name = "player";
-	Player.type = ObjectType::Player;
-	Player.transform = TransformComponent(Vector3(0.f, 0.f, 0.f), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
-	Player.Mesh = "M_PlayerPlane";
-	Player.Texture = "T_Player";
-
-	Player.IsCollision = true;
-	Player.ColliderMesh = "M_PlayerPlane";
-
-	startScene.get()->AddObject(Player);
-
-	ObjectInfo Camera;
-	Camera.name = "camera";
-	Camera.type = ObjectType::Camera;
-	startScene.get()->AddObject(Camera);
-
-	ObjectInfo Block;
-	Block.name = "block";
-	Block.type = ObjectType::Block;
-	Block.transform = TransformComponent(Vector3(0, -200, 0), Rotator(0.f, 0.f, 0.f), Vector3(10, 10, 1));
-
 	Mesh& BlockMesh = CreateMesh(std::hash<std::string>()("M_Block"));
 
 	std::vector<size_t> vec_Indices2 = { 0,1,2,0,2,3 };
@@ -82,9 +60,27 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
 
+	ObjectInfo Player;
+	Player.name = "player";
+	Player.type = ObjectType::Player;
+	Player.transform = TransformComponent(Vector3(0.f, 0.f, 0.f), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	Player.Mesh = "M_PlayerPlane";
+	Player.Texture = "T_Player";
+	Player.IsCollision = true;
+	startScene.get()->AddObject(Player);
+
+	ObjectInfo Camera;
+	Camera.name = "camera";
+	Camera.type = ObjectType::Camera;
+	startScene.get()->AddObject(Camera);
+
+	ObjectInfo Block;
+	Block.name = "block";
+	Block.type = ObjectType::Block;
+	Block.transform = TransformComponent(Vector3(-100, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(200, 10, 1));
 	Block.Mesh = "M_Block";
 	Block.Texture = "T_Block";
-
+	Block.IsCollision = true;
 	startScene.get()->AddObject(Block);
 
 	_Scenes.push_back(std::move(startScene));
@@ -140,15 +136,21 @@ bool SceneMng::LoadScene(std::string SceneName)
 	std::size_t targetHash = std::hash<std::string>()(SceneName);
 	const auto it = std::lower_bound(_Scenes.begin(), _Scenes.end(), targetHash, SceneCompare());
 
-	Scene Scene = (it != _Scenes.end()) ? *(*it).get() : Scene::Invalid;
+	// 소유권은 넘기지 않고 const 형태의 참조로 가져온다. 
+	const Scene& Scene = (it != _Scenes.end()) ? *(*it).get() : Scene::Invalid;
+
 	if (Scene == Scene::Invalid) {
 		return false;
 	}
 
 	_CurrentSceneName = SceneName;
-	// 오브젝터 벡터 초기화 
-	// _Objects.clear();
 	
+	// 오브젝트 목록 초기화  
+	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
+		_Objects[Type].clear();
+	}
+	
+
 	for (auto it = Scene.GetInfo().begin(); it != Scene.GetInfo().end(); ++it) {
 		const ObjectInfo& objectinfo = (*it);
 		switch (objectinfo.type)
@@ -192,6 +194,44 @@ void SceneMng::Update(float InDeltaSeconds)
 			Object& object = *(*it);
 
 			object.Update(InDeltaSeconds);
+
+			if (object.GetCollider() != nullptr) {
+				Matrix4 model = object.GetTransform().GetModelingMatrix();
+				const Mesh& mesh = GetMesh(object.GetMeshKey());
+
+				std::pair<Vector3, Vector3> BoundingBox;
+
+				BoundingBox.first = Vector3(INT_MIN, INT_MIN, INT_MIN);
+				BoundingBox.second = Vector3(INT_MAX, INT_MAX, INT_MAX);
+					
+				for (const Vector3& vertex : mesh.GetVertices()) {
+
+					Vector3 vec = model * vertex;
+					BoundingBox.first.X = MathUtil::Max(BoundingBox.first.X, vec.X);
+					BoundingBox.first.Y = MathUtil::Max(BoundingBox.first.Y, vec.Y);
+					BoundingBox.first.Z = MathUtil::Max(BoundingBox.first.Z, vec.Z);
+
+					BoundingBox.second.X = MathUtil::Min(BoundingBox.second.X, vec.X);
+					BoundingBox.second.Y = MathUtil::Min(BoundingBox.second.Y, vec.Y);
+					BoundingBox.second.Z = MathUtil::Min(BoundingBox.second.Z, vec.Z);
+				}
+
+				object.GetCollider()->SetPos(
+					Vector3(
+						(BoundingBox.first.X + BoundingBox.second.X) / 2,
+						(BoundingBox.first.Y + BoundingBox.second.Y) / 2,
+						(BoundingBox.first.Z + BoundingBox.second.Z) / 2
+					)
+				);
+
+				object.GetCollider()->SetScale(
+					Vector3(
+						BoundingBox.first.X - BoundingBox.second.X,
+						BoundingBox.first.Y - BoundingBox.second.Y,
+						BoundingBox.first.Z - BoundingBox.second.Z
+					)
+				);
+			}
 		}
 	}
 }

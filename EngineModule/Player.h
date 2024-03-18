@@ -10,9 +10,14 @@ public:
 public:
     void Update(float InDeltaSeconds) override;
 
+    virtual void OnCollision(const Collider& InOther) override;
+
+    virtual void BeginCollision(const Collider& InOther) override;
+
+    virtual void EndCollision(const Collider& InOther) override;
+
 private:
     Vector3 _Speed = Vector3::Zero;
-    
-    bool isJump = false;
+    bool isLand = false;
 };
 

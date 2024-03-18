@@ -5,7 +5,7 @@ struct Rotator
 public:
 	constexpr Rotator() = default;
 	constexpr Rotator(float InYaw, float InRoll, float InPitch) : Yaw(InYaw), Roll(InRoll), Pitch(InPitch) { }
-	
+
 	void Clamp() {
 		Yaw = GetAxisClampedValue(Yaw);
 		Roll = GetAxisClampedValue(Roll);

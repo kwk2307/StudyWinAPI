@@ -18,6 +18,7 @@ public:
 
 	Mesh& CreateMesh(const std::size_t& Inkey);
 	Mesh& CreateMesh(std::string InName, std::vector<Vector3> InVertices, std::vector<size_t> Indices, std::vector<Vector2> InUVs);
+
 	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress);
 	Texture& CreateTexture(const std::size_t& Inkey, const Color& Incolor);
 
@@ -34,6 +35,7 @@ public:
 private:
 	// 여러개의 씬을 담아 둘 벡터
 	std::vector<std::unique_ptr<Scene>> _Scenes;
+
 
 private:
 	// 오브젝트를 로드해서 넣어놓을 벡터 

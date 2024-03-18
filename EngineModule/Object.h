@@ -9,15 +9,14 @@ enum class ObjectType
 };
 
 struct ObjectInfo {
-	ObjectType type;
+	ObjectType type = ObjectType::Default;
 	std::string name;
 	TransformComponent transform;
 
 	std::string Mesh;
 	std::string Texture;
 
-	bool IsCollision;
-	std::string ColliderMesh;
+	bool IsCollision = false;
 };
 
 //왼손 좌표계를 기준으로 저장함
@@ -43,11 +42,22 @@ public:
 	// Collider 객체의 cosnt 멤버 함수만을 호출할 수 있음
 	// const Object 객체 일때만 이 함수를 호출 가능 
 	const Collider* GetCollider() const { return _Collider.get(); }
+	Collider* GetCollider() { return _Collider.get(); }
 
 	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
 	
 	void SetMeshKey(size_t InKey) { _Meshkey = InKey; }
 	void SetTextureKey(size_t InKey) { _Texturekey = InKey; }
+
+	bool GetState() const { return _IsDead; }
+
+public:
+
+	virtual void OnCollision(const Collider& InOther);
+
+	virtual void BeginCollision(const Collider& InOther);
+
+	virtual void EndCollision(const Collider& InOther);
 
 private:
 	TransformComponent _Transform;
@@ -61,6 +71,8 @@ private:
 
 	std::size_t _Meshkey =  MathUtil::InvalidHash;
 	std::size_t _Texturekey = MathUtil::InvalidHash;
+
+	bool _IsDead = false;
 
 private:
 	//void DrawMesh(const Mesh& InMesh, const )

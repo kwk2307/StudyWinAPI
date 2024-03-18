@@ -24,24 +24,31 @@ void Player::Update(float InDeltaSeconds)
 	}
 	
  	if (InputManager::GetInstanc().GetKeyState(Key::SPACE) == KeyState::TAP) {
-		if (!isJump) {
-			isJump = true;
+		if (isLand) {
 			_Speed.Y = 300.f;
 		}
 	}
-
-	// 우선 바닦이 없으니까 적당히 
-	if (GetTransform().GetPosition().Y > -100.f) {
+	if (!isLand) {
 		_Speed += Vector3(0.f, -10.f, 0.f);
 	}
-	else {
-		if (_Speed.Y < 0.f) {
-			_Speed.Y = 0.f;		
-		}
-		if (isJump) {
-			isJump = false;
-		}
-	}
-
+	
 	GetTransform().AddPosition(_Speed * InDeltaSeconds);
 }
+
+void Player::OnCollision(const Collider& InOther)
+{
+}
+
+void Player::BeginCollision(const Collider& InOther)
+{
+	if (InOther.GetOwner().GetType() == ObjectType::Block) {
+		isLand = true;
+		_Speed.Y = 0;
+	}
+}
+
+void Player::EndCollision(const Collider& InOther)
+{
+	isLand = false;
+}
+

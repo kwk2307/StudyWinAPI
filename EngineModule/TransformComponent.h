@@ -12,6 +12,8 @@ public:
 
 public:
 	const Vector3& GetPosition() const{ return _Position; }
+	void SetPosition(const Vector3& InPos) { _Position = InPos; }
+
 	const Rotator& GetRotator() const { return _Rotation; }
 	const Vector3& GetScale() const { return _Scale; }
 
