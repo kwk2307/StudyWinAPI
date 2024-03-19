@@ -146,6 +146,11 @@ void Renderer::Render()
 			//뷰행렬 * 모델링 행렬 
 			Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
 
+			// 절두체 컬링 구현 해야함	
+			//
+			//
+			//
+
 			DrawMesh(mesh, finalMatrix, texture);
 		}
 	}
@@ -178,6 +183,8 @@ void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix , const Text
 		int bi0 = ti * 3, bi1 = ti * 3 + 1, bi2 = ti * 3 + 2;
 		std::vector<Vertex> tvs = { vertices[indices[bi0]] , vertices[indices[bi1]] , vertices[indices[bi2]] };
 
+		// 동차좌표계에서 클리핑 구현 
+
 		size_t triangles = tvs.size() / 3;
 		for (size_t ti = 0; ti < triangles; ++ti)
 		{
@@ -192,6 +199,36 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 {
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
+
+	//// 클립 좌표를 NDC 좌표로 변경
+	//for (auto& v : InVertices)
+	//{
+	//	// 무한 원점인 경우, 약간 보정해준다.
+	//	if (v.Position.W == 0.f) v.Position.W = SMALL_NUMBER;
+
+	//	float invW = 1.f / v.Position.W;
+	//	v.Position.X *= invW;
+	//	v.Position.Y *= invW;
+	//	v.Position.Z *= invW;
+	//}
+	//
+	//// 백페이스 컬링
+	//Vector3 edge1 = (InVertices[1].Position - InVertices[0].Position).ToVector3();
+	//Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
+	//Vector3 faceNormal = -edge1.Cross(edge2);
+	//Vector3 viewDirection = Vector3::UnitZ;
+	//if (faceNormal.Dot(viewDirection) >= 0.f)
+	//{
+	//	return;
+	//}
+
+	//// NDC 좌표를 화면 좌표로 늘리기
+	//for (auto& v : InVertices)
+	//{
+	//	v.Position.X *= _ScreenSize.X * 0.5f;
+	//	v.Position.Y *= _ScreenSize.Y * 0.5f;
+	//}
+
 
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
@@ -216,6 +253,13 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
 	ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
 	
+	// 두 점이 화면 밖을 벗어나는 경우 클리핑 처리 
+
+	lowerLeftPoint.X = MathUtil::Max(0, lowerLeftPoint.X);
+	lowerLeftPoint.Y = MathUtil::Min(_ScreenSize.Y, lowerLeftPoint.Y);
+	upperRightPoint.X = MathUtil::Min(_ScreenSize.X, upperRightPoint.X);
+	upperRightPoint.Y = MathUtil::Max(0, upperRightPoint.Y);
+
 
 	// 각 정점마다 보존된 뷰 공간의 z값
 	float invZ0 = 1.f / InVertices[0].Position.W;
@@ -243,9 +287,10 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 			//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.
 			if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
 			{
+				//깊이 테스팅 구현 필요
+
 				// 최종 보정보간된 UV 좌표
-				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
-				
+				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;	
 				r.DrawPoint(fragment, InTexture.GetSample(targetUV));
 			}
 		}

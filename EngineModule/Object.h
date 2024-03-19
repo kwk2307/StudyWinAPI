@@ -64,6 +64,7 @@ private:
 	ObjectType _ObjectType;
 	
 	std::unique_ptr<Collider> _Collider = nullptr;
+	std::unique_ptr<Animator> _Animator = nullptr;
 
 	bool _IsVisible = true;
 	std::size_t _Hash = MathUtil::InvalidHash;

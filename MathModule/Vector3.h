@@ -24,7 +24,9 @@ public:
 
 	// ¸É¹ö ÇÔ¼ö 
 	__forceinline constexpr Vector2 ToVector2() const;
+
 	__forceinline constexpr float Dot(const Vector3& InVector) const;
+	__forceinline constexpr Vector3 Cross(const Vector3& InVector) const;
 
 	// Á¤Àû¸â¹öº¯¼ö 
 	static const Vector3 UnitX;
@@ -128,4 +130,11 @@ __forceinline constexpr Vector2 Vector3::ToVector2() const
 __forceinline constexpr float Vector3::Dot(const Vector3& InVector) const
 {
 	return X * InVector.X + Y * InVector.Y + Z * InVector.Z;
+}
+
+__forceinline constexpr Vector3 Vector3::Cross(const Vector3& InVector) const {
+	return Vector3(
+		Y * InVector.Z - Z * InVector.Y,
+		Z * InVector.X - X * InVector.Z,
+		X * InVector.Y - Y * InVector.X);
 }

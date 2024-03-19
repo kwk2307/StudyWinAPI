@@ -15,6 +15,9 @@
 
 #include "Collider.h"
 
+#include "Animation.h"
+#include "Animator.h"
+
 #include "Object.h"
 #include "Camera.h"
 #include "Player.h"
