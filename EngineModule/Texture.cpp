@@ -5,10 +5,17 @@
 #include "stb_image.h"
 #pragma warning( pop )
 
+
+
 Texture::Texture(std::string InFileName)
 {
+	std::string str = fs::current_path().parent_path().string();
+	
+	str += "\\Resource";
+	str += InFileName;
+
 	FILE* f = NULL;
-	if (0 != fopen_s(&f, InFileName.c_str(), "rb"))
+	if (0 != fopen_s(&f, str.c_str(), "rb"))
 	{
 		return;
 	}

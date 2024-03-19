@@ -5,6 +5,9 @@
 #include <map>
 #include <windows.h>
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
 #include "Func.h"
 
 #include "InputManager.h"

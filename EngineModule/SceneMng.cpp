@@ -56,21 +56,21 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
 
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_1"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_1.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_2"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_2.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_3"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_3.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_4"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_4.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_5"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_5.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Idle_6"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_6.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_1"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_1.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_2"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_2.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_3"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_3.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_4"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_4.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_5"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_5.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Idle_6"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_6.png");
 
-	CreateTexture(std::hash<std::string>()("Warrior_Run_1"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_1.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_2"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_2.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_3"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_3.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_4"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_4.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_5"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_5.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_6"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_6.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_7"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_7.png");
-	CreateTexture(std::hash<std::string>()("Warrior_Run_8"), "C:\\Users\\User\\Documents\\GitHub\\StudyWinAPI\\Resource\\Warrior\\Individual Sprite\\Run\\Warrior_Run_8.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_1"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_1.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_2"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_2.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_3"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_3.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_4"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_4.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_5"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_5.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_6"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_6.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_7"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_7.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Run_8"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_8.png");
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
 
