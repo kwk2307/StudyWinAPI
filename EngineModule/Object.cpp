@@ -17,6 +17,10 @@ Object::Object(const ObjectInfo& Info):
 		_Collider = std::make_unique<Collider>(*this);
 	}
 
+	if (Info.IsAnimator) {
+		_Animator = std::make_unique<Animator>();
+	}
+
 }
 
 void Object::Update(float InDeltaSeconds)

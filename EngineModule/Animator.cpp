@@ -35,3 +35,11 @@ Animation* Animator::FindAnim(const std::string& InName)
     return nullptr;
 
 }
+
+void Animator::SetCurAnim(const std::string& InName)
+{
+    Animation* ResultAnim = FindAnim(InName);
+    if (ResultAnim != _CurAnim) {
+        _CurAnim = ResultAnim;
+    }
+}

@@ -14,6 +14,8 @@ public:
 public:
 	void Update(float InDeltaTime);
 
+	std::size_t GetTextureKey() const { return _vecFrameInfo[_Cnt].Texturekey; }
+
 private:
 	std::string _Name;
 	std::vector<FrameInfo> _vecFrameInfo;

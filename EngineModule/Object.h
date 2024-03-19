@@ -17,6 +17,7 @@ struct ObjectInfo {
 	std::string Texture;
 
 	bool IsCollision = false;
+	bool IsAnimator = false;
 };
 
 //왼손 좌표계를 기준으로 저장함
@@ -36,13 +37,16 @@ public:
 	const ObjectType& GetType() const { return _ObjectType; }
 	const std::string& GetName() const { return _Name; }
 	std::size_t GetMeshKey() const { return _Meshkey; }
+
 	std::size_t GetTextureKey() const { return _Texturekey; }
 
 	// 소유권을 넘겨주는 것이 아닌 잠시 빌려주는 것(?)
 	// Collider 객체의 cosnt 멤버 함수만을 호출할 수 있음
-	// const Object 객체 일때만 이 함수를 호출 가능 
+	// const Object 객체 일때만 이 함수를 호출 가능 sd
 	const Collider* GetCollider() const { return _Collider.get(); }
 	Collider* GetCollider() { return _Collider.get(); }
+
+	Animator* GetAnimator() { return _Animator.get(); }
 
 	bool HasMesh() const { return _Meshkey != MathUtil::InvalidHash; }
 	
