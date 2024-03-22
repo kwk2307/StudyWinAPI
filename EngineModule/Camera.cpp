@@ -29,12 +29,29 @@ Matrix4 Camera::GetViewMatrixRotationOnly() const
 	return Matrix4();
 }
 
-Matrix4 Camera::GetPerspectiveMatrix() const
+Matrix4 Camera::GetProjectionMatrix() const
 {
-	return Matrix4();
+	switch (_Mode)
+	{
+	case CameraMode::Orthographic:
+		return Matrix4(
+			Vector4(2.f / _ViewportSize.X, 0.f, 0.f, 0.f),
+			Vector4(0.f, 2.f / _ViewportSize.Y, 0.f, 0.f),
+			Vector4(0.f, 0.f, 1 / _FarZ - _NearZ, 1 / _NearZ - _FarZ),
+			Vector4(0.f, 0.f, 0.f, 1.f)
+		);
+		break;
+
+	case CameraMode::Perspective:
+		return Matrix4();
+		break;
+	default:
+		return Matrix4();
+		break;
+	}
 }
 
-Matrix4 Camera::GetPerspectiveViewMatrix() const
+Matrix4 Camera::GetProjectionViewMatrix() const
 {
-	return Matrix4();
+	return GetProjectionMatrix() * GetViewMatrix();
 }

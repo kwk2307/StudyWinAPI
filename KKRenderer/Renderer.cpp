@@ -45,7 +45,7 @@ void Renderer::Tick()
 	_GameEngineInitialized = GetGameEngine().IsInitailzed();
 	if (!_GameEngineInitialized) {
 
-		_GameEngineInitialized = GetGameEngine().Init();
+		_GameEngineInitialized = GetGameEngine().Init(_ScreenSize);
 
 		if (!_GameEngineInitialized)
 		{
@@ -70,6 +70,14 @@ void Renderer::Tick()
 void Renderer::OnResize(const ScreenPoint& InScreeSize)
 {
 	_ScreenSize = InScreeSize;
+
+	if (_RendererInitialized) {
+		GetRenderer().Init(_ScreenSize);
+	}
+
+	if (_GameEngineInitialized) {
+		GetGameEngine().GetSceneMng().OnScreenResize(_ScreenSize);
+	}
 }
 
 void Renderer::PreUpdate()
@@ -128,7 +136,7 @@ void Renderer::Render()
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 	
 	//ViewMatrix 만듦
-	const Matrix4 viewMatrix = mainCamera.GetViewMatrix();
+	const Matrix4 viewMatrix = mainCamera.GetProjectionViewMatrix();
 
 	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
 		for (auto it = g.GetSceneMng().GetCurrentScene(Type).begin();
@@ -200,34 +208,34 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
 
-	//// 클립 좌표를 NDC 좌표로 변경
-	//for (auto& v : InVertices)
-	//{
-	//	// 무한 원점인 경우, 약간 보정해준다.
-	//	if (v.Position.W == 0.f) v.Position.W = SMALL_NUMBER;
+	// 클립 좌표를 NDC 좌표로 변경
+	for (auto& v : InVertices)
+	{
+		// 무한 원점인 경우, 약간 보정해준다.
+		if (v.Position.W == 0.f) v.Position.W = SMALL_NUMBER;
 
-	//	float invW = 1.f / v.Position.W;
-	//	v.Position.X *= invW;
-	//	v.Position.Y *= invW;
-	//	v.Position.Z *= invW;
-	//}
-	//
-	//// 백페이스 컬링
-	//Vector3 edge1 = (InVertices[1].Position - InVertices[0].Position).ToVector3();
-	//Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
-	//Vector3 faceNormal = -edge1.Cross(edge2);
-	//Vector3 viewDirection = Vector3::UnitZ;
-	//if (faceNormal.Dot(viewDirection) >= 0.f)
-	//{
-	//	return;
-	//}
+		float invW = 1.f / v.Position.W;
+		v.Position.X *= invW;
+		v.Position.Y *= invW;
+		v.Position.Z *= invW;
+	}
+	
+	// 백페이스 컬링
+	Vector3 edge1 = (InVertices[1].Position - InVertices[0].Position).ToVector3();
+	Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
+	Vector3 faceNormal = -edge1.Cross(edge2);
+	Vector3 viewDirection = Vector3::UnitZ;
+	if (faceNormal.Dot(viewDirection) >= 0.f)
+	{
+		return;
+	}
 
-	//// NDC 좌표를 화면 좌표로 늘리기
-	//for (auto& v : InVertices)
-	//{
-	//	v.Position.X *= _ScreenSize.X * 0.5f;
-	//	v.Position.Y *= _ScreenSize.Y * 0.5f;
-	//}
+	// NDC 좌표를 화면 좌표로 늘리기
+	for (auto& v : InVertices)
+	{
+		v.Position.X *= _ScreenSize.X * 0.5f;
+		v.Position.Y *= _ScreenSize.Y * 0.5f;
+	}
 
 
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));

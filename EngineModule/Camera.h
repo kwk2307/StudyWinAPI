@@ -12,12 +12,15 @@ class Camera :
 {
 public:
     Camera(const ObjectInfo& Info);
+    const ScreenPoint& GetViewPortSize() const { return _ViewportSize; }
+
+    void SetViewportSize(const ScreenPoint& InViewportSize) { _ViewportSize = InViewportSize; }
 
     // 행렬 생성
      Matrix4 GetViewMatrix() const;
      Matrix4 GetViewMatrixRotationOnly() const;
-     Matrix4 GetPerspectiveMatrix() const;
-     Matrix4 GetPerspectiveViewMatrix() const;
+     Matrix4 GetProjectionMatrix() const;
+     Matrix4 GetProjectionViewMatrix() const;
 
 private:
     CameraMode _Mode = CameraMode::Orthographic;

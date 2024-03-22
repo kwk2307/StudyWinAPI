@@ -9,15 +9,15 @@ void GameEngine::Update(float InDeltaSeconds)
 GameEngine::GameEngine(SceneMngInterface* InSceneMng, CollisionMngInterface* InCollisionMng) :
 	_SceneMng(InSceneMng), _CollisionMng(InCollisionMng)
 {
-
 }
 
-bool GameEngine::Init()
+bool GameEngine::Init(const ScreenPoint& InScreenSize)
 {
 	_IsInitialized =  GetSceneMng().Init(_CollisionMng);
 
-	GetCollisionMng().Init(_SceneMng);
+	GetSceneMng().OnScreenResize(InScreenSize);
 
+	GetCollisionMng().Init(_SceneMng);
 	GetCollisionMng().CheckGroup(ObjectType::Player, ObjectType::Block);
 
 	return _IsInitialized;
