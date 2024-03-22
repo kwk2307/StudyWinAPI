@@ -9,6 +9,18 @@ Camera::Camera(const ObjectInfo& Info):
 
 Matrix4 Camera::GetViewMatrix() const
 {
+
+	switch (_Mode)
+	{
+	case CameraMode::Orthographic:
+
+
+		break;
+	case CameraMode::Perspective:
+		break;
+	default:
+		break;
+	}
 	// ViewMatrix 만들어야함
 	// Scale을 뺀 Rotation과 Transform 으로 만든 행렬의
 	// 역행렬

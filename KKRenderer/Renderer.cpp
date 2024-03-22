@@ -146,7 +146,7 @@ void Renderer::Render()
 			//뷰행렬 * 모델링 행렬 
 			Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
 
-			// 절두체 컬링 구현 해야함	
+			// 오브젝트 컬링 구현 해야함	
 			//
 			//
 			//
@@ -179,6 +179,7 @@ void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix , const Text
 	for (Vertex& v : vertices) {
 		v.Position = InMatrix * v.Position;
 	}
+
 	for (int ti = 0; ti < triangleCount; ++ti) {
 		int bi0 = ti * 3, bi1 = ti * 3 + 1, bi2 = ti * 3 + 2;
 		std::vector<Vertex> tvs = { vertices[indices[bi0]] , vertices[indices[bi1]] , vertices[indices[bi2]] };
@@ -200,35 +201,35 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	GameEngine& g = GetGameEngine();
 	auto& r = GetRenderer();
 
-	//// 클립 좌표를 NDC 좌표로 변경
-	//for (auto& v : InVertices)
-	//{
-	//	// 무한 원점인 경우, 약간 보정해준다.
-	//	if (v.Position.W == 0.f) v.Position.W = SMALL_NUMBER;
+	// 클립 좌표를 NDC 좌표로 변경
+	for (auto& v : InVertices)
+	{
+		// 무한 원점인 경우, 약간 보정해준다.
+		if (v.Position.W == 0.f) v.Position.W = SMALL_NUMBER;
 
-	//	float invW = 1.f / v.Position.W;
-	//	v.Position.X *= invW;
-	//	v.Position.Y *= invW;
-	//	v.Position.Z *= invW;
-	//}
-	//
-	//// 백페이스 컬링
-	//Vector3 edge1 = (InVertices[1].Position - InVertices[0].Position).ToVector3();
-	//Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
-	//Vector3 faceNormal = -edge1.Cross(edge2);
-	//Vector3 viewDirection = Vector3::UnitZ;
-	//if (faceNormal.Dot(viewDirection) >= 0.f)
-	//{
-	//	return;
-	//}
+		float invW = 1.f / v.Position.W;
+		v.Position.X *= invW;
+		v.Position.Y *= invW;
+		v.Position.Z *= invW;
+	}
+	
+	// 백페이스 컬링
+	Vector3 edge1 = (InVertices[1].Position - InVertices[0].Position).ToVector3();
+	Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
+	Vector3 faceNormal = -edge1.Cross(edge2);
+	Vector3 viewDirection = Vector3::UnitZ;
 
-	//// NDC 좌표를 화면 좌표로 늘리기
-	//for (auto& v : InVertices)
-	//{
-	//	v.Position.X *= _ScreenSize.X * 0.5f;
-	//	v.Position.Y *= _ScreenSize.Y * 0.5f;
-	//}
+	if (faceNormal.Dot(viewDirection) >= 0.f)
+	{
+		return;
+	}
 
+	// NDC 좌표를 화면 좌표로 늘리기
+	for (auto& v : InVertices)
+	{
+		v.Position.X *= _ScreenSize.X * 0.5f;
+		v.Position.Y *= _ScreenSize.Y * 0.5f;
+	}
 
 	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
