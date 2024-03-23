@@ -45,7 +45,7 @@ void Renderer::Tick()
 	_GameEngineInitialized = GetGameEngine().IsInitailzed();
 	if (!_GameEngineInitialized) {
 
-		_GameEngineInitialized = GetGameEngine().Init();
+		_GameEngineInitialized = GetGameEngine().Init(_ScreenSize);
 
 		if (!_GameEngineInitialized)
 		{
@@ -70,6 +70,14 @@ void Renderer::Tick()
 void Renderer::OnResize(const ScreenPoint& InScreeSize)
 {
 	_ScreenSize = InScreeSize;
+
+	if (_RendererInitialized) {
+		GetRenderer().Init(_ScreenSize);
+	}
+
+	if (_GameEngineInitialized) {
+		GetGameEngine().GetSceneMng().OnScreenResize(_ScreenSize);
+	}
 }
 
 void Renderer::PreUpdate()
@@ -128,7 +136,7 @@ void Renderer::Render()
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 	
 	//ViewMatrix ¸¸µê
-	const Matrix4 viewMatrix = mainCamera.GetViewMatrix();
+	const Matrix4 viewMatrix = mainCamera.GetProjectionViewMatrix();
 
 	for (UINT Type = 0; Type < (UINT)ObjectType::End; ++Type) {
 		for (auto it = g.GetSceneMng().GetCurrentScene(Type).begin();
@@ -218,10 +226,16 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
 	Vector3 faceNormal = -edge1.Cross(edge2);
 	Vector3 viewDirection = Vector3::UnitZ;
-
 	if (faceNormal.Dot(viewDirection) >= 0.f)
 	{
 		return;
+	}
+
+	// NDC ÁÂÇ¥¸¦ È­¸é ÁÂÇ¥·Î ´Ã¸®±â
+	for (auto& v : InVertices)
+	{
+		v.Position.X *= _ScreenSize.X * 0.5f;
+		v.Position.Y *= _ScreenSize.Y * 0.5f;
 	}
 
 	// NDC ÁÂÇ¥¸¦ È­¸é ÁÂÇ¥·Î ´Ã¸®±â

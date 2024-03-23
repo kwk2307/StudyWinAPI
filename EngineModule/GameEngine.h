@@ -6,12 +6,11 @@ public:
 	GameEngine(SceneMngInterface* InSceneMng, CollisionMngInterface* InCollisionMng);
 
 public:
-	bool Init();
+	bool Init(const ScreenPoint& InScreenSize);
 	bool IsInitailzed() { return _IsInitialized; }
 
 	SceneMngInterface& GetSceneMng() { return *_SceneMng; }
 	CollisionMngInterface& GetCollisionMng() { return *_CollisionMng; }
-
 	void Update(float InDeltaSeconds);
 public:
 

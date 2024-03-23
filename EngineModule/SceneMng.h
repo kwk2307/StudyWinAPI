@@ -14,8 +14,6 @@ public:
 		return _Objects[InType];
 	}
 
-	virtual void SetScreenSize(const ScreenPoint& InScreen) override;
-
 	Mesh& CreateMesh(const std::size_t& Inkey);
 	Mesh& CreateMesh(std::string InName, std::vector<Vector3> InVertices, std::vector<size_t> Indices, std::vector<Vector2> InUVs);
 
@@ -24,6 +22,8 @@ public:
 
 	virtual Mesh& GetMesh(const std::size_t& InMeshKey) const override { return *_Meshes.at(InMeshKey).get(); }
 	virtual Texture& GetTexture(const std::size_t InTextureKey) const override { return *_Textures.at(InTextureKey).get(); }
+
+	virtual void OnScreenResize(const ScreenPoint& InScreenSize) override;
 
 	virtual Camera& GetCamera() override { return *_MainCamera; }
 	virtual Player& GetPlayer() override { return *_MainPlayer; }
@@ -50,6 +50,8 @@ private:
 	std::string _CurrentSceneName = "StartScene";
 	
 	const CollisionMngInterface* _CollisionMng;
+
+	ScreenPoint _ScreenSize;
 
 	Camera* _MainCamera = nullptr;
 	Player* _MainPlayer = nullptr;

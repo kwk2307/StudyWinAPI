@@ -104,11 +104,6 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	return LoadScene("StartScene");
 }
 
-void SceneMng::SetScreenSize(const ScreenPoint& InScreen)
-{
-	return void();
-}
-
 Mesh& SceneMng::CreateMesh(const std::size_t& Inkey)
 {
 	auto meshPtr = std::make_unique<Mesh>();
@@ -145,6 +140,12 @@ Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const Color& Incolor)
 
 	return *_Textures.at(Inkey).get();
 
+}
+
+void SceneMng::OnScreenResize(const ScreenPoint& InScreenSize)
+{
+	_ScreenSize = InScreenSize;
+	_MainCamera->SetViewportSize(InScreenSize);
 }
 
 bool SceneMng::LoadScene(std::string SceneName)
