@@ -5,3 +5,18 @@ const Vector2 Vector2::UnitY(0.f, 1.f);
 const Vector2 Vector2::Zero(0.f, 0.f);
 const Vector2 Vector2::One(1.f, 1.f);
 
+Vector2 Vector2::GetNormalize() const
+{
+	float squareSum = SizeSquared();
+	if (squareSum == 1.f)
+	{
+		return *this;
+	}
+	else if (squareSum == 0.f)
+	{
+		return Vector2::Zero;
+	}
+
+	float invLength = MathUtil::InvSqrt(squareSum);
+	return Vector2(X, Y) * invLength;
+}

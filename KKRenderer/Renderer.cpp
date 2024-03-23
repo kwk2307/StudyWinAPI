@@ -151,13 +151,31 @@ void Renderer::Render()
 			const TransformComponent& transform = object.GetTransform();
 			const Texture& texture = g.GetSceneMng().GetTexture(object.GetTextureKey());
 
-			//뷰행렬 * 모델링 행렬 
+			// 로컬 좌표를 통해 바운딩 영역과 로컬 좌표를 계산하기 위해서 
+			// 미리 최종계산 좌표를 만들어 둔다
+			// viewMatrix가 P*V이기 때문에 실제로 PVM 행렬이 된다.
 			Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
+	
+			// RowVector을 쉽게 뽑아오기 위해 Column Major 방식인 Matrix를 전치 해준다. 
+			Matrix4 finalTransposedMatrix = finalMatrix.Transpose();
 
-			// 오브젝트 컬링 구현 해야함	
-			//
-			//
-			//
+			std::array<Plane, 6> frustumPlanesFromMatrix = {
+				Plane(-(finalTransposedMatrix[3] - finalTransposedMatrix[1])), // up
+				Plane(-(finalTransposedMatrix[3] + finalTransposedMatrix[1])), // bottom
+				Plane(-(finalTransposedMatrix[3] - finalTransposedMatrix[0])), // right
+				Plane(-(finalTransposedMatrix[3] + finalTransposedMatrix[0])), // left 
+				Plane(-(finalTransposedMatrix[3] - finalTransposedMatrix[2])),  // far
+				Plane(-(finalTransposedMatrix[3] + finalTransposedMatrix[2])), // near
+			};
+			Frustum frustumFromMatrix(frustumPlanesFromMatrix);
+
+			// 바운딩 영역을 사용해 절두체 컬링을 구현
+			Box boxBound = mesh.GetBoxBound();
+			auto checkResult = frustumFromMatrix.CheckBound(boxBound);
+			if (checkResult == BoundCheckResult::Outside)
+			{
+				continue;
+			}
 
 			DrawMesh(mesh, finalMatrix, texture);
 		}
@@ -184,15 +202,28 @@ void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix , const Text
 		}
 	}
 
+	// 정점변환 실행 여기서 
 	for (Vertex& v : vertices) {
 		v.Position = InMatrix * v.Position;
 	}
 
 	for (int ti = 0; ti < triangleCount; ++ti) {
 		int bi0 = ti * 3, bi1 = ti * 3 + 1, bi2 = ti * 3 + 2;
-		std::vector<Vertex> tvs = { vertices[indices[bi0]] , vertices[indices[bi1]] , vertices[indices[bi2]] };
+		std::vector<Vertex> tvs = { 
+			vertices[indices[bi0]] ,
+			vertices[indices[bi1]] ,
+			vertices[indices[bi2]]
+		};
 
-		// 동차좌표계에서 클리핑 구현 
+		// 클립 좌표에 w의 값이 -일때 = 점이 소실점 뒤에 있을 때
+		// 투영이 잘못 되면서 삼각형이 뒤집히는 현상이 발생한다
+		// 이를 방지하기 위해서 삼각형을 한번 더 쪼개는 방식으로 해결한다. 
+
+		// Direct3D 같은 API를 사용하면 알아서 해줌 
+
+		// 여기서 해주기 
+		// 
+		// 
 
 		size_t triangles = tvs.size() / 3;
 		for (size_t ti = 0; ti < triangles; ++ti)
@@ -229,13 +260,6 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	if (faceNormal.Dot(viewDirection) >= 0.f)
 	{
 		return;
-	}
-
-	// NDC 좌표를 화면 좌표로 늘리기
-	for (auto& v : InVertices)
-	{
-		v.Position.X *= _ScreenSize.X * 0.5f;
-		v.Position.Y *= _ScreenSize.Y * 0.5f;
 	}
 
 	// NDC 좌표를 화면 좌표로 늘리기

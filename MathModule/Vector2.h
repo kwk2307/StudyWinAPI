@@ -20,6 +20,13 @@ public:
 	__forceinline constexpr Vector2& operator+=(const Vector2& InVector);
 	__forceinline constexpr Vector2& operator-=(const Vector2& InVector);
 
+	// ¸â¹öÇÔ¼ö 
+	__forceinline float Size() const;
+	__forceinline constexpr float SizeSquared() const;
+	void Normalize();
+	[[nodiscard]] Vector2 GetNormalize() const;
+	__forceinline constexpr bool EqualsInTolerance(const Vector2& InVector, float InTolerance = SMALL_NUMBER) const;
+	__forceinline constexpr float Max() const;
 	__forceinline constexpr float Dot(const Vector2& InVector) const;
 
 	// Á¤Àû¸â¹öº¯¼ö 
@@ -109,6 +116,32 @@ __forceinline constexpr Vector2& Vector2::operator-=(const Vector2& InVector)
 	X -= InVector.X;
 	Y -= InVector.Y;
 	return *this;
+}
+
+__forceinline float Vector2::Size() const
+{
+	return sqrtf(SizeSquared());
+}
+
+__forceinline constexpr float Vector2::SizeSquared() const
+{
+	return X * X + Y * Y;
+}
+
+__forceinline void Vector2::Normalize()
+{
+	*this = GetNormalize();
+}
+
+__forceinline constexpr bool Vector2::EqualsInTolerance(const Vector2& InVector, float InTolerance) const
+{
+	return (MathUtil::Abs(this->X - InVector.X) <= InTolerance) &&
+		(MathUtil::Abs(this->Y - InVector.Y) < InTolerance);
+}
+
+__forceinline constexpr float Vector2::Max() const
+{
+	return MathUtil::Max(X, Y);
 }
 
 __forceinline constexpr float Vector2::Dot(const Vector2& InVector) const

@@ -23,6 +23,9 @@ public:
 	std::vector<Vector2>& GetUVs() { return _UVs; }
 	const std::vector<Vector2>& GetUVs() const { return _UVs; }
 
+	const Sphere& GetSphereBound() const { return _SphereBound; }
+	const Box& GetBoxBound() const { return _BoxBound; }
+
 private:
 	std::string _Name;
 
@@ -31,5 +34,6 @@ private:
 	std::vector<Vector2> _UVs;
 
 	MeshType _MeshType = MeshType::Normal;
-
+	Sphere _SphereBound;
+	Box _BoxBound;
 };

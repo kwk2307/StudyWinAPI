@@ -24,6 +24,11 @@ public:
 
 	// ¸É¹ö ÇÔ¼ö 
 	__forceinline constexpr Vector2 ToVector2() const;
+	__forceinline float Size() const;
+	__forceinline constexpr float SizeSquared() const;
+
+	[[nodiscard]] Vector3 GetNormalize() const;
+	__forceinline void Normalize();
 
 	__forceinline constexpr float Dot(const Vector3& InVector) const;
 	__forceinline constexpr Vector3 Cross(const Vector3& InVector) const;
@@ -125,6 +130,21 @@ __forceinline constexpr Vector3& Vector3::operator-=(const Vector3& InVector)
 __forceinline constexpr Vector2 Vector3::ToVector2() const
 {
 	return Vector2(X, Y);
+}
+
+__forceinline float Vector3::Size() const
+{
+	return sqrtf(SizeSquared());
+}
+
+__forceinline void Vector3::Normalize()
+{
+	*this = GetNormalize();
+}
+
+__forceinline constexpr float Vector3::SizeSquared() const
+{
+	return (X * X) + (Y * Y) + (Z * Z);
 }
 
 __forceinline constexpr float Vector3::Dot(const Vector3& InVector) const

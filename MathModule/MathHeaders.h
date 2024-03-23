@@ -6,6 +6,7 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 
 #define SMALL_NUMBER		(1.e-8f)
 
+
 #include <cassert>
 
 #include <math.h>
@@ -22,6 +23,13 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
+
+#include "Plane.h"
+#include "Box.h"
+#include "Circle.h"
+#include "Sphere.h"
+
+#include "Frustum.h"
 
 #include "Rotator.h"
 
