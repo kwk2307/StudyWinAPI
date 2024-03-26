@@ -36,7 +36,6 @@ private:
 	// 여러개의 씬을 담아 둘 벡터
 	std::vector<std::unique_ptr<Scene>> _Scenes;
 
-
 private:
 	// 오브젝트를 로드해서 넣어놓을 벡터 
 	std::vector<std::shared_ptr<Object>> _Objects[(UINT)ObjectType::End];

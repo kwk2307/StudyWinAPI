@@ -35,6 +35,13 @@ void Player::Update(float InDeltaSeconds)
 	float XAixs = InputManager::GetInstanc().GetXAxis();
 	if (MathUtil::Abs(XAixs) > 0.1f ){
 		GetAnimator()->SetCurAnim("Anim_run");
+		if (XAixs > 0) {
+			GetTransform().SetRotation(Rotator(0.f, 0.f, 0.f));
+		}
+		else {
+			GetTransform().SetRotation(Rotator(180.f, 0.f, 0.f));
+		}
+
 		if (MathUtil::Abs(XAixs) < MAX_SPEED) {
 			_Speed += Vector3(XAixs, 0.f, 0.f);
 		}

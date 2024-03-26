@@ -20,13 +20,13 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	PlayerMesh.GetIndices().assign(vec_Indices.begin(), vec_Indices.end());
 
 	std::vector<Vector3> vec_Vertices = {
-		Vector3(-35.f,-27.f,0.f),
-		Vector3(35.f,-27.f,0.f),
-		Vector3(35.f,27.f,0.f),
-		Vector3(-35.f,27.f,0.f)
+		Vector3(-32.f,-22.f,0.f),
+		Vector3(32.f,-22.f,0.f),
+		Vector3(32.f,22.f,0.f),
+		Vector3(-32.f,22.f,0.f)
 	};
 	PlayerMesh.GetVertices().assign(vec_Vertices.begin(), vec_Vertices.end());
-	// 가로 35 세로 27
+	// 가로 64 세로 44
 	std::vector<Vector2> vec_UV = {
 		Vector2(0.f,1.f),
 		Vector2(1.f,1.f),
@@ -37,22 +37,26 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 
 	Mesh& BlockMesh = CreateMesh(std::hash<std::string>()("M_Block"));
 
+	// 272/79  320/127 
+ 	
+	// 480/176
+
 	std::vector<size_t> vec_Indices2 = { 0,1,2,0,2,3 };
 	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
 
 	std::vector<Vector3> vec_Vertices2 = {
-		Vector3(0.f,0.f,0.f),
-		Vector3(1.f,0.f,0.f),
-		Vector3(1.f,1.f,0.f),
-		Vector3(0.f,1.f,0.f)
+		Vector3(-24.f,-24.f,0.f),
+		Vector3(24.f,-24.f,0.f),
+		Vector3(24.f,24.f,0.f),
+		Vector3(-24.f,24.f,0.f)
 	};
 	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
 
 	std::vector<Vector2> vec_UV2 = {
-		Vector2(0.f,1.f),
-		Vector2(1.f,1.f),
-		Vector2(1.f,0.f),
-		Vector2(0.f,0.f),
+		Vector2(0.566f,0.7215f),
+		Vector2(0.666f,0.7215f),
+		Vector2(0.666f,0.4488f),
+		Vector2(0.566f,0.4488f),
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
 
@@ -71,6 +75,8 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	CreateTexture(std::hash<std::string>()("Warrior_Run_6"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_6.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Run_7"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_7.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Run_8"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_8.png");
+	
+	CreateTexture(std::hash<std::string>()("TileSet"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png");
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
 
@@ -82,7 +88,6 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	Player.IsCollision = true;
 	Player.IsAnimator = true;
 	
-
 	startScene.get()->AddObject(Player);
 
 	ObjectInfo Camera;
@@ -93,9 +98,9 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	ObjectInfo Block;
 	Block.name = "block";
 	Block.type = ObjectType::Block;
-	Block.transform = TransformComponent(Vector3(-100, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(200, 10, 1));
+	Block.transform = TransformComponent(Vector3(0, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
 	Block.Mesh = "M_Block";
-	Block.Texture = "T_Block";
+	Block.Texture = "TileSet";
 	Block.IsCollision = true;
 	startScene.get()->AddObject(Block);
 

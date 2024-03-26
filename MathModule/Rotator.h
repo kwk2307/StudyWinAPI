@@ -34,6 +34,12 @@ public:
 		OutUp = Vector3(-cy * sr + sy * sp * cr, cp * cr, sy * sr + cy * sp * cr);
 		OutForward = Vector3(sy * cp, -sp, cy * cp);
 	}
+	
+	void AddRotator(const Rotator& InRot){
+		Yaw = GetAxisClampedValue(Yaw + InRot.Yaw);
+		Roll = GetAxisClampedValue(Roll + InRot.Roll);
+		Pitch = GetAxisClampedValue(Pitch + InRot.Pitch);
+	}
 
 	static const Rotator Identity;
 public:

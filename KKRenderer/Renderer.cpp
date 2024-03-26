@@ -259,7 +259,7 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 	Vector3 viewDirection = Vector3::UnitZ;
 	if (faceNormal.Dot(viewDirection) >= 0.f)
 	{
-		return;
+		//return;
 	}
 
 	// NDC ÁÂÇ¥¸¦ È­¸é ÁÂÇ¥·Î ´Ã¸®±â
