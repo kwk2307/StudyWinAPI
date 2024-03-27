@@ -76,6 +76,14 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	CreateTexture(std::hash<std::string>()("Warrior_Run_7"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_7.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Run_8"), "\\Warrior\\Individual Sprite\\Run\\Warrior_Run_8.png");
 	
+	CreateTexture(std::hash<std::string>()("Warrior_Jump_1"), "\\Warrior\\Individual Sprite\\Jump\\Warrior_Jump_1.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Jump_2"), "\\Warrior\\Individual Sprite\\Jump\\Warrior_Jump_2.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Jump_3"), "\\Warrior\\Individual Sprite\\Jump\\Warrior_Jump_3.png");
+
+	CreateTexture(std::hash<std::string>()("Warrior_Fall_1"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_1.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Fall_2"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_2.png");
+	CreateTexture(std::hash<std::string>()("Warrior_Fall_3"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_3.png");
+
 	CreateTexture(std::hash<std::string>()("TileSet"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png");
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
@@ -102,9 +110,16 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	Block.Mesh = "M_Block";
 	Block.Texture = "TileSet";
 	Block.IsCollision = true;
+
 	startScene.get()->AddObject(Block);
+	/*for (int i = 0; i < 13; ++i) {
+		Block.transform.AddPosition(Vector3(45, 0, 0));
+		Block.name += i;
+		startScene.get()->AddObject(Block);
+	}*/
 
 	_Scenes.push_back(std::move(startScene));
+
 
 	return LoadScene("StartScene");
 }

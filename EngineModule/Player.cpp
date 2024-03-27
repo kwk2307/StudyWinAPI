@@ -25,16 +25,30 @@ Player::Player(const ObjectInfo& Info):
 		{0.1f, std::hash<std::string>()("Warrior_Run_8")},
 	};
 	GetAnimator()->CrateAnim("Anim_run", Info_run);
-	
+
+	std::vector<FrameInfo> Info_Jump = {
+		{0.1f, std::hash<std::string>()("Warrior_Jump_1")},
+		{0.1f, std::hash<std::string>()("Warrior_Jump_2")},
+		{0.1f, std::hash<std::string>()("Warrior_Jump_3")}
+	};
+	GetAnimator()->CrateAnim("Anim_jump", Info_Jump);
+
+	std::vector<FrameInfo> Info_Fall = {
+		{0.1f, std::hash<std::string>()("Warrior_Fall_1")},
+		{0.1f, std::hash<std::string>()("Warrior_Fall_2")},
+		{0.1f, std::hash<std::string>()("Warrior_Fall_3")},
+	};
+	GetAnimator()->CrateAnim("Anim_fall", Info_Fall);
+
 	GetAnimator()->SetCurAnim("Anim_idle");
 }
 
 void Player::Update(float InDeltaSeconds)
 {
+
 	//ÁÂ¿ì ¿òÁ÷ÀÓ
 	float XAixs = InputManager::GetInstanc().GetXAxis();
 	if (MathUtil::Abs(XAixs) > 0.1f ){
-		GetAnimator()->SetCurAnim("Anim_run");
 		if (XAixs > 0) {
 			GetTransform().SetRotation(Rotator(0.f, 0.f, 0.f));
 		}
@@ -47,7 +61,6 @@ void Player::Update(float InDeltaSeconds)
 		}
 	}
 	else {
-		GetAnimator()->SetCurAnim("Anim_idle");
 		if (_Speed.X < 0) {
 			_Speed += Vector3::UnitX;
 		}
@@ -58,14 +71,30 @@ void Player::Update(float InDeltaSeconds)
 	
  	if (InputManager::GetInstanc().GetKeyState(Key::SPACE) == KeyState::TAP) {
 		if (isLand) {
-			_Speed.Y = 300.f;
+			_Speed.Y = 800.f;
 		}
 	}
 	if (!isLand) {
 		_Speed += Vector3(0.f, -10.f, 0.f);
 	}
-	
 	GetTransform().AddPosition(_Speed * InDeltaSeconds);
+
+	if (isLand) {
+		if (MathUtil::Abs(_Speed.X) > 0.1f) {
+			GetAnimator()->SetCurAnim("Anim_run");
+		}
+		else {
+			GetAnimator()->SetCurAnim("Anim_idle");
+		}
+	}
+	else {
+		if (_Speed.Y > 0.f) {
+			GetAnimator()->SetCurAnim("Anim_jump");
+		}
+		else {
+			GetAnimator()->SetCurAnim("Anim_fall");
+		}	
+	}
 
 	GetAnimator()->GetCurAnim()->Update(InDeltaSeconds);
 	SetTextureKey(GetAnimator()->GetCurAnim()->GetTextureKey());
