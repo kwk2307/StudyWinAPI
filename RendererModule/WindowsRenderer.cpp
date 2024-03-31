@@ -91,6 +91,76 @@ void WindowsRenderer::DrawPoint(const ScreenPoint& InScreenPos, const Color& InC
 	return;
 }
 
+void WindowsRenderer::DrawLine(const Vector4& InStartPos, const Vector4& InEndPos, const Color& InColor)
+{
+	Vector2 clippedStart = InStartPos.ToVector2();
+	Vector2 clippedEnd = InEndPos.ToVector2();
+	Vector2 screenExtend = Vector2(_ScreenSize.X, _ScreenSize.Y) * 0.5f;
+	Vector2 minScreen = -screenExtend;
+	Vector2 maxScreen = screenExtend;
+	if (!CohenSutherlandLineClip(clippedStart, clippedEnd, minScreen, maxScreen))
+	{
+		return;
+	}
+
+	ScreenPoint startPosition = ScreenPoint::ToScreenCoordinate(_ScreenSize, clippedStart);
+	ScreenPoint endPosition = ScreenPoint::ToScreenCoordinate(_ScreenSize, clippedEnd);
+
+	int width = endPosition.X - startPosition.X;
+	int height = endPosition.Y - startPosition.Y;
+
+	bool isGradualSlope = (MathUtil::Abs(width) >= MathUtil::Abs(height));
+	int dx = (width >= 0) ? 1 : -1;
+	int dy = (height > 0) ? 1 : -1;
+	int fw = dx * width;
+	int fh = dy * height;
+
+	int f = isGradualSlope ? fh * 2 - fw : 2 * fw - fh;
+	int f1 = isGradualSlope ? 2 * fh : 2 * fw;
+	int f2 = isGradualSlope ? 2 * (fh - fw) : 2 * (fw - fh);
+	int x = startPosition.X;
+	int y = startPosition.Y;
+
+	if (isGradualSlope)
+	{
+		while (x != endPosition.X)
+		{
+			DrawPoint(ScreenPoint(x, y), InColor);
+
+			if (f < 0)
+			{
+				f += f1;
+			}
+			else
+			{
+				f += f2;
+				y += dy;
+			}
+
+			x += dx;
+		}
+	}
+	else
+	{
+		while (y != endPosition.Y)
+		{
+			DrawPoint(ScreenPoint(x, y), InColor);
+
+			if (f < 0)
+			{
+				f += f1;
+			}
+			else
+			{
+				f += f2;
+				x += dx;
+			}
+
+			y += dy;
+		}
+	}
+}
+
 void WindowsRenderer::Release()
 {
 	if (_Initialized) {
@@ -126,6 +196,112 @@ bool WindowsRenderer::IsInScreen(const ScreenPoint& InPos) const
 int WindowsRenderer::GetScreenBufferIndex(const ScreenPoint& InPos) const
 {
 	return InPos.Y * _ScreenSize.X + InPos.X;
+}
+
+
+int WindowsRenderer::TestRegion(const Vector2& InVectorPos, const Vector2& InMinPos, const Vector2& InMaxPos)
+{
+	int result = 0;
+	if (InVectorPos.X < InMinPos.X)
+	{
+		result = result | 0b0001;
+	}
+	else if (InVectorPos.X > InMaxPos.X)
+	{
+		result = result | 0b0010;
+	}
+
+	if (InVectorPos.Y < InMinPos.Y)
+	{
+		result = result | 0b0100;
+	}
+	else if (InVectorPos.Y > InMaxPos.Y)
+	{
+		result = result | 0b1000;
+	}
+
+	return result;
+}
+
+bool WindowsRenderer::CohenSutherlandLineClip(Vector2& InOutStartPos, Vector2& InOutEndPos, const Vector2& InMinPos, const Vector2& InMaxPos)
+{
+	int startTest = TestRegion(InOutStartPos, InMinPos, InMaxPos);
+	int endTest = TestRegion(InOutEndPos, InMinPos, InMaxPos);
+
+	float width = (InOutEndPos.X - InOutStartPos.X);
+	float height = (InOutEndPos.Y - InOutStartPos.Y);
+
+	while (true)
+	{
+		if ((startTest == 0) && (endTest == 0)) // 화면 안에 두 점이 있으면 바로 그리기
+		{
+			return true;
+		}
+		else if (startTest & endTest) // 화면 밖에 선이 있으므로 그릴 필요가 없음
+		{
+			return false;
+		}
+		else // 양쪽을 조사해 클리핑 진행
+		{
+			Vector2 clippedPosition;
+			bool isStartTest = (startTest != 0);
+			int currentTest = isStartTest ? startTest : endTest;
+
+			if (currentTest < 0b0100)
+			{
+				if (currentTest & 1)
+				{
+					clippedPosition.X = InMinPos.X;
+				}
+				else
+				{
+					clippedPosition.X = InMaxPos.X;
+				}
+
+				if (MathUtil::EqualsInTolerance(height, 0.0f))
+				{
+					clippedPosition.Y = InOutStartPos.Y;
+
+				}
+				else
+				{
+					clippedPosition.Y = InOutStartPos.Y + height * (clippedPosition.X - InOutStartPos.X) / width;
+				}
+			}
+			else
+			{
+				if (currentTest & 0b0100)
+				{
+					clippedPosition.Y = InMinPos.Y;
+				}
+				else
+				{
+					clippedPosition.Y = InMaxPos.Y;
+				}
+
+				if (MathUtil::EqualsInTolerance(width, 0.0f))
+				{
+					clippedPosition.X = InOutStartPos.X;
+				}
+				else
+				{
+					clippedPosition.X = InOutStartPos.X + width * (clippedPosition.Y - InOutStartPos.Y) / height;
+				}
+			}
+
+			// 클리핑한 결과로 다시 테스트 진행.
+			if (isStartTest)
+			{
+				InOutStartPos = clippedPosition;
+				startTest = TestRegion(InOutStartPos, InMinPos, InMaxPos);
+			}
+			else
+			{
+				InOutEndPos = clippedPosition;
+				endTest = TestRegion(InOutEndPos, InMinPos, InMaxPos);
+			}
+		}
+	}
 }
 
 Color WindowsRenderer::GetPixel(const ScreenPoint& InPos)

@@ -48,6 +48,8 @@ private:
 	float _AverageFPS = 0.f;
 	float _FrameFPS = 0.f;
 
+	bool _IsWireframeDrawing = true;
+
 	ScreenPoint _ScreenSize;
 
 	std::unique_ptr<RendererInterface> _RIPtr;

@@ -1,5 +1,7 @@
 #include "Precompiled.h"
 
+
+
 void CollisionMng::Init(const SceneMngInterface* InSceneMng)
 {
 	_SceneMng = InSceneMng;
@@ -125,15 +127,15 @@ bool CollisionMng::isCollision(const Object& InLeftObj,const Object& InRightObj)
 	}
 
 	for (const auto& normal : LeftNormals) {
-		std::pair projection1 = project(LeftMesh.GetVertices(), normal);
-		std::pair projection2 = project(RightMesh.GetVertices(), normal);
+		Interval projection1 = project(LeftMesh.GetVertices(), normal);
+		Interval projection2 = project(RightMesh.GetVertices(), normal);
 		if (!overlap(projection1, projection2))
 			return false;
 	}
 
 	for (const auto& normal : RightNormals) {
-		std::pair<double, double> projection1 = project(LeftMesh.GetVertices(), normal);
-		std::pair<double, double> projection2 = project(RightMesh.GetVertices(), normal);
+		Interval projection1 = project(LeftMesh.GetVertices(), normal);
+		Interval projection2 = project(RightMesh.GetVertices(), normal);
 		if (!overlap(projection1, projection2))
 			return false;
 	}
@@ -141,11 +143,11 @@ bool CollisionMng::isCollision(const Object& InLeftObj,const Object& InRightObj)
 	return true;
 }
 
-//축에 전사 된 다면체의 max, min 계산
-std::pair<double,double> project(const std::vector<Vector3>& poly, const Vector3& axis) {
+Interval CollisionMng::project(const std::vector<Vector3>& poly, const Vector3& axis)
+{
 	double min = INFINITY, max = -INFINITY;
 	for (const auto& vertex : poly) {
-		// 축에 내적한 값이
+		
 		double projection = vertex.X * axis.X + vertex.Y * axis.Y + vertex.Z * axis.Z;
 		if (projection < min) min = projection;
 		if (projection > max) max = projection;
@@ -153,8 +155,8 @@ std::pair<double,double> project(const std::vector<Vector3>& poly, const Vector3
 	return { min, max };
 }
 
-bool overlap(std::pair<double, double> a, std::pair<double, double> b) {
-	return !(a.second < b.first || b.second < a.first);
+bool CollisionMng::overlap(Interval a, Interval  b) {
+	return !(a.max < b.min || b.max < a.min);
 }
 
 void CollisionMng::CheckGroup(ObjectType InLeft, ObjectType InRight)

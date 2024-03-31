@@ -280,70 +280,79 @@ void Renderer::DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTe
 		v.Position.Y *= _ScreenSize.Y * 0.5f;
 	}
 
-	Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
-	Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
-
-	// 무게 중심 좌표를 위한 벡터 변환 
-	Vector2 u = InVertices[1].Position.ToVector2() - InVertices[0].Position.ToVector2();
-	Vector2 v = InVertices[2].Position.ToVector2() - InVertices[0].Position.ToVector2();
-
-	// 공통 분모 값 ( uu * vv - uv * uv )
-	float udotv = u.Dot(v);
-	float vdotv = v.Dot(v);
-	float udotu = u.Dot(u);
-	float denominator = udotv * udotv - vdotv * udotu;
-
-	// 퇴화 삼각형 판정.
-	if (denominator == 0.f)
-	{
-		return;
+	if (_IsWireframeDrawing) {
+		r.DrawLine(InVertices[0].Position, InVertices[1].Position, Color::Blue);
+		r.DrawLine(InVertices[0].Position, InVertices[2].Position, Color::Blue);
+		r.DrawLine(InVertices[1].Position, InVertices[2].Position, Color::Blue);
 	}
+	else {
+		Vector2 minPos(MathUtil::Min3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Min3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
+		Vector2 maxPos(MathUtil::Max3(InVertices[0].Position.X, InVertices[1].Position.X, InVertices[2].Position.X), MathUtil::Max3(InVertices[0].Position.Y, InVertices[1].Position.Y, InVertices[2].Position.Y));
 
-	float invDenominator = 1.f / denominator;
-	ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
-	ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
-	
-	// 두 점이 화면 밖을 벗어나는 경우 클리핑 처리 
+		// 무게 중심 좌표를 위한 벡터 변환 
+		Vector2 u = InVertices[1].Position.ToVector2() - InVertices[0].Position.ToVector2();
+		Vector2 v = InVertices[2].Position.ToVector2() - InVertices[0].Position.ToVector2();
 
-	lowerLeftPoint.X = MathUtil::Max(0, lowerLeftPoint.X);
-	lowerLeftPoint.Y = MathUtil::Min(_ScreenSize.Y, lowerLeftPoint.Y);
-	upperRightPoint.X = MathUtil::Min(_ScreenSize.X, upperRightPoint.X);
-	upperRightPoint.Y = MathUtil::Max(0, upperRightPoint.Y);
+		// 공통 분모 값 ( uu * vv - uv * uv )
+		float udotv = u.Dot(v);
+		float vdotv = v.Dot(v);
+		float udotu = u.Dot(u);
+		float denominator = udotv * udotv - vdotv * udotu;
 
-
-	// 각 정점마다 보존된 뷰 공간의 z값
-	float invZ0 = 1.f / InVertices[0].Position.W;
-	float invZ1 = 1.f / InVertices[1].Position.W;
-	float invZ2 = 1.f / InVertices[2].Position.W;
-
-	for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
-	{
-		for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
+		// 퇴화 삼각형 판정.
+		if (denominator == 0.f)
 		{
-			ScreenPoint fragment = ScreenPoint(x, y);
-			Vector2 pointToTest = fragment.ToCartesianCoordinate(_ScreenSize);
-			Vector2 w = pointToTest - InVertices[0].Position.ToVector2();
-			float wdotu = w.Dot(u);
-			float wdotv = w.Dot(v);
+			return;
+		}
 
-			float s = (wdotv * udotv - wdotu * vdotv) * invDenominator;
-			float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
-			float oneMinusST = 1.f - s - t;
+		float invDenominator = 1.f / denominator;
+		ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
+		ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
 
-			// 투영보정에 사용할 공통 분모
-			float z = invZ0 * oneMinusST + invZ1 * s + invZ2 * t;
-			float invZ = 1.f / z;
+		// 두 점이 화면 밖을 벗어나는 경우 클리핑 처리 
 
-			//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.
-			if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
+		lowerLeftPoint.X = MathUtil::Max(0, lowerLeftPoint.X);
+		lowerLeftPoint.Y = MathUtil::Min(_ScreenSize.Y, lowerLeftPoint.Y);
+		upperRightPoint.X = MathUtil::Min(_ScreenSize.X, upperRightPoint.X);
+		upperRightPoint.Y = MathUtil::Max(0, upperRightPoint.Y);
+
+
+		// 각 정점마다 보존된 뷰 공간의 z값
+		float invZ0 = 1.f / InVertices[0].Position.W;
+		float invZ1 = 1.f / InVertices[1].Position.W;
+		float invZ2 = 1.f / InVertices[2].Position.W;
+
+		for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
+		{
+			for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
 			{
-				//깊이 테스팅 구현 필요
+				ScreenPoint fragment = ScreenPoint(x, y);
+				Vector2 pointToTest = fragment.ToCartesianCoordinate(_ScreenSize);
+				Vector2 w = pointToTest - InVertices[0].Position.ToVector2();
+				float wdotu = w.Dot(u);
+				float wdotv = w.Dot(v);
 
-				// 최종 보정보간된 UV 좌표
-				Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;	
-				r.DrawPoint(fragment, InTexture.GetSample(targetUV));
+				float s = (wdotv * udotv - wdotu * vdotv) * invDenominator;
+				float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
+				float oneMinusST = 1.f - s - t;
+
+				// 투영보정에 사용할 공통 분모
+				float z = invZ0 * oneMinusST + invZ1 * s + invZ2 * t;
+				float invZ = 1.f / z;
+
+				//무게 중심 좌표가 셋 다 1과 0 사이에 있다 == 그려야하는 픽셀이다.
+				if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
+				{
+					//깊이 테스팅 구현 필요
+
+					// 최종 보정보간된 UV 좌표
+					Vector2 targetUV = (InVertices[0].UV * oneMinusST * invZ0 + InVertices[1].UV * s * invZ1 + InVertices[2].UV * t * invZ2) * invZ;
+					r.DrawPoint(fragment, InTexture.GetSample(targetUV));
+				}
 			}
 		}
 	}
+
+
 }
 

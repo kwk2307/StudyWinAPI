@@ -12,12 +12,15 @@ public:
 
 public:
 	virtual void DrawPoint(const ScreenPoint& InScreenPos, const Color& InColor) override;
+	virtual void DrawLine(const Vector4& InStartPos, const Vector4& InEndPos, const Color& InColor) override;
 private:
 	void Release();
 	void FillBuffer(Color InColor);
 
 	bool IsInScreen(const ScreenPoint& InPos) const;
 	int  GetScreenBufferIndex(const ScreenPoint& InPos) const;
+	bool CohenSutherlandLineClip(Vector2& InOutStartPos, Vector2& InOutEndPos, const Vector2& InMinPos, const Vector2& InMaxPos);
+	int TestRegion(const Vector2& InVectorPos, const Vector2& InMinPos, const Vector2& InMaxPos);
 
 	Color GetPixel(const ScreenPoint& InPos);
 

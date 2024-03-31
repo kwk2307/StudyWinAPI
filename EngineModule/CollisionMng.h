@@ -8,6 +8,10 @@ union COLLIDER_ID {
 	LONGLONG llID;
 };
 
+struct Interval {
+	double min, max;
+};
+
 class CollisionMng:
 	public CollisionMngInterface
 {
@@ -19,11 +23,15 @@ public:
 	virtual void Init(const SceneMngInterface* InSceneMng) override;
 
 	virtual void Update(float InDeltaSeconds) override;
+	
 	virtual void CheckGroup(ObjectType InLeft, ObjectType InRight) override;
 
 private:
 	void CollisionEvent(ObjectType InLeft, ObjectType InRight);
 	bool isCollision(const Object& InLeftObj, const Object& InRightObj);
+	Interval project(const std::vector<Vector3>& poly, const Vector3& axis);
+	bool overlap(Interval a, Interval b);
+
 private:
 	const SceneMngInterface* _SceneMng;
 
