@@ -6,10 +6,14 @@ Mesh::Mesh(std::string InName,std::vector<Vector3> InVertices, std::vector<size_
 	_Indices(Indices),
 	_UVs(InUVs)
 {
-	_SphereBound = Sphere(_Vertices);
-	_BoxBound = Box(_Vertices);
 }
 
 Mesh::~Mesh()
 {
+}
+
+void Mesh::CalculateBounds()
+{
+	_SphereBound = Sphere(_Vertices);
+	_BoxBound = Box(_Vertices);
 }

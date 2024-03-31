@@ -23,6 +23,7 @@ public:
 	std::vector<Vector2>& GetUVs() { return _UVs; }
 	const std::vector<Vector2>& GetUVs() const { return _UVs; }
 
+	void CalculateBounds();
 	const Sphere& GetSphereBound() const { return _SphereBound; }
 	const Box& GetBoxBound() const { return _BoxBound; }
 

@@ -20,6 +20,7 @@ public:
 	__forceinline constexpr Vector3& operator/=(float InScale);
 	__forceinline constexpr Vector3& operator+=(const Vector3& InVector);
 	__forceinline constexpr Vector3& operator-=(const Vector3& InVector);
+	__forceinline constexpr bool operator==(const Vector3& InVector) const;
 
 
 	// ¸É¹ö ÇÔ¼ö 
@@ -126,6 +127,12 @@ __forceinline constexpr Vector3& Vector3::operator-=(const Vector3& InVector)
 	Z -= InVector.Z;
 	return *this;
 }
+
+__forceinline constexpr bool Vector3::operator==(const Vector3& InVector) const
+{
+	return (X == InVector.X) && (Y == InVector.Y) && (Z == InVector.Z);
+}
+
 
 __forceinline constexpr Vector2 Vector3::ToVector2() const
 {

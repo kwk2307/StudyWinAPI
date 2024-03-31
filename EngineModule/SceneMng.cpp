@@ -35,6 +35,8 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	};
 	PlayerMesh.GetUVs().assign(vec_UV.begin(), vec_UV.end());
 
+	PlayerMesh.CalculateBounds();
+
 	Mesh& BlockMesh = CreateMesh(std::hash<std::string>()("M_Block"));
 
 	// 272/79  320/127 
@@ -59,6 +61,8 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 		Vector2(0.566f,0.4488f),
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
+
+	BlockMesh.CalculateBounds();
 
 	CreateTexture(std::hash<std::string>()("Warrior_Idle_1"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_1.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Idle_2"), "\\Warrior\\Individual Sprite\\idle\\Warrior_Idle_2.png");
