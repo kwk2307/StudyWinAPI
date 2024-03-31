@@ -1,7 +1,5 @@
 #include "Precompiled.h"
 
-
-
 UINT Collider::_NextID = 0;
 
 Collider::Collider(Object& InOwner):

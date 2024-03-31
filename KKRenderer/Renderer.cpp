@@ -149,11 +149,21 @@ void Renderer::Render()
 
 			const Mesh& mesh = g.GetSceneMng().GetMesh(object.GetMeshKey());
 			const TransformComponent& transform = object.GetTransform();
+
 			const Texture& texture = g.GetSceneMng().GetTexture(object.GetTextureKey());
 
-			// 로컬 좌표를 통해 바운딩 영역과 로컬 좌표를 계산하기 위해서 
-			// 미리 최종계산 좌표를 만들어 둔다
+
+			// 바운딩 영역은 로컬 좌표를 기준으로 생성된 데이터임
+			// 절두체 컬링을 수행하는 공간은 뷰 공간 이기 때문에 로컬 좌표로 저장된 바운딩 영역을 뷰 공간으로 변환하고 
+			// 절두체 컬링을 진행하는 것은 불편함
+			// 그렇기 때문에 로컬 공간에서 절두체 컬링을 할 수 있는 방안이 필요함
+			// 절두체를 만들 때 원근 투영행열 * 뷰공간 좌표 < 이렇게 만들었는데
+			// 이를 풀어 쓰면 원근투영행열 * 뷰 행열 * 모델링 행열 * 로컬 좌표 이다
+			// 그렇기 때문에 로컬 좌표를 통해 계산하기 위해서는 
+			// (원근 투영 행렬 * 뷰 행열 * 모델링 행렬 ) <- 이 행렬을 통해 절두체를 만들어야한다
+			// 
 			// viewMatrix가 P*V이기 때문에 실제로 PVM 행렬이 된다.
+
 			Matrix4 finalMatrix = viewMatrix * transform.GetModelingMatrix();
 	
 			// RowVector을 쉽게 뽑아오기 위해 Column Major 방식인 Matrix를 전치 해준다. 
@@ -171,6 +181,7 @@ void Renderer::Render()
 
 			// 바운딩 영역을 사용해 절두체 컬링을 구현
 			Box boxBound = mesh.GetBoxBound();
+
 			auto checkResult = frustumFromMatrix.CheckBound(boxBound);
 			if (checkResult == BoundCheckResult::Outside)
 			{

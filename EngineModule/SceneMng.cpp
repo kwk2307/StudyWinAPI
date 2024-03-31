@@ -231,44 +231,6 @@ void SceneMng::Update(float InDeltaSeconds)
 			Object& object = *(*it);
 
 			object.Update(InDeltaSeconds);
-
-			if (object.GetCollider() != nullptr) {
-				Matrix4 model = object.GetTransform().GetModelingMatrix();
-				const Mesh& mesh = GetMesh(object.GetMeshKey());
-
-				std::pair<Vector3, Vector3> BoundingBox;
-
-				BoundingBox.first = Vector3(INT_MIN, INT_MIN, INT_MIN);
-				BoundingBox.second = Vector3(INT_MAX, INT_MAX, INT_MAX);
-					
-				for (const Vector3& vertex : mesh.GetVertices()) {
-
-					Vector3 vec = model * vertex;
-					BoundingBox.first.X = MathUtil::Max(BoundingBox.first.X, vec.X);
-					BoundingBox.first.Y = MathUtil::Max(BoundingBox.first.Y, vec.Y);
-					BoundingBox.first.Z = MathUtil::Max(BoundingBox.first.Z, vec.Z);
-
-					BoundingBox.second.X = MathUtil::Min(BoundingBox.second.X, vec.X);
-					BoundingBox.second.Y = MathUtil::Min(BoundingBox.second.Y, vec.Y);
-					BoundingBox.second.Z = MathUtil::Min(BoundingBox.second.Z, vec.Z);
-				}
-
-				object.GetCollider()->SetPos(
-					Vector3(
-						(BoundingBox.first.X + BoundingBox.second.X) / 2,
-						(BoundingBox.first.Y + BoundingBox.second.Y) / 2,
-						(BoundingBox.first.Z + BoundingBox.second.Z) / 2
-					)
-				);
-
-				object.GetCollider()->SetScale(
-					Vector3(
-						BoundingBox.first.X - BoundingBox.second.X,
-						BoundingBox.first.Y - BoundingBox.second.Y,
-						BoundingBox.first.Z - BoundingBox.second.Z
-					)
-				);
-			}
 		}
 	}
 }

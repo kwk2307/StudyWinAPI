@@ -15,6 +15,7 @@ Object::Object(const ObjectInfo& Info):
 
 	if (Info.IsCollision) {
 		_Collider = std::make_unique<Collider>(*this);
+
 	}
 
 	if (Info.IsAnimator) {
@@ -25,6 +26,7 @@ Object::Object(const ObjectInfo& Info):
 
 void Object::Update(float InDeltaSeconds)
 {
+
 }
 
 void Object::OnCollision(const Collider& InOther)
