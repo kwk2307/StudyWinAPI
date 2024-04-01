@@ -47,10 +47,10 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
 
 	std::vector<Vector3> vec_Vertices2 = {
-		Vector3(-48.f,-24.f,0.f),
-		Vector3(48.f,-24.f,0.f),
-		Vector3(48.f,24.f,0.f),
-		Vector3(-48.f,24.f,0.f)
+		Vector3(0.f,0.f,0.f),
+		Vector3(120.f,0.f,0.f),
+		Vector3(120.f,40.f,0.f),
+		Vector3(0.f,40.f,0.f)
 	};
 	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
 
@@ -60,8 +60,8 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 		//Vector2(0.666f,0.4488f),
 		//Vector2(0.566f,0.4488f),
 		Vector2(0.f,1.f),
-		Vector2(2.f,1.f),
-		Vector2(2.f,0.f),
+		Vector2(3.f,1.f),
+		Vector2(3.f,0.f),
 		Vector2(0.f,0.f),
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
@@ -92,7 +92,7 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	CreateTexture(std::hash<std::string>()("Warrior_Fall_2"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_2.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Fall_3"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_3.png");
 
-	CreateTexture(std::hash<std::string>()("Block"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png", std::make_pair(272, 79), std::make_pair(48, 48));
+	CreateTexture(std::hash<std::string>()("Block"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png", std::make_pair(274, 79), std::make_pair(40, 40));
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
 
