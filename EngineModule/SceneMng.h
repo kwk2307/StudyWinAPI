@@ -18,6 +18,7 @@ public:
 	Mesh& CreateMesh(std::string InName, std::vector<Vector3> InVertices, std::vector<size_t> Indices, std::vector<Vector2> InUVs);
 
 	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress);
+	Texture& CreateTexture(const std::size_t& Inkey, const std::string& InAddress, std::pair<UINT32, UINT32> start, std::pair<UINT32, UINT32> size);
 	Texture& CreateTexture(const std::size_t& Inkey, const Color& Incolor);
 
 	virtual Mesh& GetMesh(const std::size_t& InMeshKey) const override { return *_Meshes.at(InMeshKey).get(); }

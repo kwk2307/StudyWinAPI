@@ -48,7 +48,7 @@ private:
 	float _AverageFPS = 0.f;
 	float _FrameFPS = 0.f;
 
-	bool _IsWireframeDrawing = false;
+	bool _IsWireframeDrawing = true;
 
 	ScreenPoint _ScreenSize;
 

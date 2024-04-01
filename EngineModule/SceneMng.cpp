@@ -47,18 +47,22 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
 
 	std::vector<Vector3> vec_Vertices2 = {
-		Vector3(-24.f,-24.f,0.f),
-		Vector3(24.f,-24.f,0.f),
-		Vector3(24.f,24.f,0.f),
-		Vector3(-24.f,24.f,0.f)
+		Vector3(-48.f,-24.f,0.f),
+		Vector3(48.f,-24.f,0.f),
+		Vector3(48.f,24.f,0.f),
+		Vector3(-48.f,24.f,0.f)
 	};
 	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
 
 	std::vector<Vector2> vec_UV2 = {
-		Vector2(0.566f,0.7215f),
-		Vector2(0.666f,0.7215f),
-		Vector2(0.666f,0.4488f),
-		Vector2(0.566f,0.4488f),
+		//Vector2(0.566f,0.7215f),
+		//Vector2(0.666f,0.7215f),
+		//Vector2(0.666f,0.4488f),
+		//Vector2(0.566f,0.4488f),
+		Vector2(0.f,1.f),
+		Vector2(2.f,1.f),
+		Vector2(2.f,0.f),
+		Vector2(0.f,0.f),
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
 
@@ -88,7 +92,7 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	CreateTexture(std::hash<std::string>()("Warrior_Fall_2"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_2.png");
 	CreateTexture(std::hash<std::string>()("Warrior_Fall_3"), "\\Warrior\\Individual Sprite\\Fall\\Warrior_Fall_3.png");
 
-	CreateTexture(std::hash<std::string>()("TileSet"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png");
+	CreateTexture(std::hash<std::string>()("Block"), "\\Country-village_asset_pack\\1_Tileset & props\\country village tileset.png", std::make_pair(272, 79), std::make_pair(48, 48));
 
 	Texture& BlockTexture = CreateTexture(std::hash<std::string>()("T_Block"), Color::Green);
 
@@ -112,15 +116,15 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	Block.type = ObjectType::Block;
 	Block.transform = TransformComponent(Vector3(0, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
 	Block.Mesh = "M_Block";
-	Block.Texture = "TileSet";
+	Block.Texture = "Block";
 	Block.IsCollision = true;
 
 	startScene.get()->AddObject(Block);
-	/*for (int i = 0; i < 13; ++i) {
-		Block.transform.AddPosition(Vector3(45, 0, 0));
-		Block.name += i;
-		startScene.get()->AddObject(Block);
-	}*/
+	//for (int i = 0; i < 3; ++i) {
+	//	Block.transform.AddPosition(Vector3(100, 0, 0));
+	//	Block.name += i;
+	//	startScene.get()->AddObject(Block);
+	//}
 
 	_Scenes.push_back(std::move(startScene));
 
@@ -151,6 +155,15 @@ Mesh& SceneMng::CreateMesh(std::string InName, std::vector<Vector3> InVertices, 
 Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const std::string& InAddress)
 {
 	auto meshPtr = std::make_unique<Texture>(InAddress);
+	_Textures.insert({ Inkey,std::move(meshPtr) });
+
+	return *_Textures.at(Inkey).get();
+
+}
+
+Texture& SceneMng::CreateTexture(const std::size_t& Inkey, const std::string& InAddress, std::pair<UINT32, UINT32> start, std::pair<UINT32, UINT32> size)
+{
+	auto meshPtr = std::make_unique<Texture>(InAddress,start,size);
 	_Textures.insert({ Inkey,std::move(meshPtr) });
 
 	return *_Textures.at(Inkey).get();

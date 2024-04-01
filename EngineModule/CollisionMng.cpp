@@ -49,7 +49,7 @@ void CollisionMng::CollisionEvent(ObjectType InLeft, ObjectType InRight)
 			}
 
 			//충돌이 됐을 때
-			if (isCollision(*(vecLeft[i].get()), *(vecRight[i].get()))) {
+			if (isCollision(*(vecLeft[i].get()), *(vecRight[j].get()))) {
 				//처음으로 충돌 됨
 				if (!iter->second) {
 					//둘다 살아 있을 때
@@ -93,55 +93,29 @@ void CollisionMng::CollisionEvent(ObjectType InLeft, ObjectType InRight)
 bool CollisionMng::isCollision(const Object& InLeftObj,const Object& InRightObj)
 {	
 	Matrix4 LeftModelingMatrix = InLeftObj.GetTransform().GetModelingMatrix();
-	Mesh LeftMesh = _SceneMng->GetMesh(InLeftObj.GetMeshKey());
-	Vector3 LeftExtent = LeftMesh.GetBoxBound().GetExtent();
 
-	std::vector<Vector3> LeftNormals = { Vector3(LeftExtent.X,0.f,0.f),Vector3(0.f,LeftExtent.Y,0.f) ,Vector3(0.f,0.f,LeftExtent.Z) };
-	for (Vector3& vec : LeftNormals) {
-		vec = LeftModelingMatrix * vec;
-	}
+	Box LeftMesh = _SceneMng->GetMesh(InLeftObj.GetMeshKey()).GetBoxBound();
 
-	std::vector<Vector3>& LeftVertices = LeftMesh.GetVertices();
+	// 회전 사원수로 계산해서 XAxis YAxis ZAxis를 만들어서 넣어야함
+	// 지금은 그냥 xyz의 기본축
+	std::vector<Vector3> LeftNormals = { Vector3(1.f,0.f,0.f),Vector3(0.f,1.f,0.f) ,Vector3(0.f,0.f,1.f) };
+
+	std::vector<Vector3> LeftVertices = LeftMesh.GetVertices();
+
 	for (Vector3& vec : LeftVertices) {
 		vec = LeftModelingMatrix * vec;
 	}
-	//std::vector<size_t>& LeftIndices = LeftMesh.GetIndices();
-
-	//std::vector<Vector3> LeftNormals;
-	//for (int i = 0; i < LeftMesh.GetIndices().size() / 3; ++i) {
-	//	Vector3 vec = (LeftVertices[LeftIndices[i * 3 + 1]] - LeftVertices[LeftIndices[i * 3]]).Cross(LeftVertices[LeftIndices[i * 3 + 2]] - LeftVertices[LeftIndices[i * 3]]);
-	//	std::vector<Vector3>::iterator iter = std::find(LeftNormals.begin(), LeftNormals.end(), vec);
-
-	//	if (iter == LeftNormals.end()) {
-	//		LeftNormals.push_back(vec);
-	//	}
-	//}
 
 	Matrix4 RightModelingMatrix = InRightObj.GetTransform().GetModelingMatrix();
-	Mesh RightMesh = _SceneMng->GetMesh(InRightObj.GetMeshKey());
-	Vector3 RightExtent = RightMesh.GetBoxBound().GetExtent();
+	Box RightMesh = _SceneMng->GetMesh(InRightObj.GetMeshKey()).GetBoxBound();
+	
+	std::vector<Vector3> RightNormals = { Vector3(1.f,0.f,0.f),Vector3(0.f,1.f,0.f) ,Vector3(0.f,0.f,1.f) };
 
-	std::vector<Vector3> RightNormals = { Vector3(RightExtent.X,0.f,0.f),Vector3(0.f,RightExtent.Y,0.f) ,Vector3(0.f,0.f,RightExtent.Z) };
-	for (Vector3& vec : RightNormals) {
-		vec = RightModelingMatrix * vec;
-	}
+	std::vector<Vector3> RightVertices = RightMesh.GetVertices();
 
-	std::vector<Vector3>& RightVertices = RightMesh.GetVertices();
 	for (Vector3& vec : RightVertices) {
 		vec = RightModelingMatrix * vec;
 	}
-
-	//std::vector<size_t>& RightIndices = RightMesh.GetIndices();
-
-	//std::vector<Vector3> RightNormals;
-	//for (int i = 0; i < RightMesh.GetIndices().size() / 3; ++i) {
-	//	Vector3 vec = (RightVertices[RightIndices[i * 3 + 1]] - RightVertices[RightIndices[i * 3]]).Cross(RightVertices[RightIndices[i * 3 + 2]] - RightVertices[RightIndices[i * 3]]);
-	//	
-	//	std::vector<Vector3>::iterator iter = std::find(RightNormals.begin(), RightNormals.end(), vec);
-	//	if (iter == RightNormals.end()) {
-	//		RightNormals.push_back(vec);
-	//	}
-	//}
 
 	std::vector<Vector3> EdgeNormals;
 	for (const auto& LeftNormal : LeftNormals) {
@@ -179,7 +153,7 @@ Interval CollisionMng::project(const std::vector<Vector3>& poly, const Vector3& 
 {
 	double min = INFINITY, max = -INFINITY;
 	for (const auto& vertex : poly) {
-		
+		// 내적 
 		double projection = vertex.X * axis.X + vertex.Y * axis.Y + vertex.Z * axis.Z;
 		if (projection < min) min = projection;
 		if (projection > max) max = projection;

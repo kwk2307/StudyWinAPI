@@ -10,6 +10,7 @@ public:
 
 	__forceinline Matrix4 GetModelingMatrix() const;
 
+
 public:
 	const Vector3& GetPosition() const{ return _Position; }
 	void SetPosition(const Vector3& InPos) { _Position = InPos; }

@@ -18,6 +18,7 @@ public:
 	__forceinline constexpr Vector3 GetExtent() const;
 	__forceinline constexpr void GetCenterAndExtent(Vector3& OutCenter, Vector3& OutExtent) const;
 
+	__forceinline std::vector<Vector3> GetVertices() const;
 public:
 	Vector3 Min;
 	Vector3 Max;
@@ -92,4 +93,20 @@ __forceinline constexpr void Box::GetCenterAndExtent(Vector3& OutCenter, Vector3
 {
 	OutExtent = GetExtent();
 	OutCenter = Min + OutExtent;
+}
+
+__forceinline std::vector<Vector3> Box::GetVertices() const 
+{
+	std::vector<Vector3> result = {
+		Vector3(Min.X,Min.Y,Min.Z),
+		Vector3(Max.X,Min.Y,Min.Z),
+		Vector3(Max.X,Max.Y,Min.Z),
+		Vector3(Min.X,Max.Y,Min.Z),
+		Vector3(Min.X,Min.Y,Max.Z),
+		Vector3(Max.X,Min.Y,Max.Z),
+		Vector3(Max.X,Max.Y,Max.Z),
+		Vector3(Min.X,Max.Y,Max.Z)
+	};
+
+	return result;
 }
