@@ -24,6 +24,7 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 #include "Vector3.h"
 #include "Vector4.h"
 
+
 #include "Plane.h"
 #include "Box.h"
 #include "Circle.h"
@@ -32,6 +33,7 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 #include "Frustum.h"
 
 #include "Rotator.h"
+#include "Quaternion.h"
 
 #include "Matrix3.h"
 #include "Matrix4.h"
@@ -39,4 +41,5 @@ typedef signed long long	INT64;	// 부호 있는 64비트.
 #include "Color.h"
 
 #include "ScreenPoint.h"
+
 

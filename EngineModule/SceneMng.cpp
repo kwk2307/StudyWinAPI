@@ -47,21 +47,17 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	BlockMesh.GetIndices().assign(vec_Indices2.begin(), vec_Indices2.end());
 
 	std::vector<Vector3> vec_Vertices2 = {
-		Vector3(0.f,0.f,0.f),
+		Vector3(-120.f,0.f,0.f),
 		Vector3(120.f,0.f,0.f),
 		Vector3(120.f,40.f,0.f),
-		Vector3(0.f,40.f,0.f)
+		Vector3(-120.f,40.f,0.f)
 	};
 	BlockMesh.GetVertices().assign(vec_Vertices2.begin(), vec_Vertices2.end());
 
 	std::vector<Vector2> vec_UV2 = {
-		//Vector2(0.566f,0.7215f),
-		//Vector2(0.666f,0.7215f),
-		//Vector2(0.666f,0.4488f),
-		//Vector2(0.566f,0.4488f),
 		Vector2(0.f,1.f),
-		Vector2(3.f,1.f),
-		Vector2(3.f,0.f),
+		Vector2(4.f,1.f),
+		Vector2(4.f,0.f),
 		Vector2(0.f,0.f),
 	};
 	BlockMesh.GetUVs().assign(vec_UV2.begin(), vec_UV2.end());
@@ -120,11 +116,6 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	Block.IsCollision = true;
 
 	startScene.get()->AddObject(Block);
-	//for (int i = 0; i < 3; ++i) {
-	//	Block.transform.AddPosition(Vector3(100, 0, 0));
-	//	Block.name += i;
-	//	startScene.get()->AddObject(Block);
-	//}
 
 	_Scenes.push_back(std::move(startScene));
 

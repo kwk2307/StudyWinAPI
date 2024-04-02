@@ -137,6 +137,7 @@
     <ClInclude Include="Matrix3.h" />
     <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Plane.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Rotator.h" />
     <ClInclude Include="ScreenPoint.h" />
     <ClInclude Include="Sphere.h" />
