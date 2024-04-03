@@ -135,6 +135,8 @@ void Renderer::Render()
 	auto& r = GetRenderer();
 	auto& mainCamera = g.GetSceneMng().GetCamera();
 
+	// DrawGizmo2D();
+
 	//ViewMatrix ¸¸µê
 	const Matrix4 viewMatrix = mainCamera.GetProjectionViewMatrix();
 
@@ -192,6 +194,40 @@ void Renderer::Render()
 		}
 	}
 
+}
+void Renderer::DrawGizmo2D()
+{
+	auto& r = GetRenderer();
+	auto& g = GetGameEngine();
+
+	Vector2 viewPos = g.GetSceneMng().GetCamera().GetTransform().GetPosition().ToVector2();
+	Vector2 extent = Vector2(_ScreenSize.X * 0.5f, _ScreenSize.Y * 0.5f);
+
+	int xGridCount = _ScreenSize.X / 10.f;
+	int yGridCount = _ScreenSize.Y / 10.f;
+
+	Vector2 minPos = viewPos - extent;
+	Vector2 minGridPos =
+		Vector2(
+			ceilf(minPos.X / 10.f),
+			ceilf(minPos.Y / 10.f))
+		* (float)10.f;
+
+	ScreenPoint gridBottomLeft = ScreenPoint::ToScreenCoordinate(_ScreenSize, minGridPos - viewPos);
+
+	for (int ix = 0; ix < xGridCount; ++ix)
+	{
+		r.DrawFullVerticalLine(gridBottomLeft.X + ix * 10.f, Color(204, 204, 204, 255));
+	}
+
+	for (int iy = 0; iy < yGridCount; ++iy)
+	{
+		r.DrawFullHorizontalLine(gridBottomLeft.Y - iy * 10.f, Color(204,204,204, 255));
+	}
+
+	ScreenPoint worldOrigin = ScreenPoint::ToScreenCoordinate(_ScreenSize, -viewPos);
+	r.DrawFullHorizontalLine(worldOrigin.Y, Color::Red);
+	r.DrawFullVerticalLine(worldOrigin.X, Color::Green);
 }
 //
 void Renderer::DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix, const Texture& InTexture)

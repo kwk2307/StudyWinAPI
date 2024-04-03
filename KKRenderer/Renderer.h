@@ -29,6 +29,7 @@ private:
 	void LateUpdate(float InDeltaSeconds);
 	void Render();
 
+	void DrawGizmo2D();
 	void DrawMesh(const Mesh& InMesh, const Matrix4& InMatrix, const Texture& InTexture);
 	void DrawTriangle(std::vector<Vertex>& InVertices, const Texture& InTexture);
 

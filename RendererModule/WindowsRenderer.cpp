@@ -161,6 +161,32 @@ void WindowsRenderer::DrawLine(const Vector4& InStartPos, const Vector4& InEndPo
 	}
 }
 
+void WindowsRenderer::DrawFullVerticalLine(int InX, const Color& InColor)
+{
+	if (InX < 0 || InX >= _ScreenSize.X)
+	{
+		return;
+	}
+
+	for (int y = 0; y < _ScreenSize.Y; ++y)
+	{
+		DrawPoint(ScreenPoint(InX, y), InColor);
+	}
+}
+
+void WindowsRenderer::DrawFullHorizontalLine(int InY, const Color& InColor)
+{
+	if (InY < 0 || InY >= _ScreenSize.Y)
+	{
+		return;
+	}
+
+	for (int x = 0; x < _ScreenSize.X; ++x)
+	{
+		DrawPoint(ScreenPoint(x, InY), InColor);
+	}
+}
+
 void WindowsRenderer::Release()
 {
 	if (_Initialized) {

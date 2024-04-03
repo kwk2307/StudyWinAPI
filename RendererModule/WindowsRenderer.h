@@ -13,6 +13,9 @@ public:
 public:
 	virtual void DrawPoint(const ScreenPoint& InScreenPos, const Color& InColor) override;
 	virtual void DrawLine(const Vector4& InStartPos, const Vector4& InEndPos, const Color& InColor) override;
+
+	virtual void DrawFullVerticalLine(int InX, const Color& InColor);
+	virtual void DrawFullHorizontalLine(int InY, const Color& InColor);
 private:
 	void Release();
 	void FillBuffer(Color InColor);

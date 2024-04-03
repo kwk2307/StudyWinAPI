@@ -96,9 +96,10 @@ bool CollisionMng::isCollision(const Object& InLeftObj,const Object& InRightObj)
 
 	Box LeftMesh = _SceneMng->GetMesh(InLeftObj.GetMeshKey()).GetBoxBound();
 
-	// 회전 사원수로 계산해서 XAxis YAxis ZAxis를 만들어서 넣어야함
-	// 지금은 그냥 xyz의 기본축
-	std::vector<Vector3> LeftNormals = { Vector3(1.f,0.f,0.f),Vector3(0.f,1.f,0.f) ,Vector3(0.f,0.f,1.f) };
+	Vector3 right, up, forward;
+	InLeftObj.GetTransform().GetRotator().GetLocalAxes(right, up, forward);
+
+	std::vector<Vector3> LeftNormals = { right,up,forward };
 
 	std::vector<Vector3> LeftVertices = LeftMesh.GetVertices();
 
@@ -109,7 +110,8 @@ bool CollisionMng::isCollision(const Object& InLeftObj,const Object& InRightObj)
 	Matrix4 RightModelingMatrix = InRightObj.GetTransform().GetModelingMatrix();
 	Box RightMesh = _SceneMng->GetMesh(InRightObj.GetMeshKey()).GetBoxBound();
 	
-	std::vector<Vector3> RightNormals = { Vector3(1.f,0.f,0.f),Vector3(0.f,1.f,0.f) ,Vector3(0.f,0.f,1.f) };
+	InRightObj.GetTransform().GetRotator().GetLocalAxes(right, up, forward);
+	std::vector<Vector3> RightNormals = { right,up,forward };
 
 	std::vector<Vector3> RightVertices = RightMesh.GetVertices();
 

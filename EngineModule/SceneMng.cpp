@@ -110,7 +110,7 @@ bool SceneMng::Init(const CollisionMngInterface* InCollisionMng)
 	ObjectInfo Block;
 	Block.name = "block";
 	Block.type = ObjectType::Block;
-	Block.transform = TransformComponent(Vector3(0, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(1, 1, 1));
+	Block.transform = TransformComponent(Vector3(0, -150, 0), Rotator(0.f, 0.f, 0.f), Vector3(3, 3, 1));
 	Block.Mesh = "M_Block";
 	Block.Texture = "Block";
 	Block.IsCollision = true;
